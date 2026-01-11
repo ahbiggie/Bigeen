@@ -1,27 +1,27 @@
-import { ThemeProvider } from "@mui/material/styles"
-import { CssBaseline } from "@mui/material"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { ThemeProvider, CssBaseline } from "@mui/material"
 import { theme } from "./theme/theme"
 import { MainLayout } from "./layout/MainLayout"
 import { HomePage } from "./pages/HomePage"
-import { AboutPage } from "./pages/AboutPage"
-import { ContactPage } from "./pages/ContactPage"
 import { RoadmapPage } from "./pages/RoadmapPage"
+import { ContactPage } from "./pages/ContactPage"
+import { AboutPage } from "./pages/AboutPage"
 
-function App() {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route element={<MainLayout />}>
+          <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="contact" element={<ContactPage />} />
             <Route path="roadmap" element={<RoadmapPage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="about" element={<AboutPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </ThemeProvider>
   )
 }

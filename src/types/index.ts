@@ -64,14 +64,34 @@ export interface FooterLinkSection {
 
 // Project Card (Roadmap)
 export interface ProjectCardProps {
-  category: string
-  categoryColor: string
   title: string
   description: string
+  imageUrl?: string
+  categories: string[]
+  categoryColors?: string[]
   status?: string
   votes?: number
   comments?: number
-  isDarkMode?: boolean
+}
+
+// Project (Full)
+export interface Project {
+  id: string
+  title: string
+  description: string
+  imageUrl: string
+  categories: string[]
+  categoryColors?: string[]
+  link?: string
+}
+
+// Milestone (Timeline)
+export interface Milestone {
+  year: string
+  title: string
+  description: string
+  icon?: React.ReactNode
+  position: "left" | "right"
 }
 
 // Roadmap Card
