@@ -1,121 +1,232 @@
-import { Box, Container, Typography, Button, Stack, Chip, Card, Grid } from '@mui/material';
-import { ArrowForward, PlayArrow, Star } from '@mui/icons-material';
-import { gradients } from '../theme/theme';
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Stack,
+  Chip,
+  Card,
+  Grid,
+} from "@mui/material"
+import { ArrowForward, PlayArrow, Star } from "@mui/icons-material"
+import { motion } from "framer-motion"
+import { gradients, glassStyles, blobKeyframes } from "../theme/theme"
+import { FeatureCard } from "../components/ui/FeatureCard"
 
 // ============================================
-// INTERFACES
+// MOTION COMPONENTS
 // ============================================
 
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+const MotionBox = motion.create(Box)
+const MotionTypography = motion.create(Typography)
+const MotionStack = motion.create(Stack)
+const MotionCard = motion.create(Card)
+
+// ============================================
+// ANIMATED BLOB COMPONENT
+// ============================================
+
+interface BlobProps {
+  color: string
+  size: number
+  top?: string
+  left?: string
+  right?: string
+  bottom?: string
+  delay?: number
 }
 
+const AnimatedBlob: React.FC<BlobProps> = ({
+  color,
+  size,
+  top,
+  left,
+  right,
+  bottom,
+  delay = 0,
+}) => (
+  <Box
+    sx={{
+      position: "absolute",
+      width: size,
+      height: size,
+      borderRadius: "50%",
+      background: color,
+      filter: "blur(60px)",
+      opacity: 0.6,
+      top,
+      left,
+      right,
+      bottom,
+      animation: `blob 7s ease-in-out infinite ${delay}s`,
+      ...blobKeyframes,
+    }}
+  />
+)
+
 // ============================================
-// SUB-COMPONENTS
+// ANIMATION VARIANTS (typed for framer-motion 12)
 // ============================================
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-  <Card
-    elevation={0}
-    sx={{
-      p: 4,
-      height: '100%',
-      border: '1px solid',
-      borderColor: 'divider',
-      transition: 'all 0.3s ease',
-      '&:hover': {
-        transform: 'translateY(-8px)',
-        boxShadow: '0 12px 40px rgba(26, 35, 126, 0.12)',
-        borderColor: 'primary.main',
-      },
-    }}
-  >
-    <Box
-      sx={{
-        width: 56,
-        height: 56,
-        borderRadius: 2,
-        bgcolor: 'rgba(26, 35, 126, 0.08)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        mb: 3,
-        color: 'primary.main',
-      }}
-    >
-      {icon}
-    </Box>
-    <Typography variant="h6" sx={{ mb: 1.5, color: 'text.primary' }}>
-      {title}
-    </Typography>
-    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-      {description}
-    </Typography>
-  </Card>
-);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+} as const
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+} as const
+
+// Float animation for direct animate prop (not variants)
+const floatAnimation = {
+  y: [0, -15, 0],
+  transition: {
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut" as const,
+  },
+}
 
 // ============================================
 // HOMEPAGE COMPONENT
 // ============================================
 
 export const HomePage: React.FC = () => {
-  const features: FeatureCardProps[] = [
+  const features = [
     {
-      icon: <Box component="span" sx={{ fontSize: 28 }}>🚀</Box>,
-      title: 'Smart Automation',
-      description: 'Automate complex workflows with our intelligent process engine.',
+      icon: (
+        <Box component="span" sx={{ fontSize: 28 }}>
+          🚀
+        </Box>
+      ),
+      title: "Smart Automation",
+      description:
+        "Automate complex workflows with our intelligent process engine.",
     },
     {
-      icon: <Box component="span" sx={{ fontSize: 28 }}>📊</Box>,
-      title: 'Real-time Analytics',
-      description: 'Deep insights with built-in analytics that just works.',
+      icon: (
+        <Box component="span" sx={{ fontSize: 28 }}>
+          📊
+        </Box>
+      ),
+      title: "Real-time Analytics",
+      description: "Deep insights with built-in analytics that just works.",
     },
     {
-      icon: <Box component="span" sx={{ fontSize: 28 }}>🔒</Box>,
-      title: 'Enterprise Security',
-      description: 'SOC2 compliant with zero-downtime guaranteed.',
+      icon: (
+        <Box component="span" sx={{ fontSize: 28 }}>
+          🔒
+        </Box>
+      ),
+      title: "Enterprise Security",
+      description: "SOC2 compliant with zero-downtime guaranteed.",
     },
     {
-      icon: <Box component="span" sx={{ fontSize: 28 }}>⚡</Box>,
-      title: 'Instant Scalability',
-      description: 'Infrastructure that grows effortlessly with your business.',
+      icon: (
+        <Box component="span" sx={{ fontSize: 28 }}>
+          ⚡
+        </Box>
+      ),
+      title: "Instant Scalability",
+      description: "Infrastructure that grows effortlessly with your business.",
     },
-  ];
+  ]
 
   return (
     <Box>
       {/* ======================== HERO SECTION ======================== */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #F3E8FF 0%, #E0E7FF 50%, #F8FAFC 100%)',
+          background:
+            "linear-gradient(135deg, #F3E8FF 0%, #E0E7FF 50%, #F8FAFC 100%)",
           py: { xs: 8, md: 12 },
-          position: 'relative',
-          overflow: 'hidden',
+          position: "relative",
+          overflow: "hidden",
+          minHeight: "90vh",
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        <Container maxWidth="xl">
+        {/* Animated Background Blobs */}
+        <AnimatedBlob
+          color="#667eea"
+          size={400}
+          top="-10%"
+          left="10%"
+          delay={0}
+        />
+        <AnimatedBlob
+          color="#764ba2"
+          size={350}
+          top="50%"
+          right="-5%"
+          delay={2}
+        />
+        <AnimatedBlob
+          color="#3B82F6"
+          size={300}
+          bottom="-10%"
+          left="30%"
+          delay={4}
+        />
+        <AnimatedBlob
+          color="#7C3AED"
+          size={250}
+          top="20%"
+          right="25%"
+          delay={1}
+        />
+        <AnimatedBlob
+          color="#06B6D4"
+          size={200}
+          bottom="20%"
+          left="5%"
+          delay={3}
+        />
+
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
           <Grid container spacing={6} alignItems="center">
             {/* Left Column: Text Content */}
             <Grid size={{ xs: 12, md: 6 }}>
-              <Stack spacing={3}>
-                <Chip
-                  label="✨ Now Available for Early Access"
-                  sx={{
-                    alignSelf: 'flex-start',
-                    bgcolor: 'rgba(26, 35, 126, 0.1)',
-                    color: 'primary.main',
-                    fontWeight: 600,
-                    fontSize: '0.813rem',
-                    border: '1px solid rgba(26, 35, 126, 0.2)',
-                  }}
-                />
-                <Typography
+              <MotionStack
+                spacing={3}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <MotionBox variants={itemVariants}>
+                  <Chip
+                    label="✨ Now Available for Early Access"
+                    sx={{
+                      ...glassStyles.light,
+                      color: "primary.main",
+                      fontWeight: 600,
+                      fontSize: "0.813rem",
+                      px: 1,
+                    }}
+                  />
+                </MotionBox>
+                <MotionTypography
                   variant="h1"
+                  variants={itemVariants}
                   sx={{
-                    fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
-                    color: 'text.primary',
+                    fontSize: { xs: "2.5rem", md: "3.5rem", lg: "4rem" },
+                    color: "text.primary",
                   }}
                 >
                   Scale Your Micro-
@@ -123,180 +234,242 @@ export const HomePage: React.FC = () => {
                     component="span"
                     sx={{
                       background: gradients.accent,
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
                     }}
                   >
                     SaaS
-                  </Box>{' '}
+                  </Box>{" "}
                   Stack.
-                </Typography>
-                <Typography
+                </MotionTypography>
+                <MotionTypography
                   variant="body1"
+                  variants={itemVariants}
                   sx={{
-                    fontSize: { xs: '1rem', md: '1.125rem' },
-                    color: 'text.secondary',
+                    fontSize: { xs: "1rem", md: "1.125rem" },
+                    color: "text.secondary",
                     maxWidth: 520,
                   }}
                 >
-                  Integrated tools for the modern founder. Automate workflows, analyze growth, and scale infrastructure without the enterprise bloat.
-                </Typography>
+                  Integrated tools for the modern founder. Automate workflows,
+                  analyze growth, and scale infrastructure without the
+                  enterprise bloat.
+                </MotionTypography>
 
                 {/* CTA Buttons */}
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ pt: 2 }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    endIcon={<ArrowForward />}
-                    sx={{
-                      background: gradients.primary,
-                      px: 4,
-                      py: 1.5,
-                      fontSize: '1rem',
-                      '&:hover': {
-                        background: gradients.accent,
-                        transform: 'translateY(-2px)',
-                      },
-                      transition: 'all 0.3s ease',
-                    }}
+                <MotionBox variants={itemVariants}>
+                  <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={2}
+                    sx={{ pt: 2 }}
                   >
-                    Get Early Access
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    startIcon={<PlayArrow />}
-                    sx={{
-                      borderColor: 'text.primary',
-                      color: 'text.primary',
-                      px: 4,
-                      py: 1.5,
-                      fontSize: '1rem',
-                      '&:hover': {
-                        borderColor: 'primary.main',
-                        bgcolor: 'rgba(26, 35, 126, 0.04)',
-                      },
-                    }}
-                  >
-                    Watch Demo
-                  </Button>
-                </Stack>
+                    <MotionBox
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button
+                        variant="contained"
+                        size="large"
+                        endIcon={<ArrowForward />}
+                        sx={{
+                          background: gradients.primary,
+                          px: 4,
+                          py: 1.5,
+                          fontSize: "1rem",
+                          "&:hover": {
+                            background: gradients.accent,
+                          },
+                        }}
+                      >
+                        Get Early Access
+                      </Button>
+                    </MotionBox>
+                    <MotionBox
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button
+                        variant="outlined"
+                        size="large"
+                        startIcon={<PlayArrow />}
+                        sx={{
+                          ...glassStyles.light,
+                          borderColor: "transparent",
+                          color: "text.primary",
+                          px: 4,
+                          py: 1.5,
+                          fontSize: "1rem",
+                          "&:hover": {
+                            borderColor: "primary.main",
+                            background: glassStyles.medium.background,
+                          },
+                        }}
+                      >
+                        Watch Demo
+                      </Button>
+                    </MotionBox>
+                  </Stack>
+                </MotionBox>
 
                 {/* Social Proof */}
-                <Stack direction="row" alignItems="center" spacing={2} sx={{ pt: 2 }}>
-                  <Stack direction="row" spacing={-0.5}>
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} sx={{ fontSize: 20, color: '#F59E0B' }} />
-                    ))}
+                <MotionBox variants={itemVariants}>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}
+                    sx={{ pt: 2 }}
+                  >
+                    <Stack direction="row" spacing={-0.5}>
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          sx={{ fontSize: 20, color: "#F59E0B" }}
+                        />
+                      ))}
+                    </Stack>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "text.secondary", fontWeight: 500 }}
+                    >
+                      Trusted by 500+ founders
+                    </Typography>
                   </Stack>
-                  <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 500 }}>
-                    Trusted by 500+ founders
-                  </Typography>
-                </Stack>
-              </Stack>
+                </MotionBox>
+              </MotionStack>
             </Grid>
 
-            {/* Right Column: Hero Image Placeholder */}
+            {/* Right Column: Hero Visual with Glass Cards */}
             <Grid size={{ xs: 12, md: 6 }}>
-              <Box
+              <MotionBox
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
                 sx={{
-                  width: '100%',
+                  width: "100%",
                   height: { xs: 300, md: 450 },
                   borderRadius: 4,
                   background: gradients.dark,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  boxShadow: '0 24px 60px rgba(0, 0, 0, 0.25)',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  overflow: "hidden",
+                  boxShadow: "0 24px 60px rgba(0, 0, 0, 0.25)",
                 }}
               >
-                {/* Floating Card Mock */}
-                <Card
+                {/* Floating Glass Card - API Calls */}
+                <MotionCard
+                  animate={floatAnimation}
                   sx={{
-                    position: 'absolute',
-                    top: '20%',
-                    right: '10%',
+                    position: "absolute",
+                    top: "20%",
+                    right: "10%",
                     p: 2,
-                    borderRadius: 2,
-                    animation: 'float 3s ease-in-out infinite',
-                    '@keyframes float': {
-                      '0%, 100%': { transform: 'translateY(0px)' },
-                      '50%': { transform: 'translateY(-15px)' },
-                    },
+                    borderRadius: 3,
+                    ...glassStyles.light,
+                    background: "rgba(255, 255, 255, 0.9)",
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "text.secondary" }}
+                  >
                     API Calls
                   </Typography>
-                  <Typography variant="h6" sx={{ fontWeight: 700, color: 'success.main' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 700, color: "success.main" }}
+                  >
                     +42.8%
                   </Typography>
-                </Card>
+                </MotionCard>
 
-                <Card
+                {/* Floating Glass Card - Status */}
+                <MotionCard
+                  animate={{
+                    ...floatAnimation,
+                    transition: { ...floatAnimation.transition, delay: 1 },
+                  }}
                   sx={{
-                    position: 'absolute',
-                    bottom: '25%',
-                    left: '15%',
+                    position: "absolute",
+                    bottom: "25%",
+                    left: "15%",
                     p: 2,
-                    borderRadius: 2,
-                    animation: 'float 3s ease-in-out infinite 1s',
+                    borderRadius: 3,
+                    ...glassStyles.light,
+                    background: "rgba(255, 255, 255, 0.9)",
                   }}
                 >
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "text.secondary" }}
+                  >
                     Status
                   </Typography>
-                  <Typography variant="body2" sx={{ fontWeight: 600, color: 'success.main' }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontWeight: 600, color: "success.main" }}
+                  >
                     ✓ Deployed
                   </Typography>
-                </Card>
+                </MotionCard>
 
-                {/* Glow Effect */}
+                {/* Central Glow Effect */}
                 <Box
                   sx={{
                     width: 200,
                     height: 200,
-                    borderRadius: '50%',
+                    borderRadius: "50%",
                     background: gradients.accent,
-                    opacity: 0.15,
-                    filter: 'blur(60px)',
+                    opacity: 0.2,
+                    filter: "blur(60px)",
                   }}
                 />
-              </Box>
+              </MotionBox>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
       {/* ======================== TRUSTED BY SECTION ======================== */}
-      <Box sx={{ py: 6, bgcolor: 'background.paper' }}>
+      <Box sx={{ py: 6, bgcolor: "background.paper" }}>
         <Container maxWidth="xl">
           <Typography
             variant="overline"
             sx={{
-              display: 'block',
-              textAlign: 'center',
-              color: 'text.secondary',
+              display: "block",
+              textAlign: "center",
+              color: "text.secondary",
               mb: 4,
               letterSpacing: 1.5,
             }}
           >
             TRUSTED BY INNOVATIVE TEAMS WORLDWIDE
           </Typography>
-          <Grid container spacing={4} justifyContent="center" alignItems="center">
-            {['Accenture', 'Deloitte', 'Nvidia', 'Vercel', 'Shopify', 'Stripe'].map((company) => (
+          <Grid
+            container
+            spacing={4}
+            justifyContent="center"
+            alignItems="center"
+          >
+            {[
+              "Accenture",
+              "Deloitte",
+              "Nvidia",
+              "Vercel",
+              "Shopify",
+              "Stripe",
+            ].map((company) => (
               <Grid size={{ xs: 6, sm: 4, md: 2 }} key={company}>
                 <Typography
                   variant="h6"
                   sx={{
-                    textAlign: 'center',
-                    color: 'text.disabled',
+                    textAlign: "center",
+                    color: "text.disabled",
                     fontWeight: 600,
                     opacity: 0.6,
-                    transition: 'opacity 0.3s',
-                    '&:hover': { opacity: 1 },
+                    transition: "opacity 0.3s",
+                    "&:hover": { opacity: 1 },
                   }}
                 >
                   {company}
@@ -308,17 +481,17 @@ export const HomePage: React.FC = () => {
       </Box>
 
       {/* ======================== FEATURES SECTION ======================== */}
-      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.default' }}>
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.default" }}>
         <Container maxWidth="xl">
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="h2" sx={{ mb: 2, color: 'text.primary' }}>
-              Everything you need to{' '}
+          <Box sx={{ textAlign: "center", mb: 8 }}>
+            <Typography variant="h2" sx={{ mb: 2, color: "text.primary" }}>
+              Everything you need to{" "}
               <Box
                 component="span"
                 sx={{
                   background: gradients.accent,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
                 grow
@@ -327,13 +500,14 @@ export const HomePage: React.FC = () => {
             <Typography
               variant="body1"
               sx={{
-                color: 'text.secondary',
-                fontSize: '1.125rem',
+                color: "text.secondary",
+                fontSize: "1.125rem",
                 maxWidth: 600,
-                mx: 'auto',
+                mx: "auto",
               }}
             >
-              Powerful features wrapped in a simple, intuitive interface designed for lean teams.
+              Powerful features wrapped in a simple, intuitive interface
+              designed for lean teams.
             </Typography>
           </Box>
 
@@ -348,7 +522,7 @@ export const HomePage: React.FC = () => {
       </Box>
 
       {/* ======================== CTA SECTION ======================== */}
-      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}>
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.paper" }}>
         <Container maxWidth="md">
           <Card
             elevation={0}
@@ -356,41 +530,46 @@ export const HomePage: React.FC = () => {
               background: gradients.dark,
               borderRadius: 4,
               p: { xs: 4, md: 8 },
-              textAlign: 'center',
-              position: 'relative',
-              overflow: 'hidden',
+              textAlign: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
             {/* Background Glow */}
             <Box
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 top: -100,
                 right: -100,
                 width: 300,
                 height: 300,
-                borderRadius: '50%',
+                borderRadius: "50%",
                 background: gradients.accent,
                 opacity: 0.1,
-                filter: 'blur(80px)',
+                filter: "blur(80px)",
               }}
             />
 
-            <Typography variant="h3" sx={{ color: 'white', mb: 2 }}>
+            <Typography variant="h3" sx={{ color: "white", mb: 2 }}>
               Ready to simplify your stack?
             </Typography>
             <Typography
               variant="body1"
               sx={{
-                color: 'rgba(255,255,255,0.8)',
+                color: "rgba(255,255,255,0.8)",
                 mb: 4,
                 maxWidth: 500,
-                mx: 'auto',
+                mx: "auto",
               }}
             >
-              Join 500+ companies that have already transformed their workflows with Bigeen Solutions.
+              Join 500+ companies that have already transformed their workflows
+              with Bigeen Solutions.
             </Typography>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center">
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              spacing={2}
+              justifyContent="center"
+            >
               <Button
                 variant="contained"
                 size="large"
@@ -398,7 +577,7 @@ export const HomePage: React.FC = () => {
                   background: gradients.accent,
                   px: 4,
                   py: 1.5,
-                  '&:hover': {
+                  "&:hover": {
                     background: gradients.primary,
                   },
                 }}
@@ -409,13 +588,13 @@ export const HomePage: React.FC = () => {
                 variant="outlined"
                 size="large"
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.3)',
-                  color: 'white',
+                  borderColor: "rgba(255,255,255,0.3)",
+                  color: "white",
                   px: 4,
                   py: 1.5,
-                  '&:hover': {
-                    borderColor: 'white',
-                    bgcolor: 'rgba(255,255,255,0.1)',
+                  "&:hover": {
+                    borderColor: "white",
+                    bgcolor: "rgba(255,255,255,0.1)",
                   },
                 }}
               >
@@ -426,5 +605,5 @@ export const HomePage: React.FC = () => {
         </Container>
       </Box>
     </Box>
-  );
-};
+  )
+}
