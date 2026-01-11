@@ -3,9 +3,6 @@ import {
   Container,
   Grid,
   Typography,
-  TextField,
-  Button,
-  MenuItem,
   Paper,
   Stack,
   IconButton,
@@ -17,11 +14,10 @@ import {
   LinkedIn,
   Twitter,
   GitHub,
-  Send,
 } from "@mui/icons-material"
 import { motion } from "framer-motion"
-import { useBigeenStore } from "../store/useBigeenStore"
 import { glassStyles, gradients, blobKeyframes } from "../theme/theme"
+import { ContactForm } from "../components/contact/ContactForm"
 import type { ContactInfo } from "../types"
 
 // ============================================
@@ -107,8 +103,6 @@ const itemVariants = {
 // ============================================
 
 export const ContactPage: React.FC = () => {
-  const { contactForm, setContactFormField } = useBigeenStore()
-
   const contactInfo: ContactInfo[] = [
     {
       icon: <Email sx={{ fontSize: 24 }} />,
@@ -126,20 +120,6 @@ export const ContactPage: React.FC = () => {
       value: "Abuja, Nigeria",
     },
   ]
-
-  const topicOptions = [
-    "General Inquiry",
-    "Sales",
-    "Technical Support",
-    "Partnership",
-    "Billing",
-    "Other",
-  ]
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", contactForm)
-  }
 
   return (
     <Box sx={{ backgroundColor: "background.default", minHeight: "100vh" }}>
@@ -391,191 +371,8 @@ export const ContactPage: React.FC = () => {
                   Send us a message
                 </Typography>
 
-                <Box
-                  component="form"
-                  onSubmit={handleSubmit}
-                  sx={{ position: "relative", zIndex: 1 }}
-                >
-                  <Grid container spacing={3}>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 600, mb: 1, color: "text.primary" }}
-                      >
-                        Full Name
-                      </Typography>
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        placeholder="Jane Doe"
-                        value={contactForm.fullName}
-                        onChange={(e) =>
-                          setContactFormField("fullName", e.target.value)
-                        }
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            borderRadius: 2,
-                            backgroundColor: "rgba(255, 255, 255, 0.5)",
-                            "&:hover fieldset": { borderColor: "primary.main" },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "primary.main",
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 600, mb: 1, color: "text.primary" }}
-                      >
-                        Work Email
-                      </Typography>
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        type="email"
-                        placeholder="jane@company.com"
-                        value={contactForm.workEmail}
-                        onChange={(e) =>
-                          setContactFormField("workEmail", e.target.value)
-                        }
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            borderRadius: 2,
-                            backgroundColor: "rgba(255, 255, 255, 0.5)",
-                            "&:hover fieldset": { borderColor: "primary.main" },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "primary.main",
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    <Grid size={{ xs: 12 }}>
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 600, mb: 1, color: "text.primary" }}
-                      >
-                        Company Name
-                      </Typography>
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        placeholder="Acme Corp"
-                        value={contactForm.companyName}
-                        onChange={(e) =>
-                          setContactFormField("companyName", e.target.value)
-                        }
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            borderRadius: 2,
-                            backgroundColor: "rgba(255, 255, 255, 0.5)",
-                            "&:hover fieldset": { borderColor: "primary.main" },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "primary.main",
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    <Grid size={{ xs: 12 }}>
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 600, mb: 1, color: "text.primary" }}
-                      >
-                        Topic
-                      </Typography>
-                      <TextField
-                        select
-                        fullWidth
-                        variant="outlined"
-                        value={contactForm.topic}
-                        onChange={(e) =>
-                          setContactFormField("topic", e.target.value)
-                        }
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            borderRadius: 2,
-                            backgroundColor: "rgba(255, 255, 255, 0.5)",
-                            "&:hover fieldset": { borderColor: "primary.main" },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "primary.main",
-                            },
-                          },
-                        }}
-                      >
-                        {topicOptions.map((option) => (
-                          <MenuItem key={option} value={option}>
-                            {option}
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-
-                    <Grid size={{ xs: 12 }}>
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 600, mb: 1, color: "text.primary" }}
-                      >
-                        How can we help?
-                      </Typography>
-                      <TextField
-                        fullWidth
-                        variant="outlined"
-                        multiline
-                        rows={5}
-                        placeholder="Tell us more about your project needs..."
-                        value={contactForm.message}
-                        onChange={(e) =>
-                          setContactFormField("message", e.target.value)
-                        }
-                        sx={{
-                          "& .MuiOutlinedInput-root": {
-                            borderRadius: 2,
-                            backgroundColor: "rgba(255, 255, 255, 0.5)",
-                            "&:hover fieldset": { borderColor: "primary.main" },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "primary.main",
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    <Grid size={{ xs: 12 }}>
-                      <MotionBox
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <Button
-                          type="submit"
-                          fullWidth
-                          variant="contained"
-                          size="large"
-                          endIcon={<Send />}
-                          sx={{
-                            background: gradients.accent,
-                            color: "white",
-                            fontWeight: 600,
-                            py: 2,
-                            borderRadius: 2,
-                            fontSize: "1.1rem",
-                            boxShadow: "0 8px 24px rgba(124, 58, 237, 0.3)",
-                            "&:hover": {
-                              background: gradients.primary,
-                              boxShadow: "0 12px 32px rgba(124, 58, 237, 0.4)",
-                            },
-                          }}
-                        >
-                          Send Message
-                        </Button>
-                      </MotionBox>
-                    </Grid>
-                  </Grid>
+                <Box sx={{ position: "relative", zIndex: 1 }}>
+                  <ContactForm />
                 </Box>
               </MotionPaper>
             </Grid>
