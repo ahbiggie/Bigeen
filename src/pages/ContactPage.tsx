@@ -57,17 +57,17 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     {
       icon: <Email sx={{ fontSize: 24, color: "#667eea" }} />,
       label: "Email us",
-      value: "hello@bigeen.com",
+      value: "bigeen08@gmail.com",
     },
     {
       icon: <Phone sx={{ fontSize: 24, color: "#667eea" }} />,
       label: "Call us",
-      value: "+1 (555) 012-3456",
+      value: "+234 567 8901",
     },
     {
       icon: <LocationOn sx={{ fontSize: 24, color: "#667eea" }} />,
       label: "Visit us",
-      value: "123 Innovation Dr, Tech City",
+      value: "Abuja, Nigeria",
     },
   ]
 
