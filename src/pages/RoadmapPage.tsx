@@ -10,7 +10,7 @@ import {
 import {
   Rocket,
   EmojiEvents,
-  TrendingUp,
+  // TrendingUp,
   Groups,
   Lightbulb,
   CheckCircle,
@@ -234,7 +234,7 @@ export const RoadmapPage: React.FC = () => {
   // Timeline Milestones Data
   const milestones: Milestone[] = [
     {
-      year: "2020",
+      year: "2025",
       title: "The Beginning",
       description:
         "Founded with a vision to simplify enterprise workflows. Started with 3 co-founders and a bold idea.",
@@ -242,31 +242,31 @@ export const RoadmapPage: React.FC = () => {
       position: "left",
     },
     {
-      year: "2021",
+      year: "2026",
       title: "First Major Client",
       description:
-        "Landed our first Fortune 500 client. Expanded team to 15 engineers and designers.",
+        "Landed our first client. Expanded team to 10 engineers and designers.",
       icon: <EmojiEvents sx={{ fontSize: 24 }} />,
       position: "right",
     },
     {
-      year: "2022",
+      year: "2026",
       title: "Product-Market Fit",
       description:
         "Achieved 100+ paying customers. Launched Bigeen Core v1.0 with seamless integrations.",
       icon: <CheckCircle sx={{ fontSize: 24 }} />,
       position: "left",
     },
+    // {
+    //   year: "2023",
+    //   title: "Series A Funding",
+    //   description:
+    //     "Raised $12M Series A. Expanded globally with offices in 3 countries.",
+    //   icon: <TrendingUp sx={{ fontSize: 24 }} />,
+    //   position: "right",
+    // },
     {
-      year: "2023",
-      title: "Series A Funding",
-      description:
-        "Raised $12M Series A. Expanded globally with offices in 3 countries.",
-      icon: <TrendingUp sx={{ fontSize: 24 }} />,
-      position: "right",
-    },
-    {
-      year: "2024",
+      year: "2026",
       title: "500+ Customers",
       description:
         "Crossed 500 active customers milestone. Launched AI-powered analytics suite.",
@@ -274,7 +274,7 @@ export const RoadmapPage: React.FC = () => {
       position: "left",
     },
     {
-      year: "2025",
+      year: "2026",
       title: "The Future",
       description:
         "Building next-gen automation tools. Expanding into new verticals with strategic partnerships.",
@@ -328,7 +328,7 @@ export const RoadmapPage: React.FC = () => {
           >
             <MotionBox variants={itemVariants}>
               <Chip
-                label="🎯 Our Journey & Work"
+                label="Our Journey & Work"
                 sx={{
                   mb: 3,
                   ...glassStyles.light,

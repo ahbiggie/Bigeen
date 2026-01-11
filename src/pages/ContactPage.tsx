@@ -113,17 +113,17 @@ export const ContactPage: React.FC = () => {
     {
       icon: <Email sx={{ fontSize: 24 }} />,
       label: "Email us",
-      value: "hello@bigeen.com",
+      value: "solutions@bigeen.com",
     },
     {
       icon: <Phone sx={{ fontSize: 24 }} />,
       label: "Call us",
-      value: "+1 (555) 012-3456",
+      value: "+234 803 123 4567",
     },
     {
       icon: <LocationOn sx={{ fontSize: 24 }} />,
       label: "Visit us",
-      value: "123 Innovation Dr, Tech City",
+      value: "Abuja, Nigeria",
     },
   ]
 

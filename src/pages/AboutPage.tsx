@@ -15,6 +15,7 @@ import {
   Rocket,
   Bolt,
 } from "@mui/icons-material"
+import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { TeamMemberCard, StatCard } from "../components/ui"
 import { glassStyles, gradients, blobKeyframes } from "../theme/theme"
@@ -106,33 +107,33 @@ export const AboutPage: React.FC = () => {
   // Team Members Data
   const teamMembers: TeamMemberProps[] = [
     {
-      name: "Alex Morgan",
-      role: "Founder & CEO",
-      initials: "AM",
+      name: "Yusuf Shaibu",
+      role: "Co-Founder & CTO",
+      initials: "YS",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       socials: {
-        linkedin: "https://linkedin.com/in/alexmorgan",
-        twitter: "https://twitter.com/alexmorgan",
+        linkedin: "https://linkedin.com/in/yusufshaibu",
+        twitter: "https://twitter.com/yusufshaibu",
       },
     },
     {
-      name: "Sarah Chen",
-      role: "CTO",
-      initials: "SC",
+      name: "Fatima Lawal",
+      role: "CEO",
+      initials: "FL",
       gradient: "linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)",
       socials: {
-        linkedin: "https://linkedin.com/in/sarachen",
-        github: "https://github.com/sarachen",
+        linkedin: "https://linkedin.com/in/fatimalawal",
+        github: "https://github.com/fatimalawal",
       },
     },
     {
-      name: "Ravi Patel",
-      role: "Head of Design",
-      initials: "RP",
+      name: "Nuron Mochi",
+      role: "Head of Consult",
+      initials: "NM",
       gradient: "linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)",
       socials: {
-        linkedin: "https://linkedin.com/in/ravipatel",
-        twitter: "https://twitter.com/ravipatel",
+        linkedin: "https://linkedin.com/in/nuronmochi",
+        twitter: "https://twitter.com/nuronmochi",
       },
     },
   ]
@@ -140,7 +141,7 @@ export const AboutPage: React.FC = () => {
   // Stats Data
   const stats: StatCardProps[] = [
     {
-      value: "50",
+      value: "10",
       suffix: "+",
       label: "Team Members",
       icon: <Groups sx={{ fontSize: 28 }} />,
@@ -209,7 +210,7 @@ export const AboutPage: React.FC = () => {
           >
             <MotionBox variants={itemVariants}>
               <Chip
-                label="🚀 About Us"
+                label=" About Us"
                 sx={{
                   mb: 3,
                   ...glassStyles.light,
@@ -775,6 +776,8 @@ export const AboutPage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
+                  component={Link}
+                  to="/contact"
                   variant="contained"
                   size="large"
                   sx={{
@@ -785,6 +788,7 @@ export const AboutPage: React.FC = () => {
                     py: 1.5,
                     borderRadius: 2,
                     fontSize: "1rem",
+                    textDecoration: "none",
                     "&:hover": {
                       background: gradients.primary,
                     },
@@ -798,6 +802,8 @@ export const AboutPage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
+                  component={Link}
+                  to="/contact"
                   variant="outlined"
                   size="large"
                   sx={{
@@ -809,6 +815,7 @@ export const AboutPage: React.FC = () => {
                     py: 1.5,
                     borderRadius: 2,
                     fontSize: "1rem",
+                    textDecoration: "none",
                     "&:hover": {
                       borderColor: "rgba(255, 255, 255, 0.5)",
                       background: "rgba(255, 255, 255, 0.1)",

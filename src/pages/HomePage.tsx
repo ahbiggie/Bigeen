@@ -8,6 +8,7 @@ import {
   Grid,
 } from "@mui/material"
 import { ArrowForward, PlayArrow, Star } from "@mui/icons-material"
+import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { gradients, glassStyles, blobKeyframes } from "../theme/theme"
 import { FeatureCard } from "../components/ui/FeatureCard"
@@ -389,7 +390,7 @@ export const HomePage: React.FC = () => {
               letterSpacing: 1.5,
             }}
           >
-            TRUSTED BY INNOVATIVE TEAMS WORLDWIDE
+            TRUSTED BY INNOVATIVE TEAMS
           </Typography>
           <Grid
             container
@@ -398,12 +399,11 @@ export const HomePage: React.FC = () => {
             alignItems="center"
           >
             {[
-              "Accenture",
-              "Deloitte",
-              "Nvidia",
-              "Vercel",
-              "Shopify",
-              "Stripe",
+              "Bigeen Solutions",
+              "Bigeen",
+              "Bigeen Inc.",
+              "Bigeen LLC",
+              "Bigeen Co.",
             ].map((company) => (
               <Grid size={{ xs: 6, sm: 4, md: 2 }} key={company}>
                 <Typography
@@ -522,20 +522,25 @@ export const HomePage: React.FC = () => {
               justifyContent="center"
             >
               <Button
+                component={Link}
+                to="/contact"
                 variant="contained"
                 size="large"
                 sx={{
                   background: gradients.accent,
                   px: 4,
                   py: 1.5,
+                  textDecoration: "none",
                   "&:hover": {
                     background: gradients.primary,
                   },
                 }}
               >
-                Get Started for Free
+                Get Consult
               </Button>
               <Button
+                component={Link}
+                to="/contact"
                 variant="outlined"
                 size="large"
                 sx={{
@@ -543,6 +548,7 @@ export const HomePage: React.FC = () => {
                   color: "white",
                   px: 4,
                   py: 1.5,
+                  textDecoration: "none",
                   "&:hover": {
                     borderColor: "white",
                     bgcolor: "rgba(255,255,255,0.1)",

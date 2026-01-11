@@ -179,7 +179,7 @@ export const Navbar: React.FC = () => {
                     },
                   }}
                 >
-                  Get Started
+                  Get a Consult
                 </Button>
               </MotionBox>
               {isMobile && (
