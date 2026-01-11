@@ -3,151 +3,498 @@ import {
   Container,
   Grid,
   Typography,
-  Card,
-  CardContent,
   Button,
   Stack,
   Chip,
+  Paper,
 } from "@mui/material"
-import { Groups, TrendingUp, ArrowForward } from "@mui/icons-material"
+import {
+  Groups,
+  TrendingUp,
+  ArrowForward,
+  Rocket,
+  Bolt,
+} from "@mui/icons-material"
+import { motion } from "framer-motion"
 import { TeamMemberCard, StatCard } from "../components/ui"
-import type { TeamMemberProps } from "../types"
+import { glassStyles, gradients, blobKeyframes } from "../theme/theme"
+import type { TeamMemberProps, StatCardProps } from "../types"
+
+// ============================================
+// MOTION COMPONENTS
+// ============================================
+
+const MotionBox = motion.create(Box)
+const MotionTypography = motion.create(Typography)
+const MotionPaper = motion.create(Paper)
+
+// ============================================
+// ANIMATED BLOB COMPONENT
+// ============================================
+
+interface BlobProps {
+  color: string
+  size: number
+  top?: string
+  left?: string
+  right?: string
+  bottom?: string
+  delay?: number
+}
+
+const AnimatedBlob: React.FC<BlobProps> = ({
+  color,
+  size,
+  top,
+  left,
+  right,
+  bottom,
+  delay = 0,
+}) => (
+  <Box
+    sx={{
+      position: "absolute",
+      width: size,
+      height: size,
+      borderRadius: "50%",
+      background: color,
+      filter: "blur(60px)",
+      opacity: 0.5,
+      top,
+      left,
+      right,
+      bottom,
+      animation: `blob 7s ease-in-out infinite ${delay}s`,
+      ...blobKeyframes,
+    }}
+  />
+)
+
+// ============================================
+// ANIMATION VARIANTS
+// ============================================
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+}
+
+// ============================================
+// ABOUT PAGE COMPONENT
+// ============================================
 
 export const AboutPage: React.FC = () => {
+  // Team Members Data
   const teamMembers: TeamMemberProps[] = [
     {
       name: "Alex Morgan",
       role: "Founder & CEO",
       initials: "AM",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      socials: {
+        linkedin: "https://linkedin.com/in/alexmorgan",
+        twitter: "https://twitter.com/alexmorgan",
+      },
     },
     {
       name: "Sarah Chen",
       role: "CTO",
       initials: "SC",
-      gradient: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
+      gradient: "linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)",
+      socials: {
+        linkedin: "https://linkedin.com/in/sarachen",
+        github: "https://github.com/sarachen",
+      },
+    },
+    {
+      name: "Ravi Patel",
+      role: "Head of Design",
+      initials: "RP",
+      gradient: "linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)",
+      socials: {
+        linkedin: "https://linkedin.com/in/ravipatel",
+        twitter: "https://twitter.com/ravipatel",
+      },
+    },
+  ]
+
+  // Stats Data
+  const stats: StatCardProps[] = [
+    {
+      value: "50",
+      suffix: "+",
+      label: "Team Members",
+      icon: <Groups sx={{ fontSize: 28 }} />,
+    },
+    {
+      value: "500",
+      suffix: "+",
+      label: "Active Customers",
+      icon: <TrendingUp sx={{ fontSize: 28 }} />,
+    },
+    {
+      value: "12",
+      label: "Products Shipped",
+      icon: <Rocket sx={{ fontSize: 28 }} />,
+    },
+    {
+      value: "99.9",
+      suffix: "%",
+      label: "Uptime SLA",
+      icon: <Bolt sx={{ fontSize: 28 }} />,
     },
   ]
 
   return (
     <Box sx={{ backgroundColor: "background.default", minHeight: "100vh" }}>
-      {/* Hero Section */}
+      {/* ======================== HERO SECTION ======================== */}
       <Box
         sx={{
-          background: "linear-gradient(135deg, #F3E7FF 0%, #E9D5FF 100%)",
-          pt: { xs: 8, md: 12 },
-          pb: { xs: 8, md: 12 },
+          background:
+            "linear-gradient(135deg, #F3E8FF 0%, #E0E7FF 50%, #F8FAFC 100%)",
+          pt: { xs: 10, md: 14 },
+          pb: { xs: 10, md: 14 },
           position: "relative",
           overflow: "hidden",
         }}
       >
-        <Container maxWidth="xl">
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
+        {/* Animated Background Blobs */}
+        <AnimatedBlob
+          color="#667eea"
+          size={350}
+          top="-5%"
+          left="5%"
+          delay={0}
+        />
+        <AnimatedBlob
+          color="#764ba2"
+          size={300}
+          bottom="10%"
+          right="-5%"
+          delay={2}
+        />
+        <AnimatedBlob
+          color="#3B82F6"
+          size={250}
+          top="40%"
+          right="20%"
+          delay={1}
+        />
+
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
+          <MotionBox
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            sx={{ textAlign: "center", maxWidth: 800, mx: "auto" }}
+          >
+            <MotionBox variants={itemVariants}>
               <Chip
                 label="🚀 About Us"
                 sx={{
                   mb: 3,
-                  backgroundColor: "rgba(102, 126, 234, 0.15)",
-                  color: "#667eea",
+                  ...glassStyles.light,
+                  color: "primary.main",
                   fontWeight: 600,
-                  fontSize: "0.813rem",
-                  border: "1px solid rgba(102, 126, 234, 0.3)",
+                  fontSize: "0.875rem",
+                  px: 1,
                 }}
               />
-              <Typography
-                variant="h1"
+            </MotionBox>
+
+            <MotionTypography
+              variant="h1"
+              variants={itemVariants}
+              sx={{
+                fontSize: { xs: "2.5rem", md: "3.5rem", lg: "4.5rem" },
+                fontWeight: 800,
+                lineHeight: 1.1,
+                mb: 3,
+                color: "text.primary",
+              }}
+            >
+              We build the{" "}
+              <Box
+                component="span"
                 sx={{
-                  fontSize: { xs: "2.5rem", md: "3.5rem", lg: "4rem" },
-                  fontWeight: 800,
-                  lineHeight: 1.1,
-                  mb: 3,
-                  color: "text.primary",
+                  background: gradients.accent,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
               >
-                We build the{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    background:
-                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  future of work.
-                </Box>
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.125rem" },
-                  color: "text.secondary",
-                  mb: 4,
-                  lineHeight: 1.7,
-                  maxWidth: 540,
-                }}
+                future of work.
+              </Box>
+            </MotionTypography>
+
+            <MotionTypography
+              variant="body1"
+              variants={itemVariants}
+              sx={{
+                fontSize: { xs: "1.1rem", md: "1.25rem" },
+                color: "text.secondary",
+                mb: 4,
+                lineHeight: 1.7,
+                maxWidth: 600,
+                mx: "auto",
+              }}
+            >
+              Bigeen Solutions empowers businesses with cutting-edge tools
+              designed for the modern era. We remove friction so you can
+              experience the sheer flow of productivity.
+            </MotionTypography>
+
+            <MotionBox variants={itemVariants}>
+              <Stack
+                direction={{ xs: "column", sm: "row" }}
+                spacing={2}
+                justifyContent="center"
               >
-                Bigeen Solutions empowers businesses with cutting-edge tools
-                designed for the modern era. We remove friction so you can
-                experience the sheer flow of productivity.
-              </Typography>
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                <Button
-                  variant="contained"
-                  size="large"
-                  endIcon={<ArrowForward />}
-                  sx={{
-                    background:
-                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    color: "white",
-                    fontWeight: 600,
-                    px: 4,
-                    py: 1.5,
-                    borderRadius: 2,
-                    textTransform: "none",
-                    fontSize: "1rem",
-                    boxShadow: "0 8px 24px rgba(102, 126, 234, 0.4)",
-                    "&:hover": {
-                      background:
-                        "linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%)",
-                      transform: "translateY(-2px)",
-                    },
-                    transition: "all 0.3s ease",
-                  }}
+                <MotionBox
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  View our Journey
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  sx={{
-                    borderColor: "text.primary",
-                    color: "text.primary",
-                    fontWeight: 600,
-                    px: 4,
-                    py: 1.5,
-                    borderRadius: 2,
-                    textTransform: "none",
-                    fontSize: "1rem",
-                    "&:hover": {
-                      borderColor: "primary.main",
-                      backgroundColor: "rgba(102, 126, 234, 0.05)",
-                    },
-                  }}
+                  <Button
+                    variant="contained"
+                    size="large"
+                    endIcon={<ArrowForward />}
+                    sx={{
+                      background: gradients.accent,
+                      color: "white",
+                      fontWeight: 600,
+                      px: 4,
+                      py: 1.5,
+                      borderRadius: 2,
+                      fontSize: "1rem",
+                      boxShadow: "0 8px 24px rgba(124, 58, 237, 0.3)",
+                      "&:hover": {
+                        background: gradients.primary,
+                      },
+                    }}
+                  >
+                    View our Journey
+                  </Button>
+                </MotionBox>
+                <MotionBox
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  🎯 Watch Roadmap
-                </Button>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    sx={{
+                      ...glassStyles.light,
+                      borderColor: "transparent",
+                      color: "text.primary",
+                      fontWeight: 600,
+                      px: 4,
+                      py: 1.5,
+                      borderRadius: 2,
+                      fontSize: "1rem",
+                      "&:hover": {
+                        borderColor: "primary.main",
+                        background: glassStyles.medium.background,
+                      },
+                    }}
+                  >
+                    🎯 Watch Roadmap
+                  </Button>
+                </MotionBox>
               </Stack>
+            </MotionBox>
+          </MotionBox>
+        </Container>
+      </Box>
+
+      {/* ======================== MISSION SECTION (Split Grid) ======================== */}
+      <Box sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.paper" }}>
+        <Container maxWidth="xl">
+          <Grid container spacing={8} alignItems="center">
+            {/* Text Left */}
+            <Grid size={{ xs: 12, md: 6 }}>
+              <MotionBox
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  type: "spring" as const,
+                  stiffness: 80,
+                  damping: 20,
+                }}
+              >
+                <Chip
+                  label="🎯 Our Mission"
+                  sx={{
+                    mb: 3,
+                    ...glassStyles.accent,
+                    color: "primary.main",
+                    fontWeight: 600,
+                  }}
+                />
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontWeight: 800,
+                    mb: 3,
+                    color: "text.primary",
+                    fontSize: { xs: "2rem", md: "2.75rem" },
+                  }}
+                >
+                  Born from the frustration of{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      background: gradients.accent,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    disconnected workflows.
+                  </Box>
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    lineHeight: 1.8,
+                    mb: 3,
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  In early 2020, our founders realized that companies were
+                  juggling 20+ disconnected tools. The overhead was crushing
+                  productivity. We set out to build a unified platform that just
+                  works.
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    lineHeight: 1.8,
+                    fontSize: "1.1rem",
+                  }}
+                >
+                  Today, we're proud to serve 500+ companies with seamless
+                  integrations. We're building the next generation of workflow
+                  automation with AI-powered insights and predictive analytics.
+                </Typography>
+
+                {/* Mini Stats */}
+                <Stack direction="row" spacing={3} sx={{ mt: 4 }}>
+                  <MotionPaper
+                    whileHover={{ y: -3 }}
+                    elevation={0}
+                    sx={{
+                      ...glassStyles.light,
+                      p: 2,
+                      borderRadius: 3,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 2,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: 2,
+                        background: gradients.accent,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontWeight: 700 }}
+                      >
+                        4y
+                      </Typography>
+                    </Box>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "text.secondary", fontWeight: 500 }}
+                    >
+                      Years Building
+                    </Typography>
+                  </MotionPaper>
+
+                  <MotionPaper
+                    whileHover={{ y: -3 }}
+                    elevation={0}
+                    sx={{
+                      ...glassStyles.light,
+                      p: 2,
+                      borderRadius: 3,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 2,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: 2,
+                        background:
+                          "linear-gradient(135deg, #10B981 0%, #059669 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "white", fontWeight: 700 }}
+                      >
+                        ✓
+                      </Typography>
+                    </Box>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: "text.secondary", fontWeight: 500 }}
+                    >
+                      SOC2 Approved
+                    </Typography>
+                  </MotionPaper>
+                </Stack>
+              </MotionBox>
             </Grid>
 
-            {/* Hero Image */}
-            <Grid item xs={12} md={6}>
-              <Box
+            {/* Image Right */}
+            <Grid size={{ xs: 12, md: 6 }}>
+              <MotionBox
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  type: "spring" as const,
+                  stiffness: 80,
+                  damping: 20,
+                  delay: 0.1,
+                }}
                 sx={{
                   position: "relative",
                   width: "100%",
-                  height: { xs: 300, md: 400 },
+                  height: { xs: 300, md: 450 },
                   borderRadius: 4,
                   overflow: "hidden",
                 }}
@@ -170,209 +517,132 @@ export const AboutPage: React.FC = () => {
                       right: 0,
                       bottom: 0,
                       background:
-                        "linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%)",
+                        "linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)",
                       borderRadius: 4,
                     },
                   }}
                 />
-              </Box>
+                {/* Glass overlay card */}
+                <MotionPaper
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  elevation={0}
+                  sx={{
+                    position: "absolute",
+                    bottom: 24,
+                    left: 24,
+                    right: 24,
+                    p: 3,
+                    ...glassStyles.light,
+                    borderRadius: 3,
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "text.secondary", mb: 1 }}
+                  >
+                    Our Vision
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{ color: "text.primary", fontWeight: 600 }}
+                  >
+                    "Simplify complexity. Amplify productivity."
+                  </Typography>
+                </MotionPaper>
+              </MotionBox>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* Story Section */}
-      <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: "background.paper" }}>
-        <Container maxWidth="md">
-          <Card
-            elevation={0}
-            sx={{
-              borderRadius: 4,
-              border: "1px solid",
-              borderColor: "divider",
-              p: { xs: 4, md: 6 },
-              background:
-                "linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%)",
-            }}
+      {/* ======================== STATS SECTION (4 Columns) ======================== */}
+      <Box
+        sx={{
+          py: { xs: 10, md: 14 },
+          backgroundColor: "background.default",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Background accent */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 600,
+            height: 600,
+            borderRadius: "50%",
+            background: gradients.accent,
+            opacity: 0.03,
+            filter: "blur(100px)",
+          }}
+        />
+
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 1 }}>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            sx={{ textAlign: "center", mb: 8 }}
           >
-            <Chip
-              label="🎯 The Origin"
-              sx={{
-                mb: 3,
-                backgroundColor: "rgba(102, 126, 234, 0.1)",
-                color: "#667eea",
-                fontWeight: 600,
-              }}
-            />
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
                 fontWeight: 800,
-                mb: 3,
+                mb: 2,
                 color: "text.primary",
-                fontSize: { xs: "1.75rem", md: "2.25rem" },
+                fontSize: { xs: "2rem", md: "2.5rem" },
               }}
             >
-              Born from the frustration of disconnected workflows.
+              Numbers that{" "}
+              <Box
+                component="span"
+                sx={{
+                  background: gradients.accent,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                speak volumes
+              </Box>
             </Typography>
             <Typography
               variant="body1"
               sx={{
                 color: "text.secondary",
-                lineHeight: 1.8,
-                mb: 3,
-                fontSize: "1.05rem",
+                fontSize: "1.1rem",
+                maxWidth: 500,
+                mx: "auto",
               }}
             >
-              In early 2020, our founders realized that companies were juggling
-              20+ disconnected tools. The overhead was crushing productivity. We
-              set out to build a unified platform that just works.
+              Our growth is a testament to the trust our customers place in us.
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "text.secondary",
-                lineHeight: 1.8,
-                fontSize: "1.05rem",
-              }}
-            >
-              Today, we're proud to serve 500+ companies with our seamless
-              integrations. Today we're building the next generation of workflow
-              automation with AI-powered insights and predictive analytics.
-            </Typography>
+          </MotionBox>
 
-            <Grid container spacing={3} sx={{ mt: 4 }}>
-              <Grid item xs={6}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    p: 2,
-                    borderRadius: 2,
-                    backgroundColor: "background.paper",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: 2,
-                      background:
-                        "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ color: "white", fontWeight: 700 }}
-                    >
-                      #4y
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: "text.secondary", display: "block" }}
-                    >
-                      Years Building
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={6}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    p: 2,
-                    borderRadius: 2,
-                    backgroundColor: "background.paper",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: 2,
-                      background:
-                        "linear-gradient(135deg, #10B981 0%, #059669 100%)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{ color: "white", fontWeight: 700 }}
-                    >
-                      ✓
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="caption"
-                      sx={{ color: "text.secondary", display: "block" }}
-                    >
-                      SOC2 Approved
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
-          </Card>
-        </Container>
-      </Box>
-
-      {/* Stats Section */}
-      <Box
-        sx={{ py: { xs: 8, md: 12 }, backgroundColor: "background.default" }}
-      >
-        <Container maxWidth="xl">
           <Grid container spacing={4}>
-            <Grid item xs={12} sm={6} md={3}>
-              <StatCard
-                value="50+"
-                label="Team Members"
-                icon={<Groups sx={{ fontSize: 32, color: "#667eea" }} />}
-                color="#667eea"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <StatCard
-                value="500+"
-                label="Active Customers"
-                icon={<TrendingUp sx={{ fontSize: 32, color: "#10B981" }} />}
-                color="#10B981"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <StatCard
-                value="12"
-                label="Products Shipped"
-                icon={<Box sx={{ fontSize: 32 }}>🚀</Box>}
-                color="#F59E0B"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <StatCard
-                value="99.9%"
-                label="Uptime SLA"
-                icon={<Box sx={{ fontSize: 32 }}>⚡</Box>}
-                color="#EF4444"
-              />
-            </Grid>
+            {stats.map((stat, index) => (
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
+                <StatCard {...stat} />
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Box>
 
-      {/* Team Section */}
-      <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: "background.paper" }}>
+      {/* ======================== TEAM SECTION (3 Columns) ======================== */}
+      <Box sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.paper" }}>
         <Container maxWidth="xl">
-          <Box sx={{ textAlign: "center", mb: 8 }}>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            sx={{ textAlign: "center", mb: 8 }}
+          >
             <Typography
               variant="h3"
               sx={{
@@ -382,7 +652,18 @@ export const AboutPage: React.FC = () => {
                 color: "text.primary",
               }}
             >
-              Meet the minds behind the magic
+              Meet the{" "}
+              <Box
+                component="span"
+                sx={{
+                  background: gradients.accent,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                minds
+              </Box>{" "}
+              behind the magic
             </Typography>
             <Typography
               variant="body1"
@@ -396,92 +677,39 @@ export const AboutPage: React.FC = () => {
               Our team of engineers, designers, and dreamers building the tools
               that power modern businesses.
             </Typography>
-          </Box>
+          </MotionBox>
 
           <Grid container spacing={4} justifyContent="center">
             {teamMembers.map((member, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
                 <TeamMemberCard {...member} />
               </Grid>
             ))}
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                elevation={0}
-                sx={{
-                  borderRadius: 3,
-                  overflow: "hidden",
-                  border: "1px solid",
-                  borderColor: "divider",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Box
-                  sx={{
-                    height: 240,
-                    background:
-                      "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 100,
-                      height: 100,
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(255, 255, 255, 0.2)",
-                      backdropFilter: "blur(10px)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: "3px solid rgba(255, 255, 255, 0.3)",
-                    }}
-                  >
-                    <Typography
-                      variant="h4"
-                      sx={{ color: "white", fontWeight: 700 }}
-                    >
-                      RP
-                    </Typography>
-                  </Box>
-                </Box>
-                <CardContent sx={{ p: 3, textAlign: "center" }}>
-                  <Typography
-                    variant="h6"
-                    sx={{ fontWeight: 700, mb: 0.5, color: "text.primary" }}
-                  >
-                    Ravi Patel
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    Head of Design
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* CTA Section */}
+      {/* ======================== CTA SECTION ======================== */}
       <Box
-        sx={{ py: { xs: 8, md: 12 }, backgroundColor: "background.default" }}
+        sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.default" }}
       >
         <Container maxWidth="md">
-          <Card
+          <MotionPaper
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring" as const, stiffness: 80, damping: 20 }}
             elevation={0}
             sx={{
-              background: "linear-gradient(135deg, #0F172A 0%, #1E293B 100%)",
+              background: gradients.dark,
               borderRadius: 4,
-              p: { xs: 4, md: 8 },
+              p: { xs: 5, md: 8 },
               textAlign: "center",
               position: "relative",
               overflow: "hidden",
             }}
           >
+            {/* Background Glow */}
             <Box
               sx={{
                 position: "absolute",
@@ -490,19 +718,34 @@ export const AboutPage: React.FC = () => {
                 width: 300,
                 height: 300,
                 borderRadius: "50%",
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                opacity: 0.1,
+                background: gradients.accent,
+                opacity: 0.15,
                 filter: "blur(80px)",
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: -80,
+                left: -80,
+                width: 200,
+                height: 200,
+                borderRadius: "50%",
+                background: "#3B82F6",
+                opacity: 0.1,
+                filter: "blur(60px)",
               }}
             />
 
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
                 color: "white",
                 fontWeight: 800,
                 mb: 2,
-                fontSize: { xs: "1.75rem", md: "2.25rem" },
+                fontSize: { xs: "1.75rem", md: "2.5rem" },
+                position: "relative",
+                zIndex: 1,
               }}
             >
               Ready to shape the future?
@@ -515,6 +758,8 @@ export const AboutPage: React.FC = () => {
                 fontSize: "1.125rem",
                 maxWidth: 500,
                 mx: "auto",
+                position: "relative",
+                zIndex: 1,
               }}
             >
               Join 500+ companies that have already transformed the way they
@@ -523,51 +768,58 @@ export const AboutPage: React.FC = () => {
             <Stack
               direction={{ xs: "column", sm: "row" }}
               spacing={2}
-              sx={{ justifyContent: "center" }}
+              sx={{ justifyContent: "center", position: "relative", zIndex: 1 }}
             >
-              <Button
-                variant="contained"
-                size="large"
-                sx={{
-                  background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                  color: "white",
-                  fontWeight: 600,
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: "1rem",
-                  "&:hover": {
-                    background:
-                      "linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%)",
-                  },
-                }}
+              <MotionBox
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Get Started for Free
-              </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                sx={{
-                  borderColor: "rgba(255, 255, 255, 0.3)",
-                  color: "white",
-                  fontWeight: 600,
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: 2,
-                  textTransform: "none",
-                  fontSize: "1rem",
-                  "&:hover": {
-                    borderColor: "white",
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  },
-                }}
+                <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    background: gradients.accent,
+                    color: "white",
+                    fontWeight: 600,
+                    px: 4,
+                    py: 1.5,
+                    borderRadius: 2,
+                    fontSize: "1rem",
+                    "&:hover": {
+                      background: gradients.primary,
+                    },
+                  }}
+                >
+                  Get Started for Free
+                </Button>
+              </MotionBox>
+              <MotionBox
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Contact Sales
-              </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  sx={{
+                    ...glassStyles.dark,
+                    borderColor: "rgba(255, 255, 255, 0.2)",
+                    color: "white",
+                    fontWeight: 600,
+                    px: 4,
+                    py: 1.5,
+                    borderRadius: 2,
+                    fontSize: "1rem",
+                    "&:hover": {
+                      borderColor: "rgba(255, 255, 255, 0.5)",
+                      background: "rgba(255, 255, 255, 0.1)",
+                    },
+                  }}
+                >
+                  Contact Sales
+                </Button>
+              </MotionBox>
             </Stack>
-          </Card>
+          </MotionPaper>
         </Container>
       </Box>
     </Box>

@@ -12,20 +12,29 @@ export interface FeatureCardProps {
 }
 
 // Team Member
+export interface TeamMemberSocials {
+  linkedin?: string
+  twitter?: string
+  github?: string
+  email?: string
+}
+
 export interface TeamMemberProps {
   name: string
   role: string
-  image?: string
-  initials: string
-  gradient: string
+  imageUrl?: string
+  initials?: string
+  gradient?: string
+  socials?: TeamMemberSocials
 }
 
 // Stat Card
 export interface StatCardProps {
-  value: string
+  value: string | number
   label: string
-  icon: React.ReactNode
-  color: string
+  suffix?: string
+  icon?: React.ReactNode
+  color?: string
 }
 
 // Contact Information
