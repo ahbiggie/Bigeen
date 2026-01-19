@@ -1,19 +1,19 @@
 import {
   Box,
   Container,
-  Grid,
   Typography,
   Chip,
   Paper,
   Stack,
+  Grid as Grid,
 } from "@mui/material"
 import {
   Rocket,
-  EmojiEvents,
-  // TrendingUp,
-  Groups,
+  TrendingUp,
   Lightbulb,
   CheckCircle,
+  Construction,
+  Language,
 } from "@mui/icons-material"
 import { motion } from "framer-motion"
 import { ProjectCard } from "../components/ui"
@@ -194,90 +194,90 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone, index }) => {
 // ============================================
 
 export const RoadmapPage: React.FC = () => {
-  // Portfolio Projects Data
+  // Strategic Pillars (Replacing "Projects" with Core Offerings from Playbook)
   const projects: Project[] = [
     {
       id: "1",
-      title: "FinFlow Analytics Platform",
+      title: "Integrated Consulting",
       description:
-        "A comprehensive fintech dashboard enabling real-time portfolio tracking and AI-driven investment insights for wealth managers.",
+        "The bedrock of our model. Operational diagnostics, financial health assessments, and process re-engineering for African SMEs.",
       imageUrl:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      categories: ["Fintech", "AI/ML"],
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      categories: ["Strategy", "Operations"],
       categoryColors: ["#667eea", "#10B981"],
-      link: "#",
+      link: "/contact",
     },
     {
       id: "2",
-      title: "MediConnect Mobile",
+      title: "Bigeen Core SaaS",
       description:
-        "HIPAA-compliant telemedicine app connecting patients with healthcare providers through secure video consultations.",
+        "Our proprietary 'Business Operating System' connecting HR, Accounting, and CRM tools into a single source of truth.",
       imageUrl:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-      categories: ["Healthcare", "Mobile"],
-      categoryColors: ["#EF4444", "#3B82F6"],
-      link: "#",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      categories: ["SaaS", "Automation"],
+      categoryColors: ["#3B82F6", "#7C3AED"],
+      link: "/contact",
     },
     {
       id: "3",
-      title: "LogiTrack Enterprise",
+      title: "Venture Studio",
       description:
-        "End-to-end supply chain visibility platform with predictive analytics for Fortune 500 logistics operations.",
+        "Future-focused equity incubation. Providing capital and operational infrastructure to high-growth startups.",
       imageUrl:
-        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-      categories: ["Logistics", "Enterprise"],
-      categoryColors: ["#F59E0B", "#764ba2"],
-      link: "#",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+      categories: ["Investment", "Scale"],
+      categoryColors: ["#F59E0B", "#EF4444"],
+      link: "/contact",
     },
   ]
 
-  // Timeline Milestones Data
+  // Timeline Milestones Data (Mapped to Playbook 5-Year Plan)
   const milestones: Milestone[] = [
     {
-      year: "2025",
-      title: "The Beginning",
+      year: "2026",
+      title: "Foundation",
       description:
-        "Founded with a vision to simplify enterprise workflows. Started with 3 co-founders and a bold idea.",
+        "Incorporated in Abuja. Launching the Hybrid Model to fix the 80% SME failure rate through diagnostics and process design.",
       icon: <Lightbulb sx={{ fontSize: 24 }} />,
       position: "left",
     },
     {
-      year: "2026",
-      title: "First Major Client",
+      year: "2027",
+      title: "Validation",
       description:
-        "Landed our first client. Expanded team to 10 engineers and designers.",
-      icon: <EmojiEvents sx={{ fontSize: 24 }} />,
+        "Onboarding the first 100 paying clients. Deployment of standard operating procedures (SOPs) and initial SaaS stacks.",
+      icon: <CheckCircle sx={{ fontSize: 24 }} />,
       position: "right",
     },
     {
-      year: "2026",
-      title: "Product-Market Fit",
+      year: "2028",
+      title: "Tech Maturity",
       description:
-        "Achieved 100+ paying customers. Launched Bigeen Core v1.0 with seamless integrations.",
-      icon: <CheckCircle sx={{ fontSize: 24 }} />,
-      position: "left",
-    },
-    // {
-    //   year: "2023",
-    //   title: "Series A Funding",
-    //   description:
-    //     "Raised $12M Series A. Expanded globally with offices in 3 countries.",
-    //   icon: <TrendingUp sx={{ fontSize: 24 }} />,
-    //   position: "right",
-    // },
-    {
-      year: "2026",
-      title: "500+ Customers",
-      description:
-        "Crossed 500 active customers milestone. Launched AI-powered analytics suite.",
-      icon: <Groups sx={{ fontSize: 24 }} />,
+        "Launch of 'Bigeen Core' v1.0. Automating the bridge between strategy and execution to eliminate manual data entry.",
+      icon: <Construction sx={{ fontSize: 24 }} />,
       position: "left",
     },
     {
-      year: "2026",
-      title: "The Future",
+      year: "2029",
+      title: "Regional Expansion",
       description:
-        "Building next-gen automation tools. Expanding into new verticals with strategic partnerships.",
+        "Expanding into 5 West African markets. Reaching 300+ active clients and ₦1B+ in generated value.",
+      icon: <Language sx={{ fontSize: 24 }} />,
+      position: "right",
+    },
+    {
+      year: "2030",
+      title: "The Venture Studio",
+      description:
+        "Launching our investment arm with 10 equity bets. Transforming from service provider to ecosystem builder.",
+      icon: <TrendingUp sx={{ fontSize: 24 }} />,
+      position: "left",
+    },
+    {
+      year: "Future",
+      title: "Category Leader",
+      description:
+        "Establishing 'Business Infrastructure as a Service' (BIaaS) as the standard for African economic growth.",
       icon: <Rocket sx={{ fontSize: 24 }} />,
       position: "right",
     },
@@ -328,7 +328,7 @@ export const RoadmapPage: React.FC = () => {
           >
             <MotionBox variants={itemVariants}>
               <Chip
-                label="Our Journey & Work"
+                label="Our Strategic Vision"
                 sx={{
                   mb: 3,
                   ...glassStyles.light,
@@ -351,7 +351,7 @@ export const RoadmapPage: React.FC = () => {
                 color: "text.primary",
               }}
             >
-              Building the Future of{" "}
+              Building the <br />
               <Box
                 component="span"
                 sx={{
@@ -360,7 +360,7 @@ export const RoadmapPage: React.FC = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Business Tools
+                African Infrastructure
               </Box>
             </MotionTypography>
 
@@ -375,14 +375,14 @@ export const RoadmapPage: React.FC = () => {
                 mx: "auto",
               }}
             >
-              Transparency at our core. Explore our journey from legacy systems
-              to our flagship Micro-SaaS Integrator.
+              We are mapping the path to sustainable scale. From our 2026
+              foundation to a ₦1.8B ecosystem.
             </MotionTypography>
           </MotionBox>
         </Container>
       </Box>
 
-      {/* ======================== PORTFOLIO SECTION ======================== */}
+      {/* ======================== PILLARS SECTION ======================== */}
       <Box sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.paper" }}>
         <Container maxWidth="xl">
           <MotionBox
@@ -400,7 +400,7 @@ export const RoadmapPage: React.FC = () => {
                 fontSize: { xs: "2rem", md: "2.5rem" },
               }}
             >
-              Featured{" "}
+              Strategic{" "}
               <Box
                 component="span"
                 sx={{
@@ -409,7 +409,7 @@ export const RoadmapPage: React.FC = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Case Studies
+                Pillars
               </Box>
             </Typography>
             <Typography
@@ -421,8 +421,8 @@ export const RoadmapPage: React.FC = () => {
                 mx: "auto",
               }}
             >
-              Real solutions for real businesses. See how we've helped companies
-              transform their operations.
+              The three engines driving our growth and value creation for
+              African SMEs.
             </Typography>
           </MotionBox>
 
@@ -477,7 +477,7 @@ export const RoadmapPage: React.FC = () => {
                 fontSize: { xs: "2rem", md: "2.5rem" },
               }}
             >
-              Our{" "}
+              The{" "}
               <Box
                 component="span"
                 sx={{
@@ -486,7 +486,7 @@ export const RoadmapPage: React.FC = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Journey
+                Roadmap
               </Box>
             </Typography>
             <Typography
@@ -498,7 +498,7 @@ export const RoadmapPage: React.FC = () => {
                 mx: "auto",
               }}
             >
-              From a small startup to serving 500+ businesses worldwide.
+              Our 5-year journey from foundation to category leadership.
             </Typography>
           </MotionBox>
 

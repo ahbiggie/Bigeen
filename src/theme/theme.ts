@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material/styles"
 
-// Bigeen Solutions Design System
 const PRIMARY_NAVY = "#1a237e"
 const SECONDARY_BLUE = "#032967"
 // const ACCENT_PURPLE = "#7C3AED"
@@ -38,31 +37,33 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Inter', 'Roboto', 'Segoe UI', 'sans-serif'",
+    fontFamily: '"Inter", "system-ui", sans-serif', // Clean Body Font
     h1: {
-      fontSize: "3.5rem",
+      fontFamily: '"Outfit", sans-serif', // "SaaS" Heading Font
       fontWeight: 800,
-      lineHeight: 1.1,
+      letterSpacing: "-0.02em",
     },
     h2: {
-      fontSize: "2.5rem",
+      fontFamily: '"Outfit", sans-serif',
       fontWeight: 700,
-      lineHeight: 1.2,
+      letterSpacing: "-0.01em",
     },
     h3: {
-      fontSize: "2rem",
+      fontFamily: '"Outfit", sans-serif',
       fontWeight: 700,
-      lineHeight: 1.3,
     },
     h4: {
+      fontFamily: '"Outfit", sans-serif',
       fontSize: "1.5rem",
       fontWeight: 600,
     },
     h5: {
+      fontFamily: '"Outfit", sans-serif',
       fontSize: "1.25rem",
       fontWeight: 600,
     },
     h6: {
+      fontFamily: '"Outfit", sans-serif',
       fontSize: "1rem",
       fontWeight: 600,
     },
@@ -75,8 +76,9 @@ export const theme = createTheme({
       lineHeight: 1.6,
     },
     button: {
-      textTransform: "none",
+      fontFamily: '"Outfit", sans-serif',
       fontWeight: 600,
+      textTransform: "none",
     },
   },
   shape: {

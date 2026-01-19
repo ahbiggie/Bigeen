@@ -14,6 +14,10 @@ import {
   ArrowForward,
   Rocket,
   Bolt,
+  CheckCircle,
+  VerifiedUser,
+  Lightbulb,
+  Info,
 } from "@mui/icons-material"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
@@ -107,33 +111,32 @@ export const AboutPage: React.FC = () => {
   // Team Members Data
   const teamMembers: TeamMemberProps[] = [
     {
-      name: "Yusuf Shaibu",
-      role: "Co-Founder & CTO",
-      initials: "YS",
+      name: "Lawal Fatima",
+      role: "Co-Founder & Lead Consultant",
+      initials: "LF",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      socials: {
+        linkedin: "https://linkedin.com/in/fatimalawal",
+        twitter: "https://twitter.com/fatimalawal",
+      },
+    },
+    {
+      name: "Yusuf Shaibu",
+      role: "Head of Technology",
+      initials: "YS",
+      gradient: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
       socials: {
         linkedin: "https://linkedin.com/in/yusufshaibu",
         twitter: "https://twitter.com/yusufshaibu",
       },
     },
     {
-      name: "Fatima Lawal",
-      role: "CEO",
-      initials: "FL",
-      gradient: "linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)",
+      name: "Mochi Nurudeen",
+      role: "Operations Manager",
+      initials: "MN",
+      gradient: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
       socials: {
-        linkedin: "https://linkedin.com/in/fatimalawal",
-        github: "https://github.com/fatimalawal",
-      },
-    },
-    {
-      name: "Nuron Mochi",
-      role: "Head of Consult",
-      initials: "NM",
-      gradient: "linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)",
-      socials: {
-        linkedin: "https://linkedin.com/in/nuronmochi",
-        twitter: "https://twitter.com/nuronmochi",
+        linkedin: "https://linkedin.com/in/mochinurudeen",
       },
     },
   ]
@@ -163,6 +166,13 @@ export const AboutPage: React.FC = () => {
       label: "Uptime SLA",
       icon: <Bolt sx={{ fontSize: 28 }} />,
     },
+  ]
+
+  // Solution Features
+  const solutionFeatures = [
+    "Operational Diagnostics",
+    "Process & Workflow Design",
+    "SaaS Tool Implementation",
   ]
 
   return (
@@ -210,7 +220,8 @@ export const AboutPage: React.FC = () => {
           >
             <MotionBox variants={itemVariants}>
               <Chip
-                label=" About Us"
+                icon={<Info sx={{ fontSize: 16 }} />}
+                label="About Us"
                 sx={{
                   mb: 3,
                   ...glassStyles.light,
@@ -233,7 +244,7 @@ export const AboutPage: React.FC = () => {
                 color: "text.primary",
               }}
             >
-              We build the{" "}
+              Bridging Strategy &{" "}
               <Box
                 component="span"
                 sx={{
@@ -242,7 +253,7 @@ export const AboutPage: React.FC = () => {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                future of work.
+                Execution.
               </Box>
             </MotionTypography>
 
@@ -254,13 +265,13 @@ export const AboutPage: React.FC = () => {
                 color: "text.secondary",
                 mb: 4,
                 lineHeight: 1.7,
-                maxWidth: 600,
+                maxWidth: 800,
                 mx: "auto",
               }}
             >
-              Bigeen Solutions empowers businesses with cutting-edge tools
-              designed for the modern era. We remove friction so you can
-              experience the sheer flow of productivity.
+              We help African SMEs transition from chaotic survival to
+              sustainable scale. We are the "Business Operating System" you need
+              to grow.
             </MotionTypography>
 
             <MotionBox variants={itemVariants}>
@@ -274,6 +285,8 @@ export const AboutPage: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
+                    component={Link}
+                    to="/roadmap"
                     variant="contained"
                     size="large"
                     endIcon={<ArrowForward />}
@@ -299,8 +312,11 @@ export const AboutPage: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
+                    component={Link}
+                    to="/roadmap"
                     variant="outlined"
                     size="large"
+                    startIcon={<Rocket />}
                     sx={{
                       ...glassStyles.light,
                       borderColor: "transparent",
@@ -316,7 +332,7 @@ export const AboutPage: React.FC = () => {
                       },
                     }}
                   >
-                    🎯 Watch Roadmap
+                    Watch Roadmap
                   </Button>
                 </MotionBox>
               </Stack>
@@ -325,11 +341,11 @@ export const AboutPage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* ======================== MISSION SECTION (Split Grid) ======================== */}
+      {/* ======================== PROBLEM & SOLUTION SECTION ======================== */}
       <Box sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.paper" }}>
         <Container maxWidth="xl">
-          <Grid container spacing={8} alignItems="center">
-            {/* Text Left */}
+          <Grid container spacing={4}>
+            {/* The Problem */}
             <Grid size={{ xs: 12, md: 6 }}>
               <MotionBox
                 initial={{ opacity: 0, x: -30 }}
@@ -341,76 +357,20 @@ export const AboutPage: React.FC = () => {
                   damping: 20,
                 }}
               >
-                <Chip
-                  label="🎯 Our Mission"
+                <Paper
+                  elevation={0}
                   sx={{
-                    mb: 3,
-                    ...glassStyles.accent,
-                    color: "primary.main",
-                    fontWeight: 600,
-                  }}
-                />
-                <Typography
-                  variant="h2"
-                  sx={{
-                    fontWeight: 800,
-                    mb: 3,
-                    color: "text.primary",
-                    fontSize: { xs: "2rem", md: "2.75rem" },
+                    ...glassStyles.medium,
+                    p: 5,
+                    borderRadius: 4,
+                    height: "100%",
                   }}
                 >
-                  Born from the frustration of{" "}
-                  <Box
-                    component="span"
-                    sx={{
-                      background: gradients.accent,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    disconnected workflows.
-                  </Box>
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.8,
-                    mb: 3,
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  In early 2020, our founders realized that companies were
-                  juggling 20+ disconnected tools. The overhead was crushing
-                  productivity. We set out to build a unified platform that just
-                  works.
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: "text.secondary",
-                    lineHeight: 1.8,
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  Today, we're proud to serve 500+ companies with seamless
-                  integrations. We're building the next generation of workflow
-                  automation with AI-powered insights and predictive analytics.
-                </Typography>
-
-                {/* Mini Stats */}
-                <Stack direction="row" spacing={3} sx={{ mt: 4 }}>
-                  <MotionPaper
-                    whileHover={{ y: -3 }}
-                    elevation={0}
-                    sx={{
-                      ...glassStyles.light,
-                      p: 2,
-                      borderRadius: 3,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 2,
-                    }}
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    alignItems="center"
+                    sx={{ mb: 3 }}
                   >
                     <Box
                       sx={{
@@ -423,64 +383,45 @@ export const AboutPage: React.FC = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "white", fontWeight: 700 }}
-                      >
-                        4y
-                      </Typography>
+                      <VerifiedUser sx={{ color: "white", fontSize: 24 }} />
                     </Box>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "text.secondary", fontWeight: 500 }}
-                    >
-                      Years Building
+                    <Typography variant="h4" fontWeight={700}>
+                      The Problem
                     </Typography>
-                  </MotionPaper>
-
-                  <MotionPaper
-                    whileHover={{ y: -3 }}
-                    elevation={0}
+                  </Stack>
+                  <Typography
+                    variant="body1"
                     sx={{
-                      ...glassStyles.light,
-                      p: 2,
-                      borderRadius: 3,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 2,
+                      color: "text.secondary",
+                      lineHeight: 1.8,
+                      mb: 2,
+                      fontSize: "1.1rem",
                     }}
                   >
-                    <Box
-                      sx={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: 2,
-                        background:
-                          "linear-gradient(135deg, #10B981 0%, #059669 100%)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "white", fontWeight: 700 }}
-                      >
-                        ✓
-                      </Typography>
+                    Over{" "}
+                    <Box component="strong" sx={{ color: "text.primary" }}>
+                      80% of Nigerian SMEs fail within five years
                     </Box>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "text.secondary", fontWeight: 500 }}
-                    >
-                      SOC2 Approved
-                    </Typography>
-                  </MotionPaper>
-                </Stack>
+                    . It's not because of a lack of passion or bad ideas. It's
+                    because of operational failure.
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.8,
+                      fontSize: "1.1rem",
+                    }}
+                  >
+                    Founders get stuck doing everything themselves, lacking the
+                    structure, financial clarity, and processes needed to step
+                    back and scale. That is where we come in.
+                  </Typography>
+                </Paper>
               </MotionBox>
             </Grid>
 
-            {/* Image Right */}
+            {/* The Solution */}
             <Grid size={{ xs: 12, md: 6 }}>
               <MotionBox
                 initial={{ opacity: 0, x: 30 }}
@@ -490,76 +431,84 @@ export const AboutPage: React.FC = () => {
                   type: "spring" as const,
                   stiffness: 80,
                   damping: 20,
-                  delay: 0.1,
-                }}
-                sx={{
-                  position: "relative",
-                  width: "100%",
-                  height: { xs: 300, md: 450 },
-                  borderRadius: 4,
-                  overflow: "hidden",
+                  delay: 0.2,
                 }}
               >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: "100%",
-                    background:
-                      'url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80")',
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    borderRadius: 4,
-                    position: "relative",
-                    "&::after": {
-                      content: '""',
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background:
-                        "linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)",
-                      borderRadius: 4,
-                    },
-                  }}
-                />
-                {/* Glass overlay card */}
-                <MotionPaper
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
+                <Paper
                   elevation={0}
                   sx={{
-                    position: "absolute",
-                    bottom: 24,
-                    left: 24,
-                    right: 24,
-                    p: 3,
-                    ...glassStyles.light,
-                    borderRadius: 3,
+                    ...glassStyles.medium,
+                    p: 5,
+                    borderRadius: 4,
+                    height: "100%",
                   }}
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "text.secondary", mb: 1 }}
+                  <Stack
+                    direction="row"
+                    spacing={2}
+                    alignItems="center"
+                    sx={{ mb: 3 }}
                   >
-                    Our Vision
-                  </Typography>
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: 2,
+                        background:
+                          "linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Lightbulb sx={{ color: "white", fontSize: 24 }} />
+                    </Box>
+                    <Typography variant="h4" fontWeight={700}>
+                      The Solution
+                    </Typography>
+                  </Stack>
                   <Typography
-                    variant="h6"
-                    sx={{ color: "text.primary", fontWeight: 600 }}
+                    variant="body1"
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.8,
+                      mb: 3,
+                      fontSize: "1.1rem",
+                    }}
                   >
-                    "Simplify complexity. Amplify productivity."
+                    Bigeen Solutions is a{" "}
+                    <Box component="strong" sx={{ color: "text.primary" }}>
+                      Hybrid Partner
+                    </Box>
+                    . We combine high-level strategic consulting with pragmatic
+                    software implementation.
                   </Typography>
-                </MotionPaper>
+                  <Stack spacing={2}>
+                    {solutionFeatures.map((feature, index) => (
+                      <Stack
+                        key={index}
+                        direction="row"
+                        spacing={2}
+                        alignItems="center"
+                      >
+                        <CheckCircle sx={{ color: "success.main" }} />
+                        <Typography
+                          variant="h6"
+                          sx={{ fontSize: "1.1rem", fontWeight: 500 }}
+                        >
+                          {feature}
+                        </Typography>
+                      </Stack>
+                    ))}
+                  </Stack>
+                </Paper>
               </MotionBox>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* ======================== STATS SECTION (4 Columns) ======================== */}
+      {/* ======================== STATS SECTION ======================== */}
       <Box
         sx={{
           py: { xs: 10, md: 14 },
@@ -635,8 +584,13 @@ export const AboutPage: React.FC = () => {
         </Container>
       </Box>
 
-      {/* ======================== TEAM SECTION (3 Columns) ======================== */}
-      <Box sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.paper" }}>
+      {/* ======================== LEADERSHIP SECTION ======================== */}
+      <Box
+        sx={{
+          py: { xs: 10, md: 14 },
+          backgroundColor: "background.paper",
+        }}
+      >
         <Container maxWidth="xl">
           <MotionBox
             initial={{ opacity: 0, y: 20 }}
@@ -653,18 +607,7 @@ export const AboutPage: React.FC = () => {
                 color: "text.primary",
               }}
             >
-              Meet the{" "}
-              <Box
-                component="span"
-                sx={{
-                  background: gradients.accent,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                minds
-              </Box>{" "}
-              behind the magic
+              Leadership
             </Typography>
             <Typography
               variant="body1"
@@ -675,15 +618,26 @@ export const AboutPage: React.FC = () => {
                 mx: "auto",
               }}
             >
-              Our team of engineers, designers, and dreamers building the tools
-              that power modern businesses.
+              Built in Abuja. Serving the Continent.
             </Typography>
           </MotionBox>
 
           <Grid container spacing={4} justifyContent="center">
             {teamMembers.map((member, index) => (
               <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
-                <TeamMemberCard {...member} />
+                <MotionBox
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    type: "spring" as const,
+                    stiffness: 80,
+                    damping: 20,
+                    delay: index * 0.1,
+                  }}
+                >
+                  <TeamMemberCard {...member} />
+                </MotionBox>
               </Grid>
             ))}
           </Grid>
@@ -763,8 +717,8 @@ export const AboutPage: React.FC = () => {
                 zIndex: 1,
               }}
             >
-              Join 500+ companies that have already transformed the way they
-              work with Bigeen Solutions.
+              Join companies that have already transformed the way they work
+              with Bigeen Solutions.
             </Typography>
             <Stack
               direction={{ xs: "column", sm: "row" }}
