@@ -6,6 +6,7 @@ import {
   Stack,
   Card,
   Grid,
+  Paper,
 } from "@mui/material"
 import { ArrowForward, PlayArrow, Star } from "@mui/icons-material"
 import { Link } from "react-router-dom"
@@ -24,6 +25,7 @@ const MotionBox = motion.create(Box)
 const MotionTypography = motion.create(Typography)
 const MotionStack = motion.create(Stack)
 const MotionCard = motion.create(Card)
+const MotionPaper = motion.create(Paper)
 
 // ============================================
 // ANIMATED BLOB COMPONENT
@@ -518,14 +520,20 @@ export const HomePage: React.FC = () => {
       </Box>
 
       {/* ======================== CTA SECTION ======================== */}
-      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: "background.paper" }}>
+      <Box
+        sx={{ py: { xs: 10, md: 14 }, backgroundColor: "background.default" }}
+      >
         <Container maxWidth="md">
-          <Card
+          <MotionPaper
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring" as const, stiffness: 80, damping: 20 }}
             elevation={0}
             sx={{
               background: gradients.dark,
               borderRadius: 4,
-              p: { xs: 4, md: 8 },
+              p: { xs: 5, md: 8 },
               textAlign: "center",
               position: "relative",
               overflow: "hidden",
@@ -541,69 +549,113 @@ export const HomePage: React.FC = () => {
                 height: 300,
                 borderRadius: "50%",
                 background: gradients.accent,
-                opacity: 0.1,
+                opacity: 0.15,
                 filter: "blur(80px)",
               }}
             />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: -80,
+                left: -80,
+                width: 200,
+                height: 200,
+                borderRadius: "50%",
+                background: "#3B82F6",
+                opacity: 0.1,
+                filter: "blur(60px)",
+              }}
+            />
 
-            <Typography variant="h3" sx={{ color: "white", mb: 2 }}>
-              Ready to simplify your stack?
+            <Typography
+              variant="h3"
+              sx={{
+                color: "white",
+                fontWeight: 800,
+                mb: 2,
+                fontSize: { xs: "1.75rem", md: "2.5rem" },
+                position: "relative",
+                zIndex: 1,
+              }}
+            >
+              Ready to shape the future?
             </Typography>
             <Typography
               variant="body1"
               sx={{
-                color: "rgba(255,255,255,0.8)",
+                color: "rgba(255, 255, 255, 0.8)",
                 mb: 4,
+                fontSize: "1.125rem",
                 maxWidth: 500,
                 mx: "auto",
+                position: "relative",
+                zIndex: 1,
               }}
             >
-              Join 500+ companies that have already transformed their workflows
+              Join companies that have already transformed the way they work
               with Bigeen Solutions.
             </Typography>
             <Stack
               direction={{ xs: "column", sm: "row" }}
               spacing={2}
-              justifyContent="center"
+              sx={{ justifyContent: "center", position: "relative", zIndex: 1 }}
             >
-              <Button
-                component={Link}
-                to="/contact"
-                variant="contained"
-                size="large"
-                sx={{
-                  background: gradients.accent,
-                  px: 4,
-                  py: 1.5,
-                  textDecoration: "none",
-                  "&:hover": {
-                    background: gradients.primary,
-                  },
-                }}
+              <MotionBox
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Get Consult
-              </Button>
-              <Button
-                component={Link}
-                to="/contact"
-                variant="outlined"
-                size="large"
-                sx={{
-                  borderColor: "rgba(255,255,255,0.3)",
-                  color: "white",
-                  px: 4,
-                  py: 1.5,
-                  textDecoration: "none",
-                  "&:hover": {
-                    borderColor: "white",
-                    bgcolor: "rgba(255,255,255,0.1)",
-                  },
-                }}
+                <Button
+                  component={Link}
+                  to="/contact"
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    background: gradients.accent,
+                    color: "white",
+                    fontWeight: 600,
+                    px: 4,
+                    py: 1.5,
+                    borderRadius: 2,
+                    fontSize: "1rem",
+                    textDecoration: "none",
+                    "&:hover": {
+                      background: gradients.primary,
+                    },
+                  }}
+                >
+                  Book Consultation
+                </Button>
+              </MotionBox>
+              <MotionBox
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Contact Sales
-              </Button>
+                <Button
+                  component={Link}
+                  to="/contact"
+                  variant="outlined"
+                  size="large"
+                  sx={{
+                    ...glassStyles.dark,
+                    borderColor: "rgba(255, 255, 255, 0.2)",
+                    color: "white",
+                    fontWeight: 600,
+                    px: 4,
+                    py: 1.5,
+                    borderRadius: 2,
+                    fontSize: "1rem",
+                    textDecoration: "none",
+                    "&:hover": {
+                      borderColor: "rgba(255, 255, 255, 0.5)",
+                      background: "rgba(255, 255, 255, 0.1)",
+                    },
+                  }}
+                >
+                  Contact Sales
+                </Button>
+              </MotionBox>
             </Stack>
-          </Card>
+          </MotionPaper>
         </Container>
       </Box>
     </Box>
