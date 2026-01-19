@@ -137,7 +137,7 @@ export const HomePage: React.FC = () => {
           delay={0}
         />
         <AnimatedBlob
-          color="#764ba2"
+          color="#09065b"
           size={350}
           top="50%"
           right="-5%"
@@ -151,7 +151,7 @@ export const HomePage: React.FC = () => {
           delay={4}
         />
         <AnimatedBlob
-          color="#7C3AED"
+          color="#050a6c"
           size={250}
           top="20%"
           right="25%"

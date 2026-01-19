@@ -285,7 +285,7 @@ export const AboutPage: React.FC = () => {
                       py: 1.5,
                       borderRadius: 2,
                       fontSize: "1rem",
-                      boxShadow: "0 8px 24px rgba(124, 58, 237, 0.3)",
+                      boxShadow: "0 8px 24px rgba(3, 8, 145, 0.3)",
                       "&:hover": {
                         background: gradients.primary,
                       },
