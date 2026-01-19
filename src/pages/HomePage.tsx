@@ -288,7 +288,7 @@ export const HomePage: React.FC = () => {
               </MotionStack>
             </Grid>
 
-            {/* Right Column: Hero Visual with Glass Cards */}
+            {/* Right Column: Hero Visual with Video Background */}
             <Grid size={{ xs: 12, md: 6 }}>
               <MotionBox
                 initial={{ opacity: 0, x: 50 }}
@@ -307,6 +307,44 @@ export const HomePage: React.FC = () => {
                   boxShadow: "0 24px 60px rgba(0, 0, 0, 0.25)",
                 }}
               >
+                {/* Video Background with Fallback */}
+                <Box
+                  component="video"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/hero-fallback.png"
+                  onError={(e: React.SyntheticEvent<HTMLVideoElement>) => {
+                    e.currentTarget.style.display = "none"
+                  }}
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    zIndex: 0,
+                  }}
+                >
+                  <source src="/videos/hero-video.webm" type="video/webm" />
+                  <source src="/videos/hero-video.mp4" type="video/mp4" />
+                </Box>
+
+                {/* Dark Overlay for better contrast */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    background: "rgba(0, 0, 0, 0.3)",
+                    zIndex: 1,
+                  }}
+                />
+
                 {/* Floating Glass Card - API Calls */}
                 <MotionCard
                   animate={floatAnimation}
@@ -318,6 +356,7 @@ export const HomePage: React.FC = () => {
                     borderRadius: 3,
                     ...glassStyles.light,
                     background: "rgba(255, 255, 255, 0.9)",
+                    zIndex: 2,
                   }}
                 >
                   <Typography
@@ -348,6 +387,7 @@ export const HomePage: React.FC = () => {
                     borderRadius: 3,
                     ...glassStyles.light,
                     background: "rgba(255, 255, 255, 0.9)",
+                    zIndex: 2,
                   }}
                 >
                   <Typography
@@ -373,6 +413,7 @@ export const HomePage: React.FC = () => {
                     background: gradients.accent,
                     opacity: 0.2,
                     filter: "blur(60px)",
+                    zIndex: 2,
                   }}
                 />
               </MotionBox>
