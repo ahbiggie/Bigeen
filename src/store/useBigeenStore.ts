@@ -10,6 +10,7 @@ export interface BigeenState {
   contactForm: {
     fullName: string
     workEmail: string
+    phoneNumber: string
     companyName: string
     topic: string
     message: string
@@ -32,6 +33,7 @@ export interface BigeenState {
 const initialContactForm = {
   fullName: "",
   workEmail: "",
+  phoneNumber: "",
   companyName: "",
   topic: "",
   message: "",

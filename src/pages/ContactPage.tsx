@@ -60,8 +60,13 @@ const defaultFAQs: FAQItem[] = [
 export const ContactPage: React.FC<ContactPageProps> = ({
   faqs = defaultFAQs,
 }) => {
-  const { contactForm, setContactFormField, resetContactForm, expandedFaq, setExpandedFaq } =
-    useBigeenStore()
+  const {
+    contactForm,
+    setContactFormField,
+    resetContactForm,
+    expandedFaq,
+    setExpandedFaq,
+  } = useBigeenStore()
 
   // Local state for submission feedback
   const [status, setStatus] = useState<
@@ -343,6 +348,34 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                           value={contactForm.workEmail}
                           onChange={(e) =>
                             setContactFormField("workEmail", e.target.value)
+                          }
+                          disabled={status === "loading"}
+                          sx={{
+                            "& .MuiOutlinedInput-root": {
+                              borderRadius: 2,
+                              backgroundColor: "background.paper",
+                              "&:hover fieldset": {
+                                borderColor: "primary.main",
+                              },
+                            },
+                          }}
+                        />
+                      </Grid>
+
+                      <Grid size={{ xs: 12, sm: 6 }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ fontWeight: 600, mb: 1, color: "text.primary" }}
+                        >
+                          Phone Number
+                        </Typography>
+                        <TextField
+                          fullWidth
+                          type="tel"
+                          placeholder="+234 800 123 4567"
+                          value={contactForm.phoneNumber}
+                          onChange={(e) =>
+                            setContactFormField("phoneNumber", e.target.value)
                           }
                           disabled={status === "loading"}
                           sx={{

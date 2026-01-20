@@ -226,6 +226,7 @@ export const ContactForm: React.FC = () => {
         body: JSON.stringify({
           name: contactForm.fullName,
           email: contactForm.workEmail,
+          phone: contactForm.phoneNumber,
           company: contactForm.companyName,
           projectType: contactForm.topic,
           message: contactForm.message,
@@ -304,6 +305,21 @@ export const ContactForm: React.FC = () => {
                 onChange={(e) => handleFieldChange("workEmail", e.target.value)}
                 error={!!errors.workEmail}
                 helperText={errors.workEmail}
+                sx={glassInputSx}
+              />
+            </FormField>
+          </Grid>
+
+          {/* Phone Number */}
+          <Grid size={{ xs: 12, sm: 6 }}>
+            <FormField label="Phone Number">
+              <TextField
+                fullWidth
+                variant="outlined"
+                type="tel"
+                placeholder="+234 800 123 4567"
+                value={contactForm.phoneNumber}
+                onChange={(e) => handleFieldChange("phoneNumber", e.target.value)}
                 sx={glassInputSx}
               />
             </FormField>

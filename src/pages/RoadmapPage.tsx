@@ -194,13 +194,13 @@ const MilestoneCard: React.FC<MilestoneCardProps> = ({ milestone, index }) => {
 // ============================================
 
 export const RoadmapPage: React.FC = () => {
-  // Strategic Pillars (Replacing "Projects" with Core Offerings from Playbook)
+  // Strategic Pillars Data
   const projects: Project[] = [
     {
       id: "1",
       title: "Integrated Consulting",
       description:
-        "The bedrock of our model. Operational diagnostics, financial health assessments, and process re-engineering for African SMEs.",
+        "The bedrock of our model. We help organizations diagnose operational gaps, strengthen financial and process discipline, and build execution capability suited to African business realities.",
       imageUrl:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
       categories: ["Strategy", "Operations"],
@@ -211,7 +211,7 @@ export const RoadmapPage: React.FC = () => {
       id: "2",
       title: "Bigeen Core SaaS",
       description:
-        "Our proprietary 'Business Operating System' connecting HR, Accounting, and CRM tools into a single source of truth.",
+        "A demand-led business operating platform designed to unify core business functions over time, informed by real workflows, validated needs, and proven execution patterns.",
       imageUrl:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       categories: ["SaaS", "Automation"],
@@ -222,7 +222,7 @@ export const RoadmapPage: React.FC = () => {
       id: "3",
       title: "Venture Studio",
       description:
-        "Future-focused equity incubation. Providing capital and operational infrastructure to high-growth startups.",
+        "A long-term investment arm focused on selective equity partnerships, providing operational support and infrastructure to high-potential African businesses.",
       imageUrl:
         "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
       categories: ["Investment", "Scale"],
@@ -237,7 +237,7 @@ export const RoadmapPage: React.FC = () => {
       year: "2026",
       title: "Foundation",
       description:
-        "Incorporated in Abuja. Launching the Hybrid Model to fix the 80% SME failure rate through diagnostics and process design.",
+        "Focus on diagnostics, process design, and capability-building for Nigerian SMEs.",
       icon: <Lightbulb sx={{ fontSize: 24 }} />,
       position: "left",
     },
@@ -245,15 +245,15 @@ export const RoadmapPage: React.FC = () => {
       year: "2027",
       title: "Validation",
       description:
-        "Onboarding the first 100 paying clients. Deployment of standard operating procedures (SOPs) and initial SaaS stacks.",
+        "Standardization of Service offerings Onboarding early cohorts of paying clients and deploying structured operating systems and initial technology solutions.",
       icon: <CheckCircle sx={{ fontSize: 24 }} />,
       position: "right",
     },
     {
       year: "2028",
-      title: "Tech Maturity",
+      title: "Technology Maturity",
       description:
-        "Launch of 'Bigeen Core' v1.0. Automating the bridge between strategy and execution to eliminate manual data entry.",
+        "Launch of the first version of Bigeen Core. Reducint fragementation between strategy, operations, and execution through automation and system integration.",
       icon: <Construction sx={{ fontSize: 24 }} />,
       position: "left",
     },
@@ -261,7 +261,7 @@ export const RoadmapPage: React.FC = () => {
       year: "2029",
       title: "Regional Expansion",
       description:
-        "Expanding into 5 West African markets. Reaching 300+ active clients and ₦1B+ in generated value.",
+        "Expansion into selected West African markets. Building cross-market execution playbooks and regional operating capabilities.",
       icon: <Language sx={{ fontSize: 24 }} />,
       position: "right",
     },
@@ -269,7 +269,7 @@ export const RoadmapPage: React.FC = () => {
       year: "2030",
       title: "The Venture Studio",
       description:
-        "Launching our investment arm with 10 equity bets. Transforming from service provider to ecosystem builder.",
+        "Launch of our investment arm. Transitioning from service delivery to ecosystem enablement through structured equity partnerships.",
       icon: <TrendingUp sx={{ fontSize: 24 }} />,
       position: "left",
     },
@@ -277,7 +277,7 @@ export const RoadmapPage: React.FC = () => {
       year: "Future",
       title: "Category Leader",
       description:
-        "Establishing 'Business Infrastructure as a Service' (BIaaS) as the standard for African economic growth.",
+        "Establishing 'Business Infrastructure as a Service' (BIaaS) as a practical standard for building resilient, scalable African businesses.",
       icon: <Rocket sx={{ fontSize: 24 }} />,
       position: "right",
     },
@@ -375,8 +375,9 @@ export const RoadmapPage: React.FC = () => {
                 mx: "auto",
               }}
             >
-              We are mapping the path to sustainable scale. From our 2026
-              foundation to a ₦1.8B ecosystem.
+              Our roadmap is deliberate: execution-led consulting today,
+              validated technology tomorrow, and scalable African business
+              infrastructure for the future.
             </MotionTypography>
           </MotionBox>
         </Container>
@@ -421,8 +422,7 @@ export const RoadmapPage: React.FC = () => {
                 mx: "auto",
               }}
             >
-              The three engines driving our growth and value creation for
-              African SMEs.
+              Three integrated engines guiding how we create long-term value.
             </Typography>
           </MotionBox>
 

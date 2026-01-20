@@ -33,13 +33,13 @@ export const theme = createTheme({
     },
     text: {
       primary: "#0F172A",
-      secondary: "#64748B",
+      secondary: "#49525f",
     },
   },
   typography: {
-    fontFamily: '"Inter", "system-ui", sans-serif', // Clean Body Font
+    fontFamily: '"Inter", "system-ui", sans-serif',
     h1: {
-      fontFamily: '"Outfit", sans-serif', // "SaaS" Heading Font
+      fontFamily: '"Outfit", sans-serif',
       fontWeight: 800,
       letterSpacing: "-0.02em",
     },
