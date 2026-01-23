@@ -1,8 +1,8 @@
 import React from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { ThemeProvider, CssBaseline } from "@mui/material"
+import { ThemeProvider, CssBaseline, Box } from "@mui/material"
 import { theme } from "./theme/theme"
-import { MainLayout } from "./layout/MainLayout"
+import { Navbar } from "./components/Navbar"
+import { Footer } from "./components/Footer"
 import { HomePage } from "./pages/HomePage"
 import { RoadmapPage } from "./pages/RoadmapPage"
 import { ContactPage } from "./pages/ContactPage"
@@ -12,16 +12,24 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="roadmap" element={<RoadmapPage />} />
-            <Route path="contact" element={<ContactPage />} />
-            <Route path="about" element={<AboutPage />} />
-          </Route>
-        </Routes>
-      </Router>
+      <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <Navbar />
+        <Box component="main" sx={{ flex: 1 }}>
+          <div id="home">
+            <HomePage />
+          </div>
+          <div id="about">
+            <AboutPage />
+          </div>
+          <div id="roadmap">
+            <RoadmapPage />
+          </div>
+          <div id="contact">
+            <ContactPage />
+          </div>
+        </Box>
+        <Footer />
+      </Box>
     </ThemeProvider>
   )
 }

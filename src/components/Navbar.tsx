@@ -17,7 +17,6 @@ import {
 } from "@mui/material"
 import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material"
 import { useState } from "react"
-import { Link as RouterLink, useLocation } from "react-router-dom"
 import { motion } from "framer-motion"
 import { glassStyles } from "../theme/theme"
 import bigeenLogo from "../assets/images/bigeen-logo.png"
@@ -34,13 +33,12 @@ export const Navbar: React.FC = () => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down("md"))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const location = useLocation()
 
   const navItems: NavItem[] = [
-    { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
-    { label: "Roadmap", path: "/roadmap" },
-    { label: "Contact", path: "/contact" },
+    { label: "Home", path: "#home" },
+    { label: "About", path: "#about" },
+    { label: "Roadmap", path: "#roadmap" },
+    { label: "Contact", path: "#contact" },
   ]
 
   const handleDrawerToggle = () => {
@@ -70,8 +68,8 @@ export const Navbar: React.FC = () => {
         }}
       >
         <Box
-          component={RouterLink}
-          to="/"
+          component="a"
+          href="#home"
           onClick={handleDrawerToggle}
           sx={{
             display: "flex",
@@ -117,15 +115,11 @@ export const Navbar: React.FC = () => {
           >
             <ListItem disablePadding sx={{ mb: 1.5 }}>
               <ListItemButton
-                component={RouterLink}
-                to={item.path}
+                component="a"
+                href={item.path}
                 onClick={handleDrawerToggle}
-                selected={location.pathname === item.path}
                 sx={{
                   borderRadius: 2,
-                  "&.Mui-selected": {
-                    backgroundColor: "rgba(102, 126, 234, 0.15)",
-                  },
                   "&:hover": {
                     backgroundColor: "rgba(102, 126, 234, 0.1)",
                   },
@@ -134,7 +128,7 @@ export const Navbar: React.FC = () => {
                 <ListItemText
                   primary={item.label}
                   primaryTypographyProps={{
-                    fontWeight: location.pathname === item.path ? 600 : 500,
+                    fontWeight: 500,
                     fontSize: "1.1rem",
                   }}
                 />
@@ -153,8 +147,8 @@ export const Navbar: React.FC = () => {
             variant="contained"
             size="large"
             color="primary"
-            component={RouterLink}
-            to="/contact"
+            component="a"
+            href="#contact"
             onClick={handleDrawerToggle}
             sx={{ py: 1.5, borderRadius: 3 }}
           >
@@ -189,8 +183,8 @@ export const Navbar: React.FC = () => {
             disableGutters
           >
             <Box
-              component={RouterLink}
-              to="/"
+              component="a"
+              href="#home"
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -214,16 +208,6 @@ export const Navbar: React.FC = () => {
                     objectFit: "contain",
                   }}
                 />
-                {/* <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    color: "text.primary",
-                    fontSize: { xs: "1.1rem", md: "1.25rem" },
-                  }}
-                >
-                  Solutions
-                </Typography> */}
               </MotionBox>
             </Box>
 
@@ -233,25 +217,19 @@ export const Navbar: React.FC = () => {
                 {navItems.map((item) => (
                   <Box
                     key={item.label}
-                    component={RouterLink}
-                    to={item.path}
+                    component="a"
+                    href={item.path}
                     sx={{
-                      color:
-                        location.pathname === item.path
-                          ? "primary.main"
-                          : "text.secondary",
+                      color: "text.secondary",
                       fontSize: "0.95rem",
-                      fontWeight: location.pathname === item.path ? 600 : 500,
+                      fontWeight: 500,
                       cursor: "pointer",
                       textDecoration: "none",
                       px: 2,
                       py: 1,
                       borderRadius: 2,
                       transition: "all 0.2s ease",
-                      backgroundColor:
-                        location.pathname === item.path
-                          ? "rgba(102, 126, 234, 0.1)"
-                          : "transparent",
+                      backgroundColor: "transparent",
                       "&:hover": {
                         color: "primary.main",
                         backgroundColor: "rgba(102, 126, 234, 0.08)",
@@ -279,8 +257,8 @@ export const Navbar: React.FC = () => {
                   variant="contained"
                   color="primary"
                   sx={{ ml: 2 }}
-                  component={RouterLink}
-                  to="/contact"
+                  component="a"
+                  href="#contact"
                 >
                   Get in touch
                 </Button>

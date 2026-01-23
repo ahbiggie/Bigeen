@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@mui/material"
 import { ArrowForward, PlayArrow, Star } from "@mui/icons-material"
-import { Link } from "react-router-dom"
+
 import { motion } from "framer-motion"
 import { gradients, glassStyles, blobKeyframes } from "../theme/theme"
 import { FeatureCard } from "../components/ui/FeatureCard"
@@ -219,8 +219,8 @@ export const HomePage: React.FC = () => {
                         variant="contained"
                         size="large"
                         endIcon={<ArrowForward />}
-                        component={Link}
-                        to="/contact"
+                        component="a"
+                        href="#contact"
                         sx={{
                           background: gradients.primary,
                           px: 4,
@@ -242,8 +242,8 @@ export const HomePage: React.FC = () => {
                         variant="outlined"
                         size="large"
                         startIcon={<PlayArrow />}
-                        component={Link}
-                        to="/about"
+                        component="a"
+                        href="#about"
                         sx={{
                           ...glassStyles.light,
                           borderColor: "transparent",
@@ -605,8 +605,8 @@ export const HomePage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  component={Link}
-                  to="/contact"
+                  component="a"
+                  href="#contact"
                   variant="contained"
                   size="large"
                   sx={{
@@ -631,8 +631,8 @@ export const HomePage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  component={Link}
-                  to="/contact"
+                  component="a"
+                  href="#contact"
                   variant="outlined"
                   size="large"
                   sx={{

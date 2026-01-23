@@ -19,7 +19,7 @@ import {
   Lightbulb,
   Info,
 } from "@mui/icons-material"
-import { Link } from "react-router-dom"
+
 import { motion } from "framer-motion"
 import { TeamMemberCard, StatCard } from "../components/ui"
 import { glassStyles, gradients, blobKeyframes } from "../theme/theme"
@@ -285,8 +285,8 @@ export const AboutPage: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    component={Link}
-                    to="/roadmap"
+                    component="a"
+                    href="#roadmap"
                     variant="contained"
                     size="large"
                     endIcon={<ArrowForward />}
@@ -312,8 +312,8 @@ export const AboutPage: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button
-                    component={Link}
-                    to="/roadmap"
+                    component="a"
+                    href="#roadmap"
                     variant="outlined"
                     size="large"
                     startIcon={<Rocket />}
@@ -730,8 +730,8 @@ export const AboutPage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  component={Link}
-                  to="/contact"
+                  component="a"
+                  href="#contact"
                   variant="contained"
                   size="large"
                   sx={{
@@ -756,8 +756,8 @@ export const AboutPage: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  component={Link}
-                  to="/contact"
+                  component="a"
+                  href="#contact"
                   variant="outlined"
                   size="large"
                   sx={{

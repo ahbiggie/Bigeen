@@ -205,7 +205,7 @@ export const RoadmapPage: React.FC = () => {
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
       categories: ["Strategy", "Operations"],
       categoryColors: ["#667eea", "#10B981"],
-      link: "/contact",
+      link: "#contact",
     },
     {
       id: "2",
@@ -216,7 +216,7 @@ export const RoadmapPage: React.FC = () => {
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
       categories: ["SaaS", "Automation"],
       categoryColors: ["#3B82F6", "#7C3AED"],
-      link: "/contact",
+      link: "#contact",
     },
     {
       id: "3",
@@ -227,7 +227,7 @@ export const RoadmapPage: React.FC = () => {
         "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
       categories: ["Investment", "Scale"],
       categoryColors: ["#F59E0B", "#EF4444"],
-      link: "/contact",
+      link: "#contact",
     },
   ]
 

@@ -9,7 +9,7 @@ import {
   Grid,
 } from "@mui/material"
 import { LinkedIn, Twitter, GitHub } from "@mui/icons-material"
-import { Link as RouterLink } from "react-router-dom"
+
 import { gradients } from "../theme/theme"
 
 // ============================================
@@ -17,17 +17,17 @@ import { gradients } from "../theme/theme"
 // ============================================
 
 const companyLinks = [
-  { label: "About Us", href: "/about" },
-  { label: "Strategic Roadmap", href: "/roadmap" },
-  { label: "Contact HQ", href: "/contact" },
-  { label: "Careers", href: "/#careers" },
+  { label: "About Us", href: "#about" },
+  { label: "Strategic Roadmap", href: "#roadmap" },
+  { label: "Contact HQ", href: "#contact" },
+  { label: "Careers", href: "#careers" },
 ]
 
 const resourceLinks = [
-  { label: "Our Methodology", href: "/about" },
-  { label: "Case Studies", href: "/roadmap" }, // Pointing to roadmap/projects
-  { label: "Insights & Blog", href: "/#blog" },
-  { label: "Client Support", href: "/contact" },
+  { label: "Our Methodology", href: "#about" },
+  { label: "Case Studies", href: "#roadmap" },
+  { label: "Insights & Blog", href: "#blog" },
+  { label: "Client Support", href: "#contact" },
 ]
 
 // ============================================
@@ -132,38 +132,21 @@ export const Footer: React.FC = () => {
               Company
             </Typography>
             <Stack spacing={1.5}>
-              {companyLinks.map((link) =>
-                link.href.startsWith("/") && !link.href.includes("#") ? (
-                  <Link
-                    key={link.label}
-                    component={RouterLink}
-                    to={link.href}
-                    underline="none"
-                    sx={{
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontSize: "0.875rem",
-                      transition: "color 0.2s",
-                      "&:hover": { color: "white" },
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    underline="none"
-                    sx={{
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontSize: "0.875rem",
-                      transition: "color 0.2s",
-                      "&:hover": { color: "white" },
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
+              {companyLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  underline="none"
+                  sx={{
+                    color: "rgba(255, 255, 255, 0.6)",
+                    fontSize: "0.875rem",
+                    transition: "color 0.2s",
+                    "&:hover": { color: "white" },
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </Stack>
           </Grid>
 
@@ -183,38 +166,21 @@ export const Footer: React.FC = () => {
               Resources
             </Typography>
             <Stack spacing={1.5}>
-              {resourceLinks.map((link) =>
-                link.href.startsWith("/") && !link.href.includes("#") ? (
-                  <Link
-                    key={link.label}
-                    component={RouterLink}
-                    to={link.href}
-                    underline="none"
-                    sx={{
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontSize: "0.875rem",
-                      transition: "color 0.2s",
-                      "&:hover": { color: "white" },
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ) : (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    underline="none"
-                    sx={{
-                      color: "rgba(255, 255, 255, 0.6)",
-                      fontSize: "0.875rem",
-                      transition: "color 0.2s",
-                      "&:hover": { color: "white" },
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ),
-              )}
+              {resourceLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  underline="none"
+                  sx={{
+                    color: "rgba(255, 255, 255, 0.6)",
+                    fontSize: "0.875rem",
+                    transition: "color 0.2s",
+                    "&:hover": { color: "white" },
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </Stack>
           </Grid>
         </Grid>
