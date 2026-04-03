@@ -253,7 +253,7 @@ export const RoadmapPage: React.FC = () => {
       year: "2028",
       title: "Technology Maturity",
       description:
-        "Launch of the first version of Bigeen Core. Reducint fragementation between strategy, operations, and execution through automation and system integration.",
+        "Launch of the first version of Bigeen Core. Reducing fragmentation between strategy, operations, and execution through automation and system integration.",
       icon: <Construction sx={{ fontSize: 24 }} />,
       position: "left",
     },

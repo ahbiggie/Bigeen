@@ -77,12 +77,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     {
       icon: <Email sx={{ fontSize: 24, color: "#667eea" }} />,
       label: "Email us",
-      value: "hello@bigeen.solutions",
+      value: "info@bigeensolutions.com",
     },
     {
       icon: <Phone sx={{ fontSize: 24, color: "#667eea" }} />,
       label: "Call us",
-      value: "+234 (0) 800 BIGEEN",
+      value: "+234 815-8771-727",
     },
     {
       icon: <LocationOn sx={{ fontSize: 24, color: "#667eea" }} />,
@@ -523,7 +523,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({
       </Box>
 
       {/* FAQ Section */}
-      <Box sx={{ py: { xs: 8, md: 12 }, backgroundColor: "background.paper" }}>
+      <Box id="faq" sx={{ py: { xs: 8, md: 12 }, backgroundColor: "background.paper" }}>
         <Container maxWidth="md">
           <Typography
             variant="h3"

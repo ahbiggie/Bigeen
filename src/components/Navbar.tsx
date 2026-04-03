@@ -39,6 +39,7 @@ export const Navbar: React.FC = () => {
     { label: "About", path: "#about" },
     { label: "Roadmap", path: "#roadmap" },
     { label: "Contact", path: "#contact" },
+    { label: "FAQ", path: "#faq" },
   ]
 
   const handleDrawerToggle = () => {
@@ -83,9 +84,9 @@ export const Navbar: React.FC = () => {
             src={bigeenLogo}
             alt="Bigeen Logo"
             sx={{
-              width: 32,
-              height: 32,
-              borderRadius: 1.5,
+              width: 64,
+              height: 64,
+              borderRadius: 2,
               objectFit: "contain",
             }}
           />
@@ -202,9 +203,9 @@ export const Navbar: React.FC = () => {
                   src={bigeenLogo}
                   alt="Bigeen Logo"
                   sx={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 1.5,
+                    width: 72,
+                    height: 72,
+                    borderRadius: 2,
                     objectFit: "contain",
                   }}
                 />

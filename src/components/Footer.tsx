@@ -11,6 +11,7 @@ import {
 import { LinkedIn, Twitter, GitHub } from "@mui/icons-material"
 
 import { gradients } from "../theme/theme"
+import bigeenLogo from "../assets/images/bigeen-logo.png"
 
 // ============================================
 // FOOTER LINK DATA
@@ -57,25 +58,18 @@ export const Footer: React.FC = () => {
               sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}
             >
               <Box
+                component="img"
+                src={bigeenLogo}
+                alt="Bigeen Logo"
                 sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 1.5,
-                  background: gradients.accent,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  width: 64,
+                  height: 64,
+                  borderRadius: 2,
+                  objectFit: "contain",
                 }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ color: "white", fontWeight: 800 }}
-                >
-                  B
-                </Typography>
-              </Box>
+              />
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Bigeen
+                Bigeen Solutions Limited
               </Typography>
             </Box>
             <Typography
