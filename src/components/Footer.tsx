@@ -10,7 +10,6 @@ import {
 } from "@mui/material"
 import { LinkedIn, Twitter, GitHub } from "@mui/icons-material"
 
-import { gradients } from "../theme/theme"
 import bigeenLogo from "../assets/images/bigeen-logo.png"
 
 // ============================================

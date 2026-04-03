@@ -116,7 +116,7 @@ export const AboutPage: React.FC = () => {
       initials: "LF",
       gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       socials: {
-        linkedin: "https://linkedin.com/in/fatimalawal",
+        linkedin: "https://linkedin.com/in/fatimalawal023",
         twitter: "https://twitter.com/fatimalawal",
       },
     },
@@ -126,17 +126,26 @@ export const AboutPage: React.FC = () => {
       initials: "YS",
       gradient: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
       socials: {
-        linkedin: "https://linkedin.com/in/yusufshaibu",
-        twitter: "https://twitter.com/yusufshaibu",
+        linkedin: "https://www.linkedin.com/in/yuusuf-b272bb157/",
+        // twitter: "https://twitter.com/yusufshaibu",
       },
     },
     {
       name: "Mochi Nurudeen",
-      role: "Operations Manager",
+      role: "Head of Operations",
       initials: "MN",
       gradient: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
       socials: {
         linkedin: "https://linkedin.com/in/mochinurudeen",
+      },
+    },
+    {
+      name: "Umar Haruna H.",
+      role: "Healthcare Information Specialist",
+      initials: "UH",
+      gradient: "linear-gradient(135deg, #b98310ff 0%, #1414e9ff 100%)",
+      socials: {
+        linkedin: "https://www.linkedin.com/in/umar-haruna-hussain-b2a866118?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       },
     },
   ]
