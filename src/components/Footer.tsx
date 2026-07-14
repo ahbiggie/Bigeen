@@ -1,7 +1,7 @@
 import { Box, Container, Typography, Link, Stack, Grid } from "@mui/material"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"
-import { ledger } from "../theme/theme"
+import { ledger, monoFont } from "../theme/theme"
 import {
   EMAIL,
   PHONE_DISPLAY,
@@ -90,9 +90,10 @@ export const Footer: React.FC = () => (
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <Typography
             sx={{
-              fontSize: "0.78rem",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
+              fontFamily: monoFont,
+              fontSize: "0.72rem",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: ledger.brassBright,
               mb: 2,
@@ -124,9 +125,10 @@ export const Footer: React.FC = () => (
         <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Typography
             sx={{
-              fontSize: "0.78rem",
-              fontWeight: 700,
-              letterSpacing: "0.12em",
+              fontFamily: monoFont,
+              fontSize: "0.72rem",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               color: ledger.brassBright,
               mb: 2,

@@ -1,62 +1,46 @@
 import { Box, Typography } from "@mui/material"
-import { ledger, tabularNums } from "../../theme/theme"
+import { ledger, monoFont } from "../../theme/theme"
 
 // ============================================
 // SIGNATURE ELEMENTS — "Operations Ledger"
-// Numbered SOP-style section marks and the
-// hand-stamped guarantee. Used across the page
-// so the whole thing reads like one document.
+// Mono eyebrow marks and the hand-stamped
+// guarantee. Numbering is reserved for content
+// that is genuinely sequential (the 3-step
+// process) — section marks carry labels only.
 // ============================================
 
 interface SectionMarkProps {
-  number: string
   label: string
   onDark?: boolean
 }
 
-/** Brass ledger rule with an entry number, e.g. "01 · The pattern" */
+/** Brass ledger rule with a mono eyebrow label, e.g. "THE PATTERN" */
 export const SectionMark: React.FC<SectionMarkProps> = ({
-  number,
   label,
   onDark = false,
 }) => (
   <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
-    <Typography
-      component="span"
+    <Box
+      aria-hidden
       sx={{
-        ...tabularNums,
-        fontFamily: '"Space Grotesk", sans-serif',
-        fontWeight: 700,
-        fontSize: "0.875rem",
-        letterSpacing: "0.12em",
-        color: onDark ? ledger.brassBright : ledger.brassDeep,
+        width: 28,
+        height: "2px",
+        backgroundColor: onDark ? ledger.brassBright : ledger.brass,
       }}
-    >
-      {number}
-    </Typography>
+    />
     <Typography
       component="span"
       sx={{
-        fontFamily: '"Space Grotesk", sans-serif',
+        fontFamily: monoFont,
         fontWeight: 500,
-        fontSize: "0.875rem",
-        letterSpacing: "0.14em",
+        fontSize: "0.8rem",
+        letterSpacing: "0.18em",
         textTransform: "uppercase",
-        color: onDark ? ledger.softOnDark : ledger.inkSoft,
+        color: onDark ? ledger.brassBright : ledger.brassDeep,
       }}
     >
       {label}
     </Typography>
-    <Box
-      aria-hidden
-      sx={{
-        flex: 1,
-        maxWidth: 120,
-        height: "2px",
-        backgroundColor: onDark ? ledger.lineOnDark : ledger.brass,
-        opacity: onDark ? 1 : 0.5,
-      }}
-    />
   </Box>
 )
 
@@ -73,7 +57,7 @@ export const Stamp: React.FC<StampProps> = ({ lines, onDark = false }) => {
       sx={{
         display: "inline-block",
         transform: "rotate(-3deg)",
-        border: `3px solid ${color}`,
+        border: `4px double ${color}`,
         borderRadius: "6px",
         px: 2.5,
         py: 1.5,
@@ -84,12 +68,12 @@ export const Stamp: React.FC<StampProps> = ({ lines, onDark = false }) => {
         <Typography
           key={line}
           sx={{
-            fontFamily: '"Space Grotesk", sans-serif',
-            fontWeight: 700,
-            fontSize: "0.9rem",
-            letterSpacing: "0.18em",
+            fontFamily: monoFont,
+            fontWeight: 500,
+            fontSize: "0.85rem",
+            letterSpacing: "0.2em",
             textTransform: "uppercase",
-            lineHeight: 1.6,
+            lineHeight: 1.7,
             color,
           }}
         >

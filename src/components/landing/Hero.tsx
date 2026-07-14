@@ -1,12 +1,14 @@
 import { Box, Container, Typography, Button, Stack, Grid } from "@mui/material"
-import { ledger } from "../../theme/theme"
+import { ledger, monoFont } from "../../theme/theme"
 import { BOOKING_URL, WHATSAPP_URL, CTA_LABEL } from "../../data/site"
 
 // ============================================
 // SECTION 1 — HERO
 // Pain-led question in the reader's voice, one
-// promise, one CTA. No video, no stock photo —
-// the visual is a CSS-only diagnostic sheet.
+// promise, one CTA. The page's one orchestrated
+// motion moment lives here: a staggered rise on
+// load (CSS-only; global reduced-motion guard
+// in the theme disables it).
 // ============================================
 
 const checklistItems = [
@@ -22,6 +24,18 @@ const stateStyles = {
   pending: { mark: "", color: ledger.inkSoft, note: "up next" },
 } as const
 
+// Staggered entrance: each hero child rises once on load.
+// Transform-only, never opacity: if the animation clock stalls
+// (blocked, unsupported, frozen webview), the worst case is a
+// 14px offset — the content is never invisible.
+const rise = (order: number) => ({
+  "@keyframes heroRise": {
+    from: { transform: "translateY(14px)" },
+    to: { transform: "none" },
+  },
+  animation: `heroRise 0.5s ease-out ${order * 0.09}s both`,
+})
+
 export const Hero: React.FC = () => (
   <Box
     component="section"
@@ -29,7 +43,7 @@ export const Hero: React.FC = () => (
     sx={{
       backgroundColor: ledger.paper,
       borderBottom: `1px solid ${ledger.greenLine}`,
-      py: { xs: 7, md: 11 },
+      py: { xs: 7, md: 12 },
     }}
   >
     <Container maxWidth="lg">
@@ -37,13 +51,14 @@ export const Hero: React.FC = () => (
         <Grid size={{ xs: 12, md: 7 }}>
           <Typography
             sx={{
-              fontFamily: '"Space Grotesk", sans-serif',
+              ...rise(0),
+              fontFamily: monoFont,
               fontWeight: 500,
-              fontSize: "0.875rem",
-              letterSpacing: "0.14em",
+              fontSize: "0.8rem",
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: ledger.brassDeep,
-              mb: 2.5,
+              mb: 3,
             }}
           >
             For Nigerian business owners with 5–100 staff
@@ -53,10 +68,13 @@ export const Hero: React.FC = () => (
             id="hero-heading"
             variant="h1"
             sx={{
-              fontSize: { xs: "2.25rem", sm: "2.75rem", md: "3.4rem" },
-              lineHeight: 1.12,
+              ...rise(1),
+              fontSize: { xs: "2.4rem", sm: "3rem", md: "3.55rem", lg: "3.9rem" },
+              lineHeight: 1.08,
+              letterSpacing: "-0.03em",
               color: ledger.ink,
               mb: 3,
+              maxWidth: "14ch",
             }}
           >
             If you took two weeks off, would your business still run?
@@ -64,6 +82,7 @@ export const Hero: React.FC = () => (
 
           <Typography
             sx={{
+              ...rise(2),
               fontSize: { xs: "1.05rem", md: "1.15rem" },
               color: ledger.inkSoft,
               maxWidth: 540,
@@ -80,6 +99,7 @@ export const Hero: React.FC = () => (
             direction={{ xs: "column", sm: "row" }}
             spacing={2}
             alignItems={{ xs: "stretch", sm: "center" }}
+            sx={rise(3)}
           >
             <Button
               component="a"
@@ -117,10 +137,12 @@ export const Hero: React.FC = () => (
 
           <Typography
             sx={{
+              ...rise(4),
               mt: 4,
-              fontSize: "0.85rem",
+              fontFamily: monoFont,
+              fontSize: "0.78rem",
+              letterSpacing: "0.08em",
               color: ledger.inkSoft,
-              letterSpacing: "0.04em",
             }}
           >
             CAC-registered · Founder-led · Abuja, Nigeria
@@ -132,6 +154,7 @@ export const Hero: React.FC = () => (
           <Box
             aria-hidden
             sx={{
+              ...rise(5),
               backgroundColor: ledger.card,
               border: `1px solid ${ledger.greenLine}`,
               borderTop: `4px solid ${ledger.green}`,
@@ -142,19 +165,36 @@ export const Hero: React.FC = () => (
               mx: { xs: "auto", md: 0 },
             }}
           >
-            <Typography
+            <Box
               sx={{
-                fontFamily: '"Space Grotesk", sans-serif',
-                fontWeight: 700,
-                fontSize: "0.8rem",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: ledger.brassDeep,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "baseline",
                 mb: 2.5,
               }}
             >
-              Sample handover sheet
-            </Typography>
+              <Typography
+                sx={{
+                  fontFamily: monoFont,
+                  fontWeight: 500,
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: ledger.brassDeep,
+                }}
+              >
+                Sample handover sheet
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: monoFont,
+                  fontSize: "0.7rem",
+                  color: ledger.inkSoft,
+                }}
+              >
+                wk 09
+              </Typography>
+            </Box>
 
             <Stack spacing={0}>
               {checklistItems.map((item) => {
@@ -202,8 +242,9 @@ export const Hero: React.FC = () => (
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: "0.75rem",
-                        fontStyle: "italic",
+                        fontFamily: monoFont,
+                        fontSize: "0.7rem",
+                        letterSpacing: "0.04em",
                         color: style.color,
                         whiteSpace: "nowrap",
                       }}

@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Grid, Button } from "@mui/material"
-import { ledger, tabularNums } from "../../theme/theme"
+import { ledger, monoFont, tabularNums, cardHover } from "../../theme/theme"
 import { SectionMark } from "./LedgerElements"
 import { BOOKING_URL, CTA_LABEL } from "../../data/site"
 
@@ -41,7 +41,7 @@ export const Services: React.FC = () => (
     sx={{ py: { xs: 7, md: 10 }, backgroundColor: ledger.paper }}
   >
     <Container maxWidth="lg">
-      <SectionMark number="03" label="What we do" />
+      <SectionMark label="What we do" />
 
       <Typography
         id="services-heading"
@@ -73,15 +73,17 @@ export const Services: React.FC = () => (
                 border: `1px solid ${ledger.greenLine}`,
                 borderRadius: 2,
                 p: { xs: 3, md: 3.5 },
+                ...cardHover,
               }}
             >
               <Typography
                 sx={{
-                  fontSize: "0.78rem",
-                  letterSpacing: "0.12em",
+                  fontFamily: monoFont,
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: ledger.brassDeep,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   mb: 1,
                 }}
               >
@@ -120,9 +122,9 @@ export const Services: React.FC = () => (
                     <Typography
                       sx={{
                         ...tabularNums,
-                        fontFamily: '"Space Grotesk", sans-serif',
-                        fontWeight: 700,
-                        fontSize: "1rem",
+                        fontFamily: monoFont,
+                        fontWeight: 500,
+                        fontSize: "0.95rem",
                         color: ledger.ink,
                       }}
                     >

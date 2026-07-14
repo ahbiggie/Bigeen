@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Grid } from "@mui/material"
-import { ledger, tabularNums } from "../../theme/theme"
+import { ledger, monoFont, tabularNums } from "../../theme/theme"
 import { SectionMark } from "./LedgerElements"
 
 // ============================================
@@ -39,7 +39,7 @@ export const WhoItsFor: React.FC = () => (
     sx={{ py: { xs: 7, md: 10 }, backgroundColor: ledger.card }}
   >
     <Container maxWidth="lg">
-      <SectionMark number="04" label="Is this you?" />
+      <SectionMark label="Is this you?" />
 
       <Grid container spacing={{ xs: 4, md: 8 }}>
         <Grid size={{ xs: 12, md: 5 }}>
@@ -96,12 +96,13 @@ export const WhoItsFor: React.FC = () => (
               >
                 <Typography
                   sx={{
-                    fontSize: "0.8rem",
-                    letterSpacing: "0.1em",
+                    fontFamily: monoFont,
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     color: ledger.brassDeep,
-                    fontWeight: 600,
-                    pt: 0.5,
+                    fontWeight: 500,
+                    pt: 0.75,
                   }}
                 >
                   {item.label}
@@ -110,9 +111,9 @@ export const WhoItsFor: React.FC = () => (
                   <Typography
                     sx={{
                       ...tabularNums,
-                      fontFamily: '"Space Grotesk", sans-serif',
-                      fontWeight: 700,
-                      fontSize: "1.15rem",
+                      fontFamily: monoFont,
+                      fontWeight: 500,
+                      fontSize: "1.1rem",
                       color: ledger.ink,
                     }}
                   >

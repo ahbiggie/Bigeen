@@ -51,7 +51,7 @@ export const Faq: React.FC = () => {
       sx={{ py: { xs: 7, md: 10 }, backgroundColor: ledger.card }}
     >
       <Container maxWidth="md">
-        <SectionMark number="06" label="Straight answers" />
+        <SectionMark label="Straight answers" />
         <Typography
           id="faq-heading"
           variant="h2"

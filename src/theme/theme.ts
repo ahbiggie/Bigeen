@@ -30,6 +30,20 @@ export const tabularNums = {
   fontFeatureSettings: '"tnum"',
 }
 
+// Type roles: display carries personality, body carries reading,
+// mono carries data — naira figures, eyebrows, ledger annotations.
+export const displayFont = '"Space Grotesk", "Inter", sans-serif'
+export const monoFont = '"IBM Plex Mono", "Consolas", monospace'
+
+// Shared hover treatment for offer/founder cards — quiet lift, no shadow theatrics
+export const cardHover = {
+  transition: "border-color 0.2s ease, transform 0.2s ease",
+  "&:hover": {
+    borderColor: ledger.green,
+    transform: "translateY(-2px)",
+  },
+}
+
 export const theme = createTheme({
   palette: {
     mode: "light",

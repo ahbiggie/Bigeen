@@ -1,24 +1,28 @@
 import { Box, Container, Typography, Grid } from "@mui/material"
-import { ledger, tabularNums } from "../../theme/theme"
+import { ledger, monoFont, tabularNums } from "../../theme/theme"
 import { SectionMark } from "./LedgerElements"
 
 // ============================================
 // SECTION 2 — PROBLEM AGITATION
 // The one approved statistic, dramatised as the
-// three concrete leaks. Ends without blaming the
-// reader (Carnegie #6).
+// three concrete leaks. Leak labels name the
+// ledger category — they encode information,
+// not sequence. Ends without blaming the reader.
 // ============================================
 
 const leaks = [
   {
+    tag: "Margin",
     title: "The margin you can't name",
     body: "₦4M came in last month — so why is the account empty? If you can't say what you keep on each sale within a minute, pricing and cost decisions are guesses.",
   },
   {
+    tag: "Receivables",
     title: "Money outside, quietly ageing",
     body: "Customers owe you, but nobody tracks who, how much, or since when. Untracked receivables become discounts nobody approved — and then bad debt.",
   },
   {
+    tag: "Cash",
     title: "One account, two lives",
     body: "School fees and supplier payments leave the same account. Until business and personal cash are separated, you cannot know whether the business itself makes money.",
   },
@@ -32,7 +36,7 @@ export const Problem: React.FC = () => (
     sx={{ py: { xs: 7, md: 10 }, backgroundColor: ledger.card }}
   >
     <Container maxWidth="lg">
-      <SectionMark number="01" label="The pattern" />
+      <SectionMark label="The pattern" />
 
       <Grid container spacing={{ xs: 4, md: 8 }}>
         <Grid size={{ xs: 12, md: 5 }}>
@@ -43,11 +47,20 @@ export const Problem: React.FC = () => (
               fontSize: { xs: "1.85rem", md: "2.4rem" },
               color: ledger.ink,
               mb: 3,
-              lineHeight: 1.2,
+              lineHeight: 1.18,
+              letterSpacing: "-0.02em",
             }}
           >
             About{" "}
-            <Box component="span" sx={{ color: ledger.brassDeep, ...tabularNums }}>
+            <Box
+              component="span"
+              sx={{
+                ...tabularNums,
+                fontFamily: monoFont,
+                fontWeight: 500,
+                color: ledger.brassDeep,
+              }}
+            >
               80%
             </Box>{" "}
             of Nigerian SMEs fail within their first 4–5 years.
@@ -78,17 +91,18 @@ export const Problem: React.FC = () => (
                 }}
               >
                 <Typography
-                  aria-hidden
                   sx={{
-                    ...tabularNums,
-                    fontFamily: '"Space Grotesk", sans-serif',
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    color: ledger.brass,
-                    lineHeight: 1.5,
+                    fontFamily: monoFont,
+                    fontWeight: 500,
+                    fontSize: "0.72rem",
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: ledger.brassDeep,
+                    lineHeight: 2.4,
+                    minWidth: 96,
                   }}
                 >
-                  {String(i + 1).padStart(2, "0")}
+                  {leak.tag}
                 </Typography>
                 <Box>
                   <Typography

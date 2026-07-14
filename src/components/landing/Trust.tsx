@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Grid, Link } from "@mui/material"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
-import { ledger } from "../../theme/theme"
+import { ledger, monoFont, cardHover } from "../../theme/theme"
 import { SectionMark, Stamp } from "./LedgerElements"
 import { FOUNDERS } from "../../data/site"
 
@@ -19,7 +19,7 @@ export const Trust: React.FC = () => (
     sx={{ py: { xs: 7, md: 10 }, backgroundColor: ledger.paper }}
   >
     <Container maxWidth="lg">
-      <SectionMark number="05" label="Who you'll work with" />
+      <SectionMark label="Who you'll work with" />
 
       <Typography
         id="trust-heading"
@@ -50,6 +50,7 @@ export const Trust: React.FC = () => (
                 border: `1px solid ${ledger.greenLine}`,
                 borderRadius: 2,
                 p: { xs: 3, md: 3.5 },
+                ...cardHover,
               }}
             >
               <Box
@@ -79,9 +80,12 @@ export const Trust: React.FC = () => (
               </Typography>
               <Typography
                 sx={{
-                  fontSize: "0.85rem",
+                  fontFamily: monoFont,
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
                   color: ledger.brassDeep,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   mb: 1,
                 }}
               >

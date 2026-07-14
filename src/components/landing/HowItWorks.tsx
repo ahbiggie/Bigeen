@@ -1,5 +1,5 @@
 import { Box, Container, Typography, Grid } from "@mui/material"
-import { ledger } from "../../theme/theme"
+import { ledger, monoFont } from "../../theme/theme"
 import { SectionMark, Stamp } from "./LedgerElements"
 
 // ============================================
@@ -38,7 +38,7 @@ export const HowItWorks: React.FC = () => (
     }}
   >
     <Container maxWidth="lg">
-      <SectionMark number="02" label="How we work" onDark />
+      <SectionMark label="How we work" onDark />
 
       <Grid container spacing={{ xs: 4, md: 6 }} alignItems="flex-start">
         <Grid size={{ xs: 12, md: 8 }}>
@@ -81,33 +81,26 @@ export const HowItWorks: React.FC = () => (
                 borderRadius: 2,
               }}
             >
-              <Box
+              {/* True sequence — the one place numbering earns its keep */}
+              <Typography
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  mb: 1.5,
+                  fontFamily: monoFont,
+                  fontWeight: 500,
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: ledger.brassBright,
+                  mb: 1,
                 }}
               >
-                <Typography
-                  variant="h3"
-                  sx={{ fontSize: "1.25rem", color: ledger.paperOnDark }}
-                >
-                  {i + 1}. {step.title}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "0.78rem",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: ledger.brassBright,
-                    whiteSpace: "nowrap",
-                    ml: 1.5,
-                  }}
-                >
-                  {step.duration}
-                </Typography>
-              </Box>
+                Step {i + 1} · {step.duration}
+              </Typography>
+              <Typography
+                variant="h3"
+                sx={{ fontSize: "1.25rem", color: ledger.paperOnDark, mb: 1.5 }}
+              >
+                {step.title}
+              </Typography>
               <Typography sx={{ color: ledger.softOnDark, fontSize: "0.95rem" }}>
                 {step.body}
               </Typography>
