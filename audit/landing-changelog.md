@@ -3,6 +3,25 @@
 **Branch:** `landing-rebuild` (off `siteUpdate`) · **Date:** 2026-07-14
 **Preview:** `npm run dev` then open http://localhost:5173 (or `npm run build && npm run preview` for the production build)
 
+## Design pass 2 (frontend-design skill)
+
+Applied the installed `frontend-design` skill's method after the initial
+build; full rationale and token system in [design-direction.md](design-direction.md).
+
+- **Third type role added:** IBM Plex Mono 500 for all data — naira
+  figures, eyebrows, the stamp, checklist annotations. Makes the ledger
+  identity real instead of implied (+1 font weight, ~15 kB).
+- **Decorative numbering removed:** section marks 01–06 replaced with
+  mono eyebrow labels; numbering now appears only on the genuinely
+  sequential 3-step process. The three leaks are labelled by ledger
+  category (MARGIN / RECEIVABLES / CASH).
+- **One orchestrated motion moment:** staggered transform-only rise on
+  hero load. Deliberately never animates opacity, so a stalled animation
+  clock can't hide the headline; reduced-motion guard already global.
+- **Craft polish:** larger, tighter hero display scale (up to 3.9rem,
+  −0.03em), double-border stamp, quiet card hovers (border + 2px lift),
+  consistent mono micro-labels across footer/trust/services.
+
 ## What changed
 
 - **Homepage rebuilt** as a single-goal landing page ([HomePage.tsx](../src/pages/HomePage.tsx) composing `src/components/landing/*`): pain-led hero (no video), the approved 80% / 4–5-year framing dramatised as three leaks, how-we-work with the "we stay until your team runs it" guarantee, three offers with naira ranges, ICP self-qualifier, founder/CAC trust block, CTA band with WhatsApp + 3-field callback form (same Formspree endpoint), FAQ covering pricing / 50% deposit / guarantee / NDPR.

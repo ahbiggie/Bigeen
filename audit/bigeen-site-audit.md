@@ -3,6 +3,14 @@
 **Date:** 2026-07-14 · **Branch audited:** `siteUpdate` (clean, commit `b37bd4d`)
 **Auditor:** Claude Code, against the Bigeen brand/positioning brief
 
+> **Resolution status (2026-07-14, branch `landing-rebuild`):** every P0
+> and P1 finding below is addressed by the rebuilt landing page — see
+> [landing-changelog.md](landing-changelog.md) for what changed and what
+> still needs founder sign-off, and [design-direction.md](design-direction.md)
+> for the visual system. P2 items (structured data, FAQ scope, NDPR note,
+> font trimming) are also done. This report is kept as the record of the
+> pre-rebuild state.
+
 ---
 
 ## 1. Stack detected (read from the repo, not assumed)
