@@ -3,6 +3,19 @@
 **Branch:** `landing-rebuild` (off `siteUpdate`) · **Date:** 2026-07-14
 **Preview:** `npm run dev` then open http://localhost:5173 (or `npm run build && npm run preview` for the production build)
 
+## Hero photo (2026-07-14)
+
+Added a hero image at founder request — a warm, organised, ledger-lined
+office that matches the brand palette (green binders, plant, tablet
+showing a systems dashboard). Source PNG was 1.27 MB; optimised to a
+**66 kB** JPEG at 1000×558 (`src/assets/images/hero-office.jpg`), loaded
+eagerly with `fetchPriority="high"` since it's above the fold. The
+handover-sheet widget now floats over its lower-left (absolute on desktop,
+overlapping the image bottom on mobile). Hero copy and the card content
+are unchanged — the card was only made slightly more compact so it fits
+cleanly over the photo. ⚠️ The photo is AI-generated stock-style imagery;
+swap for a real photo of the founders / their space when available.
+
 ## CEO review pass (2026-07-14)
 
 Implements both CEO review documents (*Website Overhaul Report* and

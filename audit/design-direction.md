@@ -64,5 +64,10 @@ everything else stays quiet.
 - Opacity-based hero reveal: left the headline invisible when the
   animation timeline froze; switched to transform-only.
 - Serif display on warm paper: too close to the cream/serif default look.
-- Hero video/photo: rejected for weight and message (the sheet artifact
-  says more about the promise than stock imagery could).
+- Hero video: rejected for weight and message (the sheet artifact says
+  more about the promise than a looping video could).
+- Hero photo: initially skipped, then added at founder request — a warm,
+  organised, ledger-lined office (green binders, plant, tablet) that reads
+  as the brand's own world, not generic stock. Optimised to a 66 kB JPEG
+  and loaded eagerly (above-the-fold LCP). The handover-sheet artifact now
+  floats over its lower-left, so the signature element still leads.

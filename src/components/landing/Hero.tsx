@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Box, Container, Typography, Button, Stack, Grid } from "@mui/material"
 import { ledger, monoFont } from "../../theme/theme"
 import { BOOKING_URL, WHATSAPP_URL, CTA_LABEL } from "../../data/site"
+import heroOffice from "../../assets/images/hero-office.jpg"
 
 // ============================================
 // SECTION 1 — HERO
@@ -202,24 +203,57 @@ export const Hero: React.FC = () => {
           </Typography>
         </Grid>
 
-        {/* Diagnostic sheet — pure CSS, ~0 kB, ticks off on scroll */}
+        {/* Office photo with the handover sheet floating over it */}
         <Grid size={{ xs: 12, md: 5 }}>
           <Box
-            ref={sheetRef}
-            role="img"
-            aria-label="Sample client handover sheet: personal and business cash separated (handed over), margin known per product (handed over), receivables reviewed every week (in training), payroll runs without the founder (up next)."
             sx={{
               ...rise(4),
-              backgroundColor: ledger.card,
-              border: `1px solid ${ledger.greenLine}`,
-              borderTop: `4px solid ${ledger.green}`,
-              borderRadius: 2,
-              p: { xs: 3, md: 4 },
-              boxShadow: "0 12px 32px rgba(12, 46, 33, 0.08)",
-              maxWidth: 420,
+              position: "relative",
+              maxWidth: { xs: 460, md: "none" },
               mx: { xs: "auto", md: 0 },
             }}
           >
+            {/* On-brand: organised, ledger-lined office */}
+            <Box
+              component="img"
+              src={heroOffice}
+              alt="A business owner reviewing her systems dashboard in an organised, ledger-lined office"
+              width={1000}
+              height={558}
+              loading="eager"
+              fetchPriority="high"
+              sx={{
+                width: "100%",
+                height: { xs: 240, sm: 300, md: 512 },
+                display: "block",
+                borderRadius: 2,
+                objectFit: "cover",
+                objectPosition: "32% center",
+                boxShadow: "0 20px 44px rgba(12, 46, 33, 0.16)",
+              }}
+            />
+
+            {/* Handover sheet — ticks off on scroll; floats over lower-left */}
+            <Box
+              ref={sheetRef}
+              role="img"
+              aria-label="Sample client handover sheet: personal and business cash separated (handed over), margin known per product (handed over), receivables reviewed every week (in training), payroll runs without the founder (up next)."
+              sx={{
+                position: { xs: "relative", md: "absolute" },
+                left: { md: -24 },
+                bottom: { md: 24 },
+                mt: { xs: -5, md: 0 },
+                mx: { xs: "auto", md: 0 },
+                width: { xs: "90%", md: 322 },
+                zIndex: 2,
+                backgroundColor: ledger.card,
+                border: `1px solid ${ledger.greenLine}`,
+                borderTop: `4px solid ${ledger.green}`,
+                borderRadius: 2,
+                p: { xs: 2.5, md: 2.75 },
+                boxShadow: "0 16px 40px rgba(12, 46, 33, 0.18)",
+              }}
+            >
             <Box
               sx={{
                 display: "flex",
@@ -283,7 +317,7 @@ export const Hero: React.FC = () => {
                       display: "flex",
                       alignItems: "baseline",
                       gap: 1.5,
-                      py: 1.5,
+                      py: 1.1,
                       borderBottom: `1px dashed ${ledger.greenLine}`,
                       opacity: shown ? 1 : 0.35,
                       transform: shown ? "none" : "translateX(6px)",
@@ -340,14 +374,15 @@ export const Hero: React.FC = () => {
 
             <Typography
               sx={{
-                mt: 2.5,
-                fontSize: "0.85rem",
+                mt: 1.75,
+                fontSize: "0.8rem",
                 color: ledger.inkSoft,
                 fontStyle: "italic",
               }}
             >
               We leave at "runs without us" — not at "report submitted."
             </Typography>
+            </Box>
           </Box>
         </Grid>
       </Grid>
