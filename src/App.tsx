@@ -4,6 +4,7 @@ import { theme } from "./theme/theme"
 import { Navbar } from "./components/Navbar"
 import { Footer } from "./components/Footer"
 import { HomePage } from "./pages/HomePage"
+import { FloatingWhatsApp } from "./components/landing/FloatingWhatsApp"
 
 // The landing page is the whole conversion path: one goal
 // (book a diagnostic call), one scroll. The former About /
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <HomePage />
         </Box>
         <Footer />
+        <FloatingWhatsApp />
       </Box>
     </ThemeProvider>
   )

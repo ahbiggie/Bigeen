@@ -25,9 +25,9 @@ import bigeenLogo from "../assets/images/bigeen-logo-160.png"
 
 const navItems = [
   { label: "The problem", path: "#problem" },
+  { label: "Who it's for", path: "#fit" },
   { label: "How we work", path: "#how" },
   { label: "Services", path: "#services" },
-  { label: "Who it's for", path: "#fit" },
   { label: "FAQ", path: "#faq" },
 ]
 
