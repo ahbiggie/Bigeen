@@ -1,63 +1,153 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-NG">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="/src/assets/images/bigeen-logo.png"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
+    <title>Bigeen Solutions — Business Systems for Nigerian SMEs | Abuja</title>
     <meta
       name="description"
-      content="From chaotic survival to sustainable scale. Bigeen Solutions combines strategic consulting with pragmatic technology to build the operational infrastructure African SMEs need to grow."
+      content="If you took two weeks off, would your business still run? Bigeen builds the systems — processes, financial visibility, tools your team actually uses — and stays until your team runs them. CAC-registered, Abuja. Book a free diagnostic call."
     />
-
-    <meta
-      name="keywords"
-      content="Business Infrastructure, SME Consulting Nigeria, Operational Diagnostics, SaaS Implementation, Process Design, Venture Studio, Digital Transformation Abuja, Business Operating System, Bigeen Solutions"
-    />
-
     <meta name="author" content="Bigeen Solutions Limited" />
+    <link rel="canonical" href="https://bigeensolutions.com/" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bigeensolutions.com/" />
     <meta
       property="og:title"
-      content="Bigeen Solutions | Business Infrastructure & Technology"
+      content="Bigeen Solutions — Business Systems for Nigerian SMEs"
     />
     <meta
       property="og:description"
-      content="From chaotic survival to sustainable scale. Bigeen Solutions combines strategic consulting with pragmatic technology to build the operational infrastructure African SMEs need to grow."
+      content="We build the systems that let your business run without you — and we stay until your team runs them competently. Book a free diagnostic call."
     />
-    <meta property="og:image" content="/src/assets/images/bigeen-logo.png" />
+    <meta
+      property="og:image"
+      content="https://bigeensolutions.com/images/og-card.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_NG" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://bigeensolutions.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
-      property="twitter:title"
-      content="Bigeen Solutions | Business Infrastructure & Technology"
+      name="twitter:title"
+      content="Bigeen Solutions — Business Systems for Nigerian SMEs"
     />
     <meta
-      property="twitter:description"
-      content="From chaotic survival to sustainable scale. Bigeen Solutions combines strategic consulting with pragmatic technology to build the operational infrastructure African SMEs need to grow."
+      name="twitter:description"
+      content="We build the systems that let your business run without you — and we stay until your team runs them competently. Book a free diagnostic call."
     />
-    <meta property="twitter:image" content="/src/assets/images/bigeen-logo.png" />
+    <meta
+      name="twitter:image"
+      content="https://bigeensolutions.com/images/og-card.png"
+    />
 
-    <title>Bigeen Solutions | Business Infrastructure & Technology</title>
+    <!-- Structured data: Organization + LocalBusiness (Abuja, NG) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://bigeensolutions.com/#org",
+            "name": "Bigeen Solutions Limited",
+            "url": "https://bigeensolutions.com/",
+            "logo": "https://bigeensolutions.com/images/bigeen-logo.png",
+            "email": "info@bigeensolutions.com",
+            "telephone": "+2348158771727",
+            "foundingDate": "2026",
+            "founder": [
+              { "@type": "Person", "name": "Fatima Lawal", "jobTitle": "Co-founder & CEO" },
+              { "@type": "Person", "name": "Yusuf Shaibu", "jobTitle": "Co-founder & CTO" }
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Abuja",
+              "addressCountry": "NG"
+            }
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://bigeensolutions.com/#business",
+            "name": "Bigeen Solutions Limited",
+            "parentOrganization": { "@id": "https://bigeensolutions.com/#org" },
+            "url": "https://bigeensolutions.com/",
+            "image": "https://bigeensolutions.com/images/og-card.png",
+            "email": "info@bigeensolutions.com",
+            "telephone": "+2348158771727",
+            "priceRange": "₦₦",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Abuja",
+              "addressCountry": "NG"
+            },
+            "areaServed": ["Abuja", "Lagos", "Ibadan", "Port Harcourt"],
+            "description": "Business consulting and SaaS enablement for Nigerian SMEs: diagnostics, process and SOP design, financial planning, and software adoption — delivered until the client's team runs the systems independently."
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static shell: paints instantly on slow connections,
+           replaced when React mounts. Keep in sync with the hero. -->
+      <div
+        style="
+          font-family: system-ui, sans-serif;
+          background: #faf8f3;
+          color: #17251e;
+          min-height: 100vh;
+          padding: 4rem 1.5rem;
+        "
+      >
+        <div style="max-width: 640px; margin: 0 auto">
+          <p
+            style="
+              font-size: 0.85rem;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: #8a5c06;
+            "
+          >
+            Bigeen Solutions · Abuja
+          </p>
+          <h1 style="font-size: 2rem; line-height: 1.2; margin: 1rem 0">
+            If you took two weeks off, would your business still run?
+          </h1>
+          <p style="color: #46554c; line-height: 1.6">
+            We build the systems — processes, financial visibility, tools your
+            team actually uses — and we stay until your team runs them.
+          </p>
+          <a
+            href="https://wa.me/2348158771727"
+            style="
+              display: inline-block;
+              margin-top: 1rem;
+              background: #175239;
+              color: #fff;
+              padding: 0.9rem 1.8rem;
+              border-radius: 6px;
+              text-decoration: none;
+              font-weight: 600;
+            "
+            >Book a free diagnostic call</a
+          >
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
