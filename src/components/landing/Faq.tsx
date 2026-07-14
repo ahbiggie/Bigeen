@@ -20,11 +20,11 @@ import { SectionMark } from "./LedgerElements"
 const faqs = [
   {
     q: "How do you price your work?",
-    a: "In naira, in writing, before we start. Consulting projects range from ₦150K to ₦2M depending on scope; ongoing retainers run ₦100K–₦700K per month; software enablement is ₦15K–₦75K per month. After the free diagnostic call you get a written quote for your exact situation — the number on that paper is the number you pay.",
+    a: "In naira, in writing, before we start. A scoped diagnostic engagement runs ₦800K–₦3M; a full transformation project ₦3M–₦12M; advisory retainers ₦300K–₦1.5M per month; software enablement ₦75K–₦300K per month. If you want a smaller first step, our Starter Diagnostic begins at ₦150K. After the free call you get a written quote for your exact situation — the number on that paper is the number you pay.",
   },
   {
     q: "Do you take a deposit?",
-    a: "Yes — 50% before work starts, with the balance tied to agreed milestones, not to time passing. It keeps both sides committed: you know we deliver before we're fully paid, and we know you're serious before we clear our calendar.",
+    a: "Yes — 50% before work starts, with the balance tied to agreed milestones, not to time passing. It keeps both sides committed: you know we deliver before we're fully paid, and we know you're serious before we clear our calendar. And the diagnostic itself is guaranteed: if by Week 4 you don't have a clearer picture and a concrete action list, we refund it in full.",
   },
   {
     q: "What does \"we stay until it runs\" actually mean?",

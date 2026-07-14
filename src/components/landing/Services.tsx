@@ -4,31 +4,36 @@ import { SectionMark } from "./LedgerElements"
 import { BOOKING_URL, CTA_LABEL } from "../../data/site"
 
 // ============================================
-// SECTION 4 — SERVICES
-// The three revenue engines as scannable offers
-// with draft naira ranges (founder to approve).
+// SECTION — SERVICES
+// Three offers with a tiered pricing ladder set to
+// premium positioning (CEO review). The old ₦150K
+// floor becomes a named "Starter Diagnostic" product
+// instead of the bottom of a confusing range.
+// TODO(founder review): all figures are drafts.
 // ============================================
 
 const offers = [
   {
     name: "Consulting & systems",
     forWho: "For the founder who is the system",
-    body: "Business diagnostics, SOP and process design, financial planning and team training — the structure that lets you step out of daily firefighting.",
+    body: "Diagnostics, SOP and process design, financial planning and team training — the structure that lets you step out of daily firefighting.",
     priceLines: [
-      { label: "Projects", value: "₦150K – ₦2M" },
-      { label: "Retainers", value: "₦100K – ₦700K /mo" },
+      { label: "Starter Diagnostic", value: "from ₦150K" },
+      { label: "Diagnostic engagement", value: "₦800K – ₦3M" },
+      { label: "Full transformation", value: "₦3M – ₦12M" },
+      { label: "Advisory retainer", value: "₦300K – ₦1.5M /mo" },
     ],
   },
   {
-    name: "Software that sticks",
-    forWho: "For the tool graveyard",
-    body: "The subscriptions you already bought and abandoned — Zoho, QuickBooks, Monday.com, SeamlessHR — selected properly, configured for your workflow, and trained into daily habit.",
-    priceLines: [{ label: "Enablement", value: "₦15K – ₦75K /mo" }],
+    name: "Software & products",
+    forWho: "Beyond the tool graveyard",
+    body: "We find the right tools, configure them for your workflow, and train them into daily habit. Where the right tool doesn't exist for how Nigerian businesses run, we build it — because our software advice comes from people who ship software.",
+    priceLines: [{ label: "Enablement", value: "₦75K – ₦300K /mo" }],
   },
   {
     name: "Equity partnership",
     forWho: "Rare, by invitation",
-    body: "For a small number of businesses we deeply believe in, we take part of our fee in equity and build alongside you. Founder-approved, case by case.",
+    body: "For a few businesses we deeply believe in, we take part of our fee in equity and build alongside you. We look for a proven product, a founder we'd back, and a market with room to grow. It's founder-approved, case by case — and it always starts the same way everyone else does: with a diagnostic call.",
     priceLines: [{ label: "Structure", value: "Discussed directly" }],
   },
 ]
@@ -55,10 +60,10 @@ export const Services: React.FC = () => (
         Three ways we work. Real naira, upfront.
       </Typography>
       <Typography
-        sx={{ color: ledger.inkSoft, fontSize: "1.05rem", maxWidth: 620, mb: 5 }}
+        sx={{ color: ledger.inkSoft, fontSize: "1.05rem", maxWidth: 640, mb: 5 }}
       >
-        Every engagement starts with a scoped, written quote — the ranges below
-        are so you can decide in ten seconds whether we're in your budget.
+        The ranges below are so you can decide in ten seconds whether we're in
+        your budget. Every engagement starts with a scoped, written quote.
       </Typography>
 
       <Grid container spacing={{ xs: 3, md: 4 }}>
@@ -110,6 +115,7 @@ export const Services: React.FC = () => (
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "baseline",
+                      gap: 2,
                       py: 1.25,
                       borderBottom: `1px dashed ${ledger.greenLine}`,
                     }}
@@ -124,8 +130,9 @@ export const Services: React.FC = () => (
                         ...tabularNums,
                         fontFamily: monoFont,
                         fontWeight: 500,
-                        fontSize: "0.95rem",
+                        fontSize: "0.9rem",
                         color: ledger.ink,
+                        whiteSpace: "nowrap",
                       }}
                     >
                       {line.value}
@@ -137,6 +144,42 @@ export const Services: React.FC = () => (
           </Grid>
         ))}
       </Grid>
+
+      {/* Technology vision — the SaaS half of the hybrid, made visible */}
+      <Box
+        sx={{
+          mt: { xs: 4, md: 5 },
+          p: { xs: 3, md: 4 },
+          backgroundColor: ledger.greenDeep,
+          borderRadius: 2,
+        }}
+      >
+        <Typography
+          sx={{
+            fontFamily: monoFont,
+            fontSize: "0.72rem",
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: ledger.brassBright,
+            mb: 1.5,
+          }}
+        >
+          Where we're headed
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "1.15rem", md: "1.35rem" },
+            color: ledger.paperOnDark,
+            maxWidth: 780,
+            lineHeight: 1.5,
+          }}
+        >
+          We build for what we can't find: purpose-built tools designed around
+          how Nigerian businesses actually operate. Consulting fixes your
+          systems today; our own products are how we intend to scale that fix
+          to thousands of businesses we'll never sit inside.
+        </Typography>
+      </Box>
 
       <Box sx={{ mt: 5, textAlign: "center" }}>
         <Typography sx={{ color: ledger.inkSoft, fontSize: "0.95rem", mb: 2 }}>
