@@ -2,13 +2,15 @@ import { Box, Container, Typography, Grid, Link } from "@mui/material"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import { ledger, monoFont, cardHover } from "../../theme/theme"
 import { SectionMark, Stamp } from "./LedgerElements"
-import { FOUNDERS } from "../../data/site"
+import { FOUNDERS, DIAGNOSTIC_GUARANTEE } from "../../data/site"
 
 // ============================================
-// SECTION 6 — PROOF / TRUST
-// Real founders, real registration, the guarantee.
-// Client results are placeholders until real ones
-// exist — never invented.
+// SECTION — PROOF / TRUST
+// The people behind the work (the CEO review's most
+// underused asset), the firm's model, and a refund
+// guarantee that does the job social proof can't for
+// a new firm. Client results stay honest placeholders
+// until real ones exist — never invented.
 // ============================================
 
 export const Trust: React.FC = () => (
@@ -33,16 +35,16 @@ export const Trust: React.FC = () => (
         Two founders. Both in the room, both accountable.
       </Typography>
       <Typography
-        sx={{ color: ledger.inkSoft, fontSize: "1.05rem", maxWidth: 620, mb: 5 }}
+        sx={{ color: ledger.inkSoft, fontSize: "1.05rem", maxWidth: 640, mb: 5 }}
       >
         Bigeen Solutions Limited is a CAC-registered private limited company in
-        Abuja. When you engage us, you work directly with the people whose
-        names are on the registration.
+        Abuja. You don't hire a faceless firm — you work directly with the two
+        people whose names are on the registration.
       </Typography>
 
       <Grid container spacing={{ xs: 3, md: 4 }}>
         {FOUNDERS.map((founder) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={founder.name}>
+          <Grid size={{ xs: 12, md: 6 }} key={founder.name}>
             <Box
               sx={{
                 height: "100%",
@@ -53,48 +55,78 @@ export const Trust: React.FC = () => (
                 ...cardHover,
               }}
             >
-              <Box
-                aria-hidden
-                sx={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: "50%",
-                  backgroundColor: ledger.greenDeep,
-                  color: ledger.brassBright,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontFamily: '"Space Grotesk", sans-serif',
-                  fontWeight: 700,
-                  fontSize: "1.1rem",
-                  mb: 2,
-                }}
-              >
-                {founder.initials}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
+                {/* Monogram is the honest no-photo state.
+                    TODO(founder review): drop in headshots via `photo`. */}
+                {founder.photo ? (
+                  <Box
+                    component="img"
+                    src={founder.photo}
+                    alt={`${founder.name}, ${founder.role} of Bigeen Solutions`}
+                    sx={{
+                      width: 64,
+                      height: 64,
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      flexShrink: 0,
+                    }}
+                  />
+                ) : (
+                  <Box
+                    aria-hidden
+                    sx={{
+                      width: 64,
+                      height: 64,
+                      flexShrink: 0,
+                      borderRadius: "50%",
+                      backgroundColor: ledger.greenDeep,
+                      color: ledger.brassBright,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: '"Space Grotesk", sans-serif',
+                      fontWeight: 700,
+                      fontSize: "1.25rem",
+                    }}
+                  >
+                    {founder.initials}
+                  </Box>
+                )}
+                <Box>
+                  <Typography
+                    variant="h3"
+                    sx={{ fontSize: "1.3rem", color: ledger.ink }}
+                  >
+                    {founder.name}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: monoFont,
+                      fontSize: "0.75rem",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: ledger.brassDeep,
+                    }}
+                  >
+                    {founder.role}
+                  </Typography>
+                </Box>
               </Box>
-              <Typography
-                variant="h3"
-                sx={{ fontSize: "1.2rem", color: ledger.ink }}
-              >
-                {founder.name}
-              </Typography>
+
               <Typography
                 sx={{
                   fontFamily: monoFont,
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: ledger.brassDeep,
-                  fontWeight: 500,
-                  mb: 1,
+                  fontSize: "0.8rem",
+                  color: ledger.green,
+                  mb: 1.5,
                 }}
               >
-                {founder.role}
+                {founder.credentials}
               </Typography>
               <Typography
-                sx={{ fontSize: "0.95rem", color: ledger.inkSoft, mb: 2 }}
+                sx={{ color: ledger.inkSoft, fontSize: "0.98rem", mb: 2.5 }}
               >
-                {founder.focus}
+                {founder.bio}
               </Typography>
               <Link
                 href={founder.linkedin}
@@ -116,61 +148,87 @@ export const Trust: React.FC = () => (
             </Box>
           </Grid>
         ))}
-
-        {/* Guarantee card sits beside the founders */}
-        <Grid size={{ xs: 12, sm: 12, md: 4 }}>
-          <Box
-            sx={{
-              height: "100%",
-              backgroundColor: ledger.greenDeep,
-              borderRadius: 2,
-              p: { xs: 3, md: 3.5 },
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              gap: 3,
-            }}
-          >
-            <Typography sx={{ color: ledger.paperOnDark, fontSize: "1rem" }}>
-              Our delivery guarantee is written into every engagement: the work
-              isn't finished when a document is submitted. It's finished when
-              your team runs the systems competently on their own.
-            </Typography>
-            <Box>
-              <Stamp lines={["We stay until", "it runs"]} onDark />
-            </Box>
-          </Box>
-        </Grid>
       </Grid>
 
-      {/* Honest placeholders — real results only, when they exist */}
-      <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mt: { xs: 2, md: 3 } }}>
-        {[
-          "[CLIENT RESULT — added as engagements complete. We publish real numbers with the client's written permission, or nothing at all.]",
-          "[TESTIMONIAL — coming from our first cohort of clients. We don't write these ourselves.]",
-        ].map((placeholder) => (
-          <Grid size={{ xs: 12, md: 6 }} key={placeholder}>
-            <Box
+      <Typography
+        sx={{
+          mt: 4,
+          fontSize: { xs: "1.05rem", md: "1.15rem" },
+          color: ledger.ink,
+          maxWidth: 760,
+        }}
+      >
+        We're not a large firm. We're two people with complementary skills and
+        one obsession: businesses that run without their owners holding
+        everything together.
+      </Typography>
+
+      {/* Guarantee — what a new firm offers in place of testimonials */}
+      <Box
+        sx={{
+          mt: { xs: 5, md: 7 },
+          backgroundColor: ledger.greenDeep,
+          borderRadius: 2,
+          p: { xs: 3, md: 5 },
+        }}
+      >
+        <Grid container spacing={{ xs: 3, md: 5 }} alignItems="center">
+          <Grid size={{ xs: 12, md: 8 }}>
+            <Typography
               sx={{
-                border: `2px dashed ${ledger.greenLine}`,
-                borderRadius: 2,
-                p: 3,
-                height: "100%",
+                fontFamily: monoFont,
+                fontSize: "0.75rem",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: ledger.brassBright,
+                mb: 1.5,
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: "0.9rem",
-                  color: ledger.inkSoft,
-                  fontStyle: "italic",
-                }}
-              >
-                {placeholder}
-              </Typography>
-            </Box>
+              Our diagnostic guarantee
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: { xs: "1.2rem", md: "1.5rem" },
+                color: ledger.paperOnDark,
+                lineHeight: 1.45,
+              }}
+            >
+              {DIAGNOSTIC_GUARANTEE}
+            </Typography>
+            <Typography
+              sx={{ mt: 2, color: ledger.softOnDark, fontSize: "0.95rem" }}
+            >
+              We can offer this because we know what we're doing — and because a
+              client who sees no value in Week 4 isn't one we should continue
+              with anyway.
+            </Typography>
           </Grid>
-        ))}
-      </Grid>
+          <Grid
+            size={{ xs: 12, md: 4 }}
+            sx={{ display: "flex", justifyContent: { xs: "flex-start", md: "center" } }}
+          >
+            <Stamp lines={["We stay until", "it runs"]} onDark />
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Honest placeholder — real results only, when they exist */}
+      <Box
+        sx={{
+          mt: { xs: 3, md: 4 },
+          border: `2px dashed ${ledger.greenLine}`,
+          borderRadius: 2,
+          p: 3,
+        }}
+      >
+        <Typography
+          sx={{ fontSize: "0.9rem", color: ledger.inkSoft, fontStyle: "italic" }}
+        >
+          [CLIENT RESULTS &amp; TESTIMONIALS — published here as engagements
+          complete. We use real names and numbers with the client's written
+          permission, or nothing at all. We don't write these ourselves.]
+        </Typography>
+      </Box>
     </Container>
   </Box>
 )
