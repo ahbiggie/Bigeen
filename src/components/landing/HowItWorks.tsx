@@ -22,7 +22,7 @@ const steps = [
   {
     title: "Hand over — and stay",
     duration: "until it runs",
-    body: "We train your people until they run the systems without us, then we step back. Your team owns it. If you want us on call after that, that's your choice — not a dependency we built.",
+    body: "We train your people until they run it without us. Then we step back. What happens after that is your choice — not a dependency we built.",
   },
 ]
 
@@ -56,10 +56,8 @@ export const HowItWorks: React.FC = () => (
           <Typography
             sx={{ color: ledger.softOnDark, fontSize: "1.05rem", maxWidth: 620 }}
           >
-            Plenty of consultants can write you a beautiful document. The work
-            that matters is what happens after — which is why our engagement
-            only ends when your people run the new way of working competently,
-            without us in the room.
+            Plenty of consultants write you a beautiful document. We stay until
+            your people run the new way of working — without us in the room.
           </Typography>
         </Grid>
         <Grid

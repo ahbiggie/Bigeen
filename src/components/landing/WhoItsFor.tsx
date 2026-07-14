@@ -53,7 +53,7 @@ export const WhoItsFor: React.FC = () => (
               lineHeight: 1.2,
             }}
           >
-            We do our best work with a specific kind of business.
+            This is built for you if:
           </Typography>
           <Typography sx={{ color: ledger.inkSoft, fontSize: "1.05rem", mb: 2 }}>
             On the ground in Abuja, and working with businesses in Lagos,

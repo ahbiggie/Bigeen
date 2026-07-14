@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react"
 import { Box, Container, Typography, Button, Stack, Grid } from "@mui/material"
 import { ledger, monoFont } from "../../theme/theme"
 import { BOOKING_URL, WHATSAPP_URL, CTA_LABEL } from "../../data/site"
@@ -36,7 +37,76 @@ const rise = (order: number) => ({
   animation: `heroRise 0.5s ease-out ${order * 0.09}s both`,
 })
 
-export const Hero: React.FC = () => (
+// The handover sheet ticks its rows off one by one the first time it
+// scrolls into view — the signature widget, made to "show, not tell"
+// (CEO review). Falls back to the fully-checked state if Intersection
+// Observer is unavailable or motion is reduced.
+const doneCount = checklistItems.filter((i) => i.state === "done").length
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+const useSheetReveal = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  // Start fully revealed when motion is reduced — no in-effect setState,
+  // and the sheet is correct on first paint for those users.
+  const [revealed, setRevealed] = useState(() =>
+    prefersReducedMotion() ? checklistItems.length : 0,
+  )
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || prefersReducedMotion()) return
+
+    let done = false
+    const runReveal = () => {
+      if (done) return
+      done = true
+      checklistItems.forEach((_, i) =>
+        window.setTimeout(() => setRevealed(i + 1), 260 * (i + 1)),
+      )
+    }
+
+    // If the sheet is already on screen at mount (desktop, above the fold),
+    // start straight away rather than waiting for a scroll.
+    const rect = el.getBoundingClientRect()
+    if (rect.top < window.innerHeight && rect.bottom > 0) runReveal()
+
+    // Safety net: the sheet must never sit stuck in its dimmed state. If
+    // IntersectionObserver never fires (unsupported, or an environment that
+    // doesn't drive it), this timer reveals it anyway.
+    const fallback = window.setTimeout(runReveal, 1600)
+
+    let io: IntersectionObserver | undefined
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return
+          runReveal()
+          io?.disconnect()
+        },
+        // Low threshold: the sheet is tall (~480px), so on a phone it may
+        // never reach a high visible fraction — 0.15 fires reliably on both.
+        { threshold: 0.15 },
+      )
+      io.observe(el)
+    }
+
+    return () => {
+      window.clearTimeout(fallback)
+      io?.disconnect()
+    }
+  }, [])
+
+  return { ref, revealed }
+}
+
+export const Hero: React.FC = () => {
+  const { ref: sheetRef, revealed } = useSheetReveal()
+  const progress = Math.min(revealed, doneCount) / checklistItems.length
+
+  return (
   <Box
     component="section"
     aria-labelledby="hero-heading"
@@ -50,25 +120,10 @@ export const Hero: React.FC = () => (
       <Grid container spacing={{ xs: 5, md: 8 }} alignItems="center">
         <Grid size={{ xs: 12, md: 7 }}>
           <Typography
-            sx={{
-              ...rise(0),
-              fontFamily: monoFont,
-              fontWeight: 500,
-              fontSize: "0.8rem",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: ledger.brassDeep,
-              mb: 3,
-            }}
-          >
-            For Nigerian business owners with 5–100 staff
-          </Typography>
-
-          <Typography
             id="hero-heading"
             variant="h1"
             sx={{
-              ...rise(1),
+              ...rise(0),
               fontSize: { xs: "2.4rem", sm: "3rem", md: "3.55rem", lg: "3.9rem" },
               lineHeight: 1.08,
               letterSpacing: "-0.03em",
@@ -82,24 +137,22 @@ export const Hero: React.FC = () => (
 
           <Typography
             sx={{
-              ...rise(2),
+              ...rise(1),
               fontSize: { xs: "1.05rem", md: "1.15rem" },
               color: ledger.inkSoft,
               maxWidth: 540,
               mb: 4,
             }}
           >
-            Most owners can't say yes. We build the systems — processes,
-            financial visibility, tools your team actually uses — and we stay
-            until your people run them competently. Not until a report is
-            submitted.
+            Most owners can't. We build the systems that change that answer —
+            and we don't leave until your team runs them without us.
           </Typography>
 
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={2}
             alignItems={{ xs: "stretch", sm: "center" }}
-            sx={rise(3)}
+            sx={rise(2)}
           >
             <Button
               component="a"
@@ -137,7 +190,7 @@ export const Hero: React.FC = () => (
 
           <Typography
             sx={{
-              ...rise(4),
+              ...rise(3),
               mt: 4,
               fontFamily: monoFont,
               fontSize: "0.78rem",
@@ -149,12 +202,14 @@ export const Hero: React.FC = () => (
           </Typography>
         </Grid>
 
-        {/* Diagnostic sheet — pure CSS, ~0 kB, on-message */}
+        {/* Diagnostic sheet — pure CSS, ~0 kB, ticks off on scroll */}
         <Grid size={{ xs: 12, md: 5 }}>
           <Box
-            aria-hidden
+            ref={sheetRef}
+            role="img"
+            aria-label="Sample client handover sheet: personal and business cash separated (handed over), margin known per product (handed over), receivables reviewed every week (in training), payroll runs without the founder (up next)."
             sx={{
-              ...rise(5),
+              ...rise(4),
               backgroundColor: ledger.card,
               border: `1px solid ${ledger.greenLine}`,
               borderTop: `4px solid ${ledger.green}`,
@@ -170,7 +225,7 @@ export const Hero: React.FC = () => (
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "baseline",
-                mb: 2.5,
+                mb: 1.5,
               }}
             >
               <Typography
@@ -196,9 +251,31 @@ export const Hero: React.FC = () => (
               </Typography>
             </Box>
 
+            {/* Progress bar — fills as items hand over */}
+            <Box
+              aria-hidden
+              sx={{
+                height: 4,
+                borderRadius: 2,
+                backgroundColor: ledger.greenLine,
+                mb: 2,
+                overflow: "hidden",
+              }}
+            >
+              <Box
+                sx={{
+                  height: "100%",
+                  width: `${progress * 100}%`,
+                  backgroundColor: ledger.green,
+                  transition: "width 0.5s ease",
+                }}
+              />
+            </Box>
+
             <Stack spacing={0}>
-              {checklistItems.map((item) => {
+              {checklistItems.map((item, i) => {
                 const style = stateStyles[item.state]
+                const shown = i < revealed
                 return (
                   <Box
                     key={item.label}
@@ -208,6 +285,9 @@ export const Hero: React.FC = () => (
                       gap: 1.5,
                       py: 1.5,
                       borderBottom: `1px dashed ${ledger.greenLine}`,
+                      opacity: shown ? 1 : 0.35,
+                      transform: shown ? "none" : "translateX(6px)",
+                      transition: "opacity 0.3s ease, transform 0.3s ease",
                     }}
                   >
                     <Box
@@ -226,7 +306,7 @@ export const Hero: React.FC = () => (
                         alignSelf: "center",
                       }}
                     >
-                      {style.mark}
+                      {shown ? style.mark : ""}
                     </Box>
                     <Typography
                       sx={{
@@ -247,6 +327,8 @@ export const Hero: React.FC = () => (
                         letterSpacing: "0.04em",
                         color: style.color,
                         whiteSpace: "nowrap",
+                        opacity: shown ? 1 : 0,
+                        transition: "opacity 0.3s ease",
                       }}
                     >
                       {style.note}
@@ -270,5 +352,6 @@ export const Hero: React.FC = () => (
         </Grid>
       </Grid>
     </Container>
-  </Box>
-)
+    </Box>
+  )
+}
