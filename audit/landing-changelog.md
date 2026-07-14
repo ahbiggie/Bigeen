@@ -3,6 +3,62 @@
 **Branch:** `landing-rebuild` (off `siteUpdate`) · **Date:** 2026-07-14
 **Preview:** `npm run dev` then open http://localhost:5173 (or `npm run build && npm run preview` for the production build)
 
+## CEO review pass (2026-07-14)
+
+Implements both CEO review documents (*Website Overhaul Report* and
+*Website Audit & Recommendations*). Two items were founder decisions,
+answered before building: **pricing → the Audit's premium tiered figures**,
+and **industry stats → add all three**.
+
+**Copy trims (Overhaul Part 1).** Hero eyebrow label removed and sub-copy
+cut to one line ("…change that answer — and we don't leave until your team
+runs them without us"). Problem headline tightened ("Not from bad ideas.
+From missing systems."), the three leak cards trimmed. How-we-work intro
+and step 3 cut. Who-it's-for opener replaced with "This is built for you
+if:". Services subtext reordered.
+
+**New credibility, no fabrication (Overhaul Part 2 / Audit problems 1 & 3).**
+- **Founders enriched** — real roles corrected earlier, now with the
+  credentials the CEO supplied (Fatima: MBA · McKinsey Forward · Columbia
+  Behavioural Science, hospital systems background; Yusuf: full-stack /
+  data / marketing). Monogram avatars are the honest no-photo state.
+  ⚠️ **Verify every credential line before launch**; add real headshots.
+- **Diagnostic guarantee** — 100% refund if Week 4 delivers no clearer
+  picture + action list. ⚠️ Real financial commitment — confirm terms.
+- **"What we typically find in Week 2"** illustrative findings ("typically",
+  not client claims) + a "what the diagnostic delivers" list (new *Approach*
+  section) — methodology as evidence.
+- **Founding-client frame** — "first 5 founding clients" band. ⚠️ Confirm
+  slot count and reduced-rate terms.
+- **Industry stats** — SMEDAN 67%, Stears 31 hrs, McKinsey 40% in the
+  Problem section. ⚠️ Verify figures/attribution before launch.
+
+**Conversion + structure (both docs).**
+- **Floating WhatsApp button** on every scroll position (priority #1 in
+  both reviews).
+- **Interactive self-assessment** — 5-question health check, client-side
+  only (nothing sent/stored), primes the CTA.
+- **Handover sheet animates** — ticks off on scroll into view with a
+  progress bar; reduced-motion shows it complete; a fallback timer and an
+  in-view-at-mount check guarantee it never sits stuck dimmed.
+- **Section reorder** — *Who it's for* now sits right after the problem so
+  wrong-fit visitors self-select before services.
+
+**Pricing → premium tiers (Audit problem 2).** Starter Diagnostic from
+₦150K (named product) · Diagnostic engagement ₦800K–₦3M · Full
+transformation ₦3M–₦12M · Advisory retainer ₦300K–₦1.5M/mo · Software
+enablement ₦75K–₦300K/mo. FAQ updated to match. ⚠️ All figures are drafts.
+
+**Technology identity (Audit problem 4).** Software offer reframed from
+"use other people's tools" to "…and where the right tool doesn't exist, we
+build it", plus a "where we're headed" product-vision band. Equity card
+given real criteria and a diagnostic-call path.
+
+Still deferred to founder assets (can't invent): client testimonials /
+case studies / results (kept as one honest placeholder), founder headshots,
+recognition logos (Emerge Pulse etc.), lead-magnet + email nurture flow,
+and the logo redesign.
+
 ## Design pass 2 (frontend-design skill)
 
 Applied the installed `frontend-design` skill's method after the initial

@@ -10,6 +10,14 @@
 > for the visual system. P2 items (structured data, FAQ scope, NDPR note,
 > font trimming) are also done. This report is kept as the record of the
 > pre-rebuild state.
+>
+> **CEO review implemented (2026-07-14):** both CEO review PDFs
+> (*Website Overhaul Report*, *Website Audit & Recommendations*) have been
+> applied on top of the rebuild — copy trims, an enriched founders block,
+> a diagnostic guarantee, premium tiered pricing, a floating WhatsApp
+> button, an interactive self-assessment, an animated handover sheet, and
+> industry authority stats. Details and the remaining founder-asset items
+> are in [landing-changelog.md](landing-changelog.md).
 
 ---
 
