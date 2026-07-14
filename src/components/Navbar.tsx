@@ -1,298 +1,212 @@
+import { useState } from "react"
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   Box,
   Container,
   IconButton,
-  useTheme,
-  useMediaQuery,
   Drawer,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
-  Divider,
+  Typography,
 } from "@mui/material"
-import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material"
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { glassStyles } from "../theme/theme"
-import bigeenLogo from "../assets/images/bigeen-logo.png"
+import MenuIcon from "@mui/icons-material/Menu"
+import CloseIcon from "@mui/icons-material/Close"
+import { ledger } from "../theme/theme"
+import { BOOKING_URL } from "../data/site"
+import bigeenLogo from "../assets/images/bigeen-logo-160.png"
 
-// Create motion-enabled components
-const MotionBox = motion.create(Box)
+// ============================================
+// NAVBAR — lightweight, one CTA, no blur effects
+// ============================================
 
-interface NavItem {
-  label: string
-  path: string
-}
+const navItems = [
+  { label: "The problem", path: "#problem" },
+  { label: "How we work", path: "#how" },
+  { label: "Services", path: "#services" },
+  { label: "Who it's for", path: "#fit" },
+  { label: "FAQ", path: "#faq" },
+]
 
 export const Navbar: React.FC = () => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  const navItems: NavItem[] = [
-    { label: "Home", path: "#home" },
-    { label: "About", path: "#about" },
-    { label: "Roadmap", path: "#roadmap" },
-    { label: "Contact", path: "#contact" },
-    { label: "FAQ", path: "#faq" },
-  ]
-
-  const handleDrawerToggle = () => {
-    setMobileMenuOpen(!mobileMenuOpen)
-  }
-
-  // Mobile Drawer Content
-  const drawerContent = (
-    <Box
-      sx={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        p: 3,
-        background:
-          "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)",
-        backdropFilter: "blur(20px)",
-      }}
-    >
-      {/* Drawer Header */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mb: 4,
-        }}
-      >
-        <Box
-          component="a"
-          href="#home"
-          onClick={handleDrawerToggle}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1.5,
-            textDecoration: "none",
-          }}
-        >
-          <Box
-            component="img"
-            src={bigeenLogo}
-            alt="Bigeen Logo"
-            sx={{
-              width: 64,
-              height: 64,
-              borderRadius: 2,
-              objectFit: "contain",
-            }}
-          />
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 700,
-              color: "text.primary",
-            }}
-          >
-            Bigeen
-          </Typography>
-        </Box>
-        <IconButton onClick={handleDrawerToggle}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
-
-      {/* Navigation Links */}
-      <List sx={{ flexGrow: 1 }}>
-        {navItems.map((item, index) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <ListItem disablePadding sx={{ mb: 1.5 }}>
-              <ListItemButton
-                component="a"
-                href={item.path}
-                onClick={handleDrawerToggle}
-                sx={{
-                  borderRadius: 2,
-                  "&:hover": {
-                    backgroundColor: "rgba(102, 126, 234, 0.1)",
-                  },
-                }}
-              >
-                <ListItemText
-                  primary={item.label}
-                  primaryTypographyProps={{
-                    fontWeight: 500,
-                    fontSize: "1.1rem",
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
-          </motion.div>
-        ))}
-      </List>
-
-      {/* Mobile CTA */}
-      <Box sx={{ mt: "auto" }}>
-        <Divider sx={{ mb: 3 }} />
-        <MotionBox whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="large"
-            color="primary"
-            component="a"
-            href="#contact"
-            onClick={handleDrawerToggle}
-            sx={{ py: 1.5, borderRadius: 3 }}
-          >
-            Get a consult
-          </Button>
-        </MotionBox>
-      </Box>
-    </Box>
-  )
+  const closeDrawer = () => setMobileMenuOpen(false)
 
   return (
     <>
       <AppBar
         position="sticky"
         elevation={0}
+        component="nav"
+        aria-label="Main navigation"
         sx={{
-          ...glassStyles.navbar,
-          top: 0,
-          zIndex: 1100,
-          width: "100%",
-          left: 0,
-          right: 0,
+          backgroundColor: ledger.paper,
+          borderBottom: `1px solid ${ledger.greenLine}`,
         }}
       >
-        <Container maxWidth={false} sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+        <Container maxWidth="lg">
           <Toolbar
-            sx={{
-              justifyContent: "space-between",
-              py: 1,
-              minHeight: { xs: 56, sm: 64 },
-            }}
             disableGutters
+            sx={{ justifyContent: "space-between", minHeight: { xs: 60, sm: 68 } }}
           >
             <Box
               component="a"
-              href="#home"
+              href="#top"
+              aria-label="Bigeen Solutions — back to top"
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: 1.5,
+                gap: 1.25,
                 textDecoration: "none",
               }}
             >
-              <MotionBox
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                sx={{ display: "flex", alignItems: "center", gap: 1.5 }}
+              <Box
+                component="img"
+                src={bigeenLogo}
+                alt=""
+                width={44}
+                height={44}
+                sx={{ objectFit: "contain" }}
+              />
+              <Typography
+                sx={{
+                  fontFamily: '"Space Grotesk", sans-serif',
+                  fontWeight: 700,
+                  fontSize: "1.1rem",
+                  color: ledger.ink,
+                }}
               >
-                <Box
-                  component="img"
-                  src={bigeenLogo}
-                  alt="Bigeen Logo"
-                  sx={{
-                    width: 72,
-                    height: 72,
-                    borderRadius: 2,
-                    objectFit: "contain",
-                  }}
-                />
-              </MotionBox>
+                Bigeen
+              </Typography>
             </Box>
 
-            {/* Desktop Navigation */}
-            {!isMobile && (
-              <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                {navItems.map((item) => (
-                  <Box
-                    key={item.label}
-                    component="a"
-                    href={item.path}
-                    sx={{
-                      color: "text.secondary",
-                      fontSize: "0.95rem",
-                      fontWeight: 500,
-                      cursor: "pointer",
-                      textDecoration: "none",
-                      px: 2,
-                      py: 1,
-                      borderRadius: 2,
-                      transition: "all 0.2s ease",
-                      backgroundColor: "transparent",
-                      "&:hover": {
-                        color: "primary.main",
-                        backgroundColor: "rgba(102, 126, 234, 0.08)",
-                      },
-                    }}
-                  >
-                    <MotionBox
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {item.label}
-                    </MotionBox>
-                  </Box>
-                ))}
-              </Box>
-            )}
-
-            {/* CTA Buttons */}
-            <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-              <MotionBox
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{ ml: 2 }}
+            {/* Desktop links */}
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                gap: 0.5,
+                alignItems: "center",
+              }}
+            >
+              {navItems.map((item) => (
+                <Box
+                  key={item.label}
                   component="a"
-                  href="#contact"
+                  href={item.path}
+                  sx={{
+                    color: ledger.inkSoft,
+                    fontSize: "0.95rem",
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    px: 1.75,
+                    py: 1,
+                    borderRadius: 1.5,
+                    "&:hover": {
+                      color: ledger.green,
+                      backgroundColor: "rgba(23, 82, 57, 0.06)",
+                    },
+                  }}
                 >
-                  Get in touch
-                </Button>
-              </MotionBox>
-              {isMobile && (
-                <IconButton
-                  onClick={handleDrawerToggle}
-                  sx={{ color: "text.primary" }}
-                >
-                  <MenuIcon />
-                </IconButton>
-              )}
+                  {item.label}
+                </Box>
+              ))}
+            </Box>
+
+            <Box sx={{ display: "flex", gap: 1.5, alignItems: "center" }}>
+              <Button
+                component="a"
+                href={BOOKING_URL}
+                variant="contained"
+                sx={{
+                  display: { xs: "none", sm: "inline-flex" },
+                  backgroundColor: ledger.green,
+                  px: 3,
+                  "&:hover": { backgroundColor: ledger.greenDeep },
+                }}
+              >
+                Book a call
+              </Button>
+              <IconButton
+                onClick={() => setMobileMenuOpen(true)}
+                aria-label="Open menu"
+                sx={{ display: { md: "none" }, color: ledger.ink }}
+              >
+                <MenuIcon />
+              </IconButton>
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
 
-      {/* Mobile Drawer with Glass Effect */}
       <Drawer
         anchor="right"
         open={mobileMenuOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{ keepMounted: true }}
+        onClose={closeDrawer}
         PaperProps={{
-          sx: {
-            width: "85%",
-            maxWidth: 320,
-            background: "transparent",
-            boxShadow: "none",
-          },
+          sx: { width: "85%", maxWidth: 320, backgroundColor: ledger.paper },
         }}
       >
-        {drawerContent}
+        <Box sx={{ p: 3, display: "flex", flexDirection: "column", height: "100%" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 3,
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: '"Space Grotesk", sans-serif',
+                fontWeight: 700,
+                fontSize: "1.1rem",
+                color: ledger.ink,
+              }}
+            >
+              Bigeen
+            </Typography>
+            <IconButton onClick={closeDrawer} aria-label="Close menu">
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <List sx={{ flexGrow: 1 }}>
+            {navItems.map((item) => (
+              <ListItem key={item.label} disablePadding>
+                <ListItemButton
+                  component="a"
+                  href={item.path}
+                  onClick={closeDrawer}
+                  sx={{ borderRadius: 1.5 }}
+                >
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{ fontWeight: 500 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+
+          <Button
+            component="a"
+            href={BOOKING_URL}
+            onClick={closeDrawer}
+            fullWidth
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: ledger.green,
+              py: 1.5,
+              "&:hover": { backgroundColor: ledger.greenDeep },
+            }}
+          >
+            Book a free diagnostic call
+          </Button>
+        </Box>
       </Drawer>
     </>
   )
