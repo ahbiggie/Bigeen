@@ -1,71 +1,96 @@
 import { createTheme } from "@mui/material/styles"
 
-const PRIMARY_NAVY = "#1a237e"
-const SECONDARY_BLUE = "#032967"
-// const ACCENT_PURPLE = "#7C3AED"
-const SUCCESS_GREEN = "#10B981"
-const WARNING_AMBER = "#F59E0B"
+// ============================================
+// "OPERATIONS LEDGER" DESIGN TOKENS
+// Deep ledger green + warm paper + brass accents.
+// Brass (#C98A12) fails contrast for small text on
+// paper — use brassDeep for text, brass for rules,
+// large numerals and decoration only.
+// ============================================
+
+export const ledger = {
+  paper: "#FAF8F3", // page background
+  card: "#FFFFFF",
+  ink: "#17251E", // primary text
+  inkSoft: "#46554C", // secondary text (7.2:1 on paper)
+  green: "#175239", // brand green — buttons, links
+  greenDeep: "#0C2E21", // dark sections, footer
+  greenLine: "#D8E0D8", // hairline rules on paper
+  brass: "#C98A12", // decorative accent only
+  brassDeep: "#8A5C06", // brass legible as small text (5.4:1)
+  brassBright: "#E3A73C", // accent on dark green sections
+  paperOnDark: "#F2EFE7", // text on greenDeep
+  softOnDark: "rgba(242, 239, 231, 0.72)",
+  lineOnDark: "rgba(242, 239, 231, 0.16)",
+}
+
+// Tabular numerals for naira figures — every amount lines up
+export const tabularNums = {
+  fontVariantNumeric: "tabular-nums",
+  fontFeatureSettings: '"tnum"',
+}
 
 export const theme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: PRIMARY_NAVY,
-      light: "#1f0ed7",
-      dark: "#000051",
+      main: ledger.green,
+      light: "#2C7A57",
+      dark: ledger.greenDeep,
       contrastText: "#ffffff",
     },
     secondary: {
-      main: SECONDARY_BLUE,
-      light: "#6CB4FF",
-      dark: "#0053BF",
+      main: ledger.brassDeep,
+      light: ledger.brass,
+      dark: "#6B4704",
       contrastText: "#ffffff",
     },
     success: {
-      main: SUCCESS_GREEN,
+      main: "#1E7A4A",
     },
     warning: {
-      main: WARNING_AMBER,
+      main: ledger.brass,
     },
+    divider: ledger.greenLine,
     background: {
-      default: "#F8FAFC",
-      paper: "#FFFFFF",
+      default: ledger.paper,
+      paper: ledger.card,
     },
     text: {
-      primary: "#0F172A",
-      secondary: "#49525f",
+      primary: ledger.ink,
+      secondary: ledger.inkSoft,
     },
   },
   typography: {
     fontFamily: '"Inter", "system-ui", sans-serif',
     h1: {
-      fontFamily: '"Outfit", sans-serif',
-      fontWeight: 800,
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
+      fontWeight: 700,
       letterSpacing: "-0.02em",
     },
     h2: {
-      fontFamily: '"Outfit", sans-serif',
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontWeight: 700,
       letterSpacing: "-0.01em",
     },
     h3: {
-      fontFamily: '"Outfit", sans-serif',
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontWeight: 700,
     },
     h4: {
-      fontFamily: '"Outfit", sans-serif',
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontSize: "1.5rem",
-      fontWeight: 600,
+      fontWeight: 700,
     },
     h5: {
-      fontFamily: '"Outfit", sans-serif',
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontSize: "1.25rem",
-      fontWeight: 600,
+      fontWeight: 500,
     },
     h6: {
-      fontFamily: '"Outfit", sans-serif',
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
       fontSize: "1rem",
-      fontWeight: 600,
+      fontWeight: 500,
     },
     body1: {
       fontSize: "1rem",
@@ -76,13 +101,13 @@ export const theme = createTheme({
       lineHeight: 1.6,
     },
     button: {
-      fontFamily: '"Outfit", sans-serif',
-      fontWeight: 600,
+      fontFamily: '"Space Grotesk", "Inter", sans-serif',
+      fontWeight: 700,
       textTransform: "none",
     },
   },
   shape: {
-    borderRadius: 8,
+    borderRadius: 6,
   },
   // components: {
   //   MuiButton: {
@@ -132,12 +157,22 @@ export const theme = createTheme({
           height: "100%",
           overflowX: "hidden",
           overflowY: "auto",
-          backgroundImage: `
-            radial-gradient(at 0% 0%, hsla(253,16%,7%,0.05) 0, transparent 50%),
-            radial-gradient(at 50% 0%, hsla(225,39%,30%,0.05) 0, transparent 50%),
-            radial-gradient(at 100% 0%, hsla(339,49%,30%,0.05) 0, transparent 50%)
-          `,
-          backgroundAttachment: "fixed",
+        },
+        // Visible keyboard focus everywhere
+        ":focus-visible": {
+          outline: `3px solid ${ledger.brass}`,
+          outlineOffset: "2px",
+        },
+        // Respect users who turn motion off
+        "@media (prefers-reduced-motion: reduce)": {
+          "*, *::before, *::after": {
+            animationDuration: "0.01ms !important",
+            animationIterationCount: "1 !important",
+            transitionDuration: "0.01ms !important",
+          },
+          html: {
+            scrollBehavior: "auto",
+          },
         },
         "#root": {
           width: "100%",
