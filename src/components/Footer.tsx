@@ -1,227 +1,170 @@
+import { Box, Container, Typography, Link, Stack, Grid } from "@mui/material"
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
+import WhatsAppIcon from "@mui/icons-material/WhatsApp"
+import { ledger, monoFont } from "../theme/theme"
 import {
-  Box,
-  Container,
-  Typography,
-  Link,
-  IconButton,
-  Divider,
-  Stack,
-  Grid,
-} from "@mui/material"
-import { LinkedIn, Twitter, GitHub } from "@mui/icons-material"
-
-import bigeenLogo from "../assets/images/bigeen-logo.png"
+  EMAIL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+  WHATSAPP_URL,
+  LINKEDIN_COMPANY_URL,
+} from "../data/site"
 
 // ============================================
-// FOOTER LINK DATA
+// SECTION 9 — FOOTER
+// Contact, LinkedIn primary, NDPR-aware note.
+// Only links that actually exist.
 // ============================================
 
-const companyLinks = [
-  { label: "About Us", href: "#about" },
-  { label: "Strategic Roadmap", href: "#roadmap" },
-  { label: "Contact HQ", href: "#contact" },
-  { label: "Careers", href: "#careers" },
-]
+const footerLinkSx = {
+  color: ledger.softOnDark,
+  fontSize: "0.9rem",
+  textDecoration: "none",
+  width: "fit-content",
+  "&:hover": { color: ledger.paperOnDark, textDecoration: "underline" },
+}
 
-const resourceLinks = [
-  { label: "Our Methodology", href: "#about" },
-  { label: "Case Studies", href: "#roadmap" },
-  { label: "Insights & Blog", href: "#blog" },
-  { label: "Client Support", href: "#contact" },
-]
-
-// ============================================
-// FOOTER COMPONENT
-// ============================================
-
-export const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear()
-
-  return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: "#0F172A",
-        color: "white",
-        pt: 8,
-        pb: 4,
-        mt: "auto",
-        borderTop: "1px solid rgba(255,255,255,0.1)",
-      }}
-    >
-      <Container maxWidth="xl">
-        <Grid container spacing={4}>
-          {/* ============ COLUMN 1: Brand & Mission ============ */}
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Box
-              sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}
-            >
-              <Box
-                component="img"
-                src={bigeenLogo}
-                alt="Bigeen Logo"
-                sx={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: 2,
-                  objectFit: "contain",
-                }}
-              />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Bigeen Solutions Limited
-              </Typography>
-            </Box>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "rgba(255, 255, 255, 0.65)",
-                mb: 3,
-                maxWidth: 320,
-                lineHeight: 1.7,
-              }}
-            >
-              We build the operational infrastructure African businesses need to
-              scale. Bridging the gap between high-level strategy and pragmatic
-              digital execution.
-            </Typography>
-            <Stack direction="row" spacing={1}>
-              {[
-                { icon: LinkedIn, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: GitHub, href: "#" },
-              ].map(({ icon: Icon, href }, index) => (
-                <IconButton
-                  key={index}
-                  component="a"
-                  href={href}
-                  size="small"
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.6)",
-                    "&:hover": {
-                      color: "white",
-                      backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    },
-                  }}
-                >
-                  <Icon fontSize="small" />
-                </IconButton>
-              ))}
-            </Stack>
-          </Grid>
-
-          {/* ============ COLUMN 2: Company ============ */}
-          <Grid size={{ xs: 6, md: 4 }}>
-            <Typography
-              variant="subtitle2"
-              sx={{
-                fontWeight: 700,
-                mb: 2.5,
-                fontSize: "0.8rem",
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "rgba(255, 255, 255, 0.9)",
-              }}
-            >
-              Company
-            </Typography>
-            <Stack spacing={1.5}>
-              {companyLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  underline="none"
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.6)",
-                    fontSize: "0.875rem",
-                    transition: "color 0.2s",
-                    "&:hover": { color: "white" },
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </Stack>
-          </Grid>
-
-          {/* ============ COLUMN 3: Resources ============ */}
-          <Grid size={{ xs: 6, md: 4 }}>
-            <Typography
-              variant="subtitle2"
-              sx={{
-                fontWeight: 700,
-                mb: 2.5,
-                fontSize: "0.8rem",
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "rgba(255, 255, 255, 0.9)",
-              }}
-            >
-              Resources
-            </Typography>
-            <Stack spacing={1.5}>
-              {resourceLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  underline="none"
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.6)",
-                    fontSize: "0.875rem",
-                    transition: "color 0.2s",
-                    "&:hover": { color: "white" },
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </Stack>
-          </Grid>
-        </Grid>
-
-        <Divider sx={{ my: 5, borderColor: "rgba(255, 255, 255, 0.08)" }} />
-
-        {/* ============ BOTTOM BAR ============ */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
+export const Footer: React.FC = () => (
+  <Box
+    component="footer"
+    sx={{
+      backgroundColor: ledger.greenDeep,
+      color: ledger.paperOnDark,
+      borderTop: `1px solid ${ledger.lineOnDark}`,
+      pt: 7,
+      pb: 4,
+    }}
+  >
+    <Container maxWidth="lg">
+      <Grid container spacing={{ xs: 4, md: 6 }}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <Typography
-            variant="body2"
-            sx={{ color: "rgba(255, 255, 255, 0.5)", fontSize: "0.813rem" }}
+            sx={{
+              fontFamily: '"Space Grotesk", sans-serif',
+              fontWeight: 700,
+              fontSize: "1.15rem",
+              mb: 1.5,
+            }}
           >
-            © {currentYear} Bigeen Solutions Limited. Abuja, Nigeria.
+            Bigeen Solutions Limited
           </Typography>
-          <Stack direction="row" spacing={3}>
+          <Typography
+            sx={{
+              color: ledger.softOnDark,
+              fontSize: "0.9rem",
+              maxWidth: 340,
+              mb: 2.5,
+            }}
+          >
+            Business systems for Nigerian SMEs — built with your team, run by
+            your team. CAC-registered private limited company, Abuja.
+          </Typography>
+          <Stack direction="row" spacing={2}>
             <Link
-              href="#privacy"
-              underline="none"
+              href={LINKEDIN_COMPANY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Bigeen Solutions on LinkedIn"
               sx={{
-                color: "rgba(255, 255, 255, 0.5)",
-                fontSize: "0.813rem",
-                "&:hover": { color: "white" },
+                color: ledger.softOnDark,
+                "&:hover": { color: ledger.brassBright },
               }}
             >
-              Privacy Policy
+              <LinkedInIcon />
             </Link>
             <Link
-              href="#terms"
-              underline="none"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat with Bigeen on WhatsApp"
               sx={{
-                color: "rgba(255, 255, 255, 0.5)",
-                fontSize: "0.813rem",
-                "&:hover": { color: "white" },
+                color: ledger.softOnDark,
+                "&:hover": { color: ledger.brassBright },
               }}
             >
-              Terms of Service
+              <WhatsAppIcon />
             </Link>
           </Stack>
-        </Box>
-      </Container>
-    </Box>
-  )
-}
+        </Grid>
+
+        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Typography
+            sx={{
+              fontFamily: monoFont,
+              fontSize: "0.72rem",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: ledger.brassBright,
+              mb: 2,
+            }}
+          >
+            Contact
+          </Typography>
+          <Stack spacing={1.25}>
+            <Link href={`mailto:${EMAIL}`} sx={footerLinkSx}>
+              {EMAIL}
+            </Link>
+            <Link href={`tel:${PHONE_TEL}`} sx={footerLinkSx}>
+              {PHONE_DISPLAY}
+            </Link>
+            <Link
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={footerLinkSx}
+            >
+              WhatsApp us
+            </Link>
+            <Typography sx={{ color: ledger.softOnDark, fontSize: "0.9rem" }}>
+              Abuja, Nigeria
+            </Typography>
+          </Stack>
+        </Grid>
+
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <Typography
+            sx={{
+              fontFamily: monoFont,
+              fontSize: "0.72rem",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: ledger.brassBright,
+              mb: 2,
+            }}
+          >
+            Your data
+          </Typography>
+          <Typography sx={{ color: ledger.softOnDark, fontSize: "0.9rem" }}>
+            Anything you share with us — through this site, on a call, or
+            during an engagement — is treated as confidential and handled in
+            line with the Nigeria Data Protection Regulation (NDPR). We collect
+            only what we need to respond to you, and we never sell or share
+            your details.
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <Box
+        sx={{
+          mt: 6,
+          pt: 3,
+          borderTop: `1px solid ${ledger.lineOnDark}`,
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "space-between",
+          gap: 1,
+        }}
+      >
+        <Typography sx={{ color: ledger.softOnDark, fontSize: "0.8rem" }}>
+          © {new Date().getFullYear()} Bigeen Solutions Limited. All rights
+          reserved.
+        </Typography>
+        <Typography sx={{ color: ledger.softOnDark, fontSize: "0.8rem" }}>
+          Built for Nigerian connections — light pages, no tracking scripts.
+        </Typography>
+      </Box>
+    </Container>
+  </Box>
+)
