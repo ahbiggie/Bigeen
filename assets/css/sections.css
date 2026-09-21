@@ -1,0 +1,515 @@
+/* ---------- Shared ---------- */
+.eyebrow {
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.idea h2,
+.build h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 6.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.idea h2 span,
+.build h2 span {
+  display: block;
+}
+
+.idea h2 span + span,
+.build h2 span + span {
+  color: var(--colour-ink-soft);
+}
+
+/* Scroll reveal: only applied when main.js enables it (never under reduced motion). */
+.rv-on .rv {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.rv-on .rv.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+/* ---------- 03 Bigeen's Idea ---------- */
+.idea {
+  padding-block: var(--space-section);
+}
+
+.idea__inner {
+  position: relative;
+}
+
+.idea__grid {
+  row-gap: var(--space-content);
+}
+
+.idea__lead,
+.idea__map,
+.idea__principles {
+  grid-column: 1 / -1;
+}
+
+.idea__intro {
+  margin-top: var(--space-content);
+  max-width: 34rem;
+}
+
+.idea__intro p {
+  color: var(--colour-ink-soft);
+}
+
+.idea__intro p + p {
+  margin-top: 1rem;
+}
+
+.idea__intro p:first-child {
+  color: var(--colour-ink);
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.idea__intro p:last-child {
+  color: var(--colour-ink);
+  font-weight: 600;
+}
+
+.idea__perspective {
+  margin-top: var(--space-content);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+  max-width: 38rem;
+}
+
+.idea__perspective p {
+  max-width: 34rem;
+  font-size: 1.1875rem;
+  line-height: 1.55;
+}
+
+.idea__perspective p + p {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--colour-brand);
+}
+
+/* Principles: a vertical sequence, not cards */
+.principles {
+  list-style: none;
+  counter-reset: principle;
+  border-bottom: 1px solid var(--colour-line);
+  max-width: 38rem;
+}
+
+.principle {
+  counter-increment: principle;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--colour-line);
+}
+
+.principle:first-child {
+  border-top-color: var(--colour-ink);
+}
+
+.principle::before {
+  content: counter(principle, decimal-leading-zero);
+  padding-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--colour-brand);
+  font-variant-numeric: tabular-nums;
+}
+
+.principle h3 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.25;
+  transition: color 0.25s var(--ease);
+}
+
+.principle p {
+  margin-top: 0.5rem;
+  color: var(--colour-ink-soft);
+}
+
+/* Interactive only when JS has made them focusable (data-interactive). */
+.principle[tabindex]:hover h3,
+.principle[tabindex]:focus-visible h3 {
+  color: var(--colour-brand);
+}
+
+.principle[tabindex]:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 4px;
+}
+
+/* Closing statement */
+.idea__close {
+  position: relative;
+  margin-top: calc(var(--space-section) * 0.7);
+  padding-block: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.idea__close span {
+  display: block;
+}
+
+.idea__close span + span {
+  color: var(--colour-brand);
+}
+
+/* Hand-off line into "What We Build": same motif as hero to Problems. It hangs
+   off the closing statement (content-width) so its x matches the Build guide. */
+.idea__close::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  height: var(--space-section);
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+/* ---------- Systems map ---------- */
+.map {
+  margin: 0;
+}
+
+.map__caption {
+  margin-bottom: 1.25rem;
+}
+
+.map__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-bottom: 0.5rem;
+}
+
+.node {
+  text-align: center;
+  padding-inline: 0.5rem;
+  transition: opacity 0.25s var(--ease);
+}
+
+.node--strategy,
+.node--tech,
+.node--data {
+  align-self: center;
+  max-width: 100%;
+}
+
+.node__marker {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  margin: 0 auto 0.9rem;
+  border: 1px solid var(--colour-ink);
+  background: var(--colour-canvas);
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.node--ops .node__marker {
+  background: var(--colour-brand);
+  border-color: var(--colour-brand);
+}
+
+.node__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 0.25s var(--ease);
+}
+
+.node__desc {
+  margin-top: 0.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--colour-ink-soft);
+}
+
+.map__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+}
+
+.node--ops {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Connectors */
+.conn {
+  display: block;
+  overflow: visible;
+  transition: opacity 0.25s var(--ease);
+}
+
+.conn line {
+  stroke: var(--colour-ink-soft);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.25s var(--ease);
+}
+
+.conn--v {
+  width: 1px;
+  margin-inline: auto;
+}
+
+.conn--fixed {
+  height: 3rem;
+}
+
+.conn--fill {
+  flex: 1 1 3rem;
+  min-height: 3rem;
+  height: auto;
+}
+
+/* Horizontal bar through the People / Operations / Quality anchors */
+.conn--h {
+  position: absolute;
+  top: 4px;
+  height: 1px;
+}
+
+/* Explicit widths: an SVG (replaced element) would otherwise use its intrinsic
+   width instead of stretching between left and right. Anchors sit at the
+   centre of each 1 : 1.25 : 1 column (15.385% / 50% / 84.615%). */
+.conn--left {
+  left: 15.385%;
+  width: 34.615%;
+}
+
+.conn--right {
+  left: 50%;
+  width: 34.615%;
+}
+
+/* Highlight states (set by main.js from the principles) */
+.is-dim {
+  opacity: 0.35;
+}
+
+.conn.is-lit line {
+  stroke: var(--colour-brand);
+}
+
+.node.is-lit .node__label {
+  color: var(--colour-brand);
+}
+
+.node.is-lit .node__marker {
+  background: var(--colour-brand);
+  border-color: var(--colour-brand);
+}
+
+/* Map entrance: lines draw, then labels appear (~650ms total) */
+@keyframes draw-down {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0); }
+}
+
+@keyframes draw-right {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0); }
+}
+
+@keyframes draw-left {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0); }
+}
+
+@keyframes node-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.rv-on .map:not(.is-in) .conn {
+  clip-path: inset(100%);
+}
+
+.rv-on .map:not(.is-in) .node {
+  opacity: 0;
+}
+
+.rv-on .map.is-in .conn--v {
+  animation: draw-down 0.32s var(--ease) backwards;
+  animation-delay: calc(var(--k, 0) * 70ms);
+}
+
+.rv-on .map.is-in .conn--left {
+  animation: draw-left 0.32s var(--ease) backwards;
+  animation-delay: calc(var(--k, 0) * 70ms);
+}
+
+.rv-on .map.is-in .conn--right {
+  animation: draw-right 0.32s var(--ease) backwards;
+  animation-delay: calc(var(--k, 0) * 70ms);
+}
+
+.rv-on .map.is-in .node {
+  animation: node-in 0.18s ease backwards;
+  animation-delay: calc(300ms + var(--n, 0) * 30ms);
+}
+
+/* Simplified labels where the map is narrow (phones, and 2-column tablets) */
+@media (max-width: 599px), (min-width: 900px) and (max-width: 1099px) {
+  .node__desc {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .node__label {
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (max-width: 599px) {
+  .node {
+    padding-inline: 0.25rem;
+  }
+
+  .conn--fixed {
+    height: 1.75rem;
+  }
+
+  .conn--fill {
+    flex-basis: 1.75rem;
+    min-height: 1.75rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .idea__lead {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+  }
+
+  .idea__principles {
+    grid-column: 1 / span 6;
+    grid-row: 2;
+  }
+
+  .idea__map {
+    grid-column: 8 / -1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    position: sticky;
+    top: var(--space-content);
+  }
+
+}
+
+@media (min-width: 768px) {
+  .idea__close::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+}
+
+/* ---------- 04 What We Build ---------- */
+.build {
+  background: var(--colour-stone);
+  padding-block: var(--space-section);
+}
+
+.build__inner {
+  position: relative;
+}
+
+.build__head {
+  position: relative;
+  row-gap: var(--space-content);
+}
+
+/* Line arrives from the section above and ends in a square anchor. */
+.build__head::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(-1 * var(--space-section));
+  bottom: 0;
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+.build__head::after {
+  content: "";
+  position: absolute;
+  left: -3.75px;
+  bottom: -0.5625rem;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+.build__title-block,
+.build__aside {
+  grid-column: 1 / -1;
+  padding-left: 1.25rem;
+}
+
+.build__aside p {
+  max-width: 34rem;
+  color: var(--colour-ink-soft);
+}
+
+@media (min-width: 768px) {
+  .build__title-block {
+    grid-column: 1 / span 7;
+    padding-left: 0;
+  }
+
+  .build__aside {
+    grid-column: 8 / -1;
+    align-self: end;
+    padding-left: var(--space-content);
+  }
+
+  .build__head::before {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+
+  .build__head::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12 - 3.75px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map .conn,
+  .map .node {
+    animation: none !important;
+  }
+}

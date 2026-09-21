@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
     <script src="assets/js/main.js" defer></script>
   </head>
   <body>
@@ -146,6 +147,158 @@
               The first step is to understand where the strain is—and what needs
               to change together.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="idea" id="idea" aria-labelledby="idea-title">
+        <div class="container idea__inner">
+          <div class="grid idea__grid">
+            <div class="idea__lead">
+              <p class="eyebrow rv" data-reveal style="--i: 0">03 — BIGEEN’S IDEA</p>
+              <h2 id="idea-title" class="rv" data-reveal style="--i: 1">
+                <span>The work is connected.</span>
+                <span>The systems should be too.</span>
+              </h2>
+
+              <div class="idea__intro rv" data-reveal style="--i: 2">
+                <p>The issues that slow an organisation down rarely live in one place.</p>
+                <p>
+                  A strategy can fail in execution. A process can depend on
+                  knowledge that was never documented. Technology can be
+                  introduced without changing the workflow around it. Leaders
+                  can be asked to make decisions without the visibility they
+                  need.
+                </p>
+                <p>
+                  These are not isolated problems. They are connected systems
+                  problems.
+                </p>
+              </div>
+
+              <div class="idea__perspective rv" data-reveal style="--i: 3">
+                <p>
+                  Bigeen starts with how the organisation actually works: how
+                  decisions are made, work moves, people contribute,
+                  information is captured, and performance becomes visible.
+                </p>
+                <p>Then we help design and build the systems around that reality.</p>
+              </div>
+            </div>
+
+            <figure class="idea__map map" data-map data-reveal aria-labelledby="map-caption">
+              <figcaption id="map-caption" class="eyebrow map__caption">
+                Organisational systems map
+              </figcaption>
+              <p class="visually-hidden">
+                Operations sits at the centre. Strategy sits above Operations.
+                People sit to its left and Quality to its right. Technology sits
+                below Operations, and Data &amp; Performance sits below Technology.
+              </p>
+
+              <div class="map__body">
+                <div class="node node--strategy" data-p="2" style="--n: 0">
+                  <span class="node__marker" aria-hidden="true"></span>
+                  <p class="node__label">Strategy</p>
+                  <p class="node__desc">Direction &amp; decisions</p>
+                </div>
+
+                <svg class="conn conn--v conn--fixed" data-p="2" style="--k: 0" viewBox="0 0 1 100" preserveAspectRatio="none" width="1" height="36" aria-hidden="true" focusable="false"><line x1="0.5" y1="0" x2="0.5" y2="100" /></svg>
+
+                <div class="map__row">
+                  <svg class="conn conn--h conn--left" data-p="1 2" style="--k: 1" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="0" y1="0.5" x2="100" y2="0.5" /></svg>
+                  <svg class="conn conn--h conn--right" data-p="1 2" style="--k: 1" viewBox="0 0 100 1" preserveAspectRatio="none" aria-hidden="true" focusable="false"><line x1="0" y1="0.5" x2="100" y2="0.5" /></svg>
+
+                  <div class="node node--people" data-p="1 2 3" style="--n: 2">
+                    <span class="node__marker" aria-hidden="true"></span>
+                    <p class="node__label">People</p>
+                    <p class="node__desc">Roles &amp; capability</p>
+                  </div>
+
+                  <div class="node node--ops" data-p="1 2" style="--n: 1">
+                    <span class="node__marker" aria-hidden="true"></span>
+                    <p class="node__label">Operations</p>
+                    <p class="node__desc">Process &amp; handoffs</p>
+                    <svg class="conn conn--v conn--fill" data-p="2" style="--k: 2" viewBox="0 0 1 100" preserveAspectRatio="none" width="1" height="36" aria-hidden="true" focusable="false"><line x1="0.5" y1="0" x2="0.5" y2="100" /></svg>
+                  </div>
+
+                  <div class="node node--quality" data-p="1 2" style="--n: 2">
+                    <span class="node__marker" aria-hidden="true"></span>
+                    <p class="node__label">Quality</p>
+                    <p class="node__desc">Governance, risk &amp; standards</p>
+                  </div>
+                </div>
+
+                <div class="node node--tech" data-p="2 3" style="--n: 3">
+                  <span class="node__marker" aria-hidden="true"></span>
+                  <p class="node__label">Technology</p>
+                  <p class="node__desc">Tools &amp; applications</p>
+                </div>
+
+                <svg class="conn conn--v conn--fixed" data-p="2 3" style="--k: 3" viewBox="0 0 1 100" preserveAspectRatio="none" width="1" height="36" aria-hidden="true" focusable="false"><line x1="0.5" y1="0" x2="0.5" y2="100" /></svg>
+
+                <div class="node node--data" data-p="2 3" style="--n: 4">
+                  <span class="node__marker" aria-hidden="true"></span>
+                  <p class="node__label">Data &amp; Performance</p>
+                  <p class="node__desc">Visibility, insight &amp; review</p>
+                </div>
+              </div>
+            </figure>
+
+            <ol class="idea__principles principles" role="list">
+              <li class="principle rv" data-reveal data-principle="1" style="--i: 0">
+                <div>
+                  <h3>Understand the operating reality</h3>
+                  <p>
+                    Look beyond the symptom to understand the work,
+                    dependencies, decisions, and constraints beneath it.
+                  </p>
+                </div>
+              </li>
+              <li class="principle rv" data-reveal data-principle="2" style="--i: 1">
+                <div>
+                  <h3>Connect the right parts</h3>
+                  <p>
+                    Bring strategy, operations, people, quality, technology, and
+                    performance into a system that can work together.
+                  </p>
+                </div>
+              </li>
+              <li class="principle rv" data-reveal data-principle="3" style="--i: 2">
+                <div>
+                  <h3>Make the system usable</h3>
+                  <p>
+                    A system only matters when people can understand it, use it,
+                    and sustain it in everyday work.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <p class="idea__close rv" data-reveal>
+            <span>Not disconnected interventions.</span>
+            <span>Connected systems built around the organisation.</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="build" id="build" aria-labelledby="build-title">
+        <div class="container build__inner">
+          <div class="grid build__head">
+            <div class="build__title-block">
+              <p class="eyebrow rv" data-reveal style="--i: 0">04 — WHAT WE BUILD</p>
+              <h2 id="build-title" class="rv" data-reveal style="--i: 1">
+                <span>One connected problem.</span>
+                <span>Three ways of building.</span>
+              </h2>
+            </div>
+            <div class="build__aside rv" data-reveal style="--i: 2">
+              <p>
+                Bigeen builds the systems behind stronger organisations through
+                Business Systems, Digital Systems, and Bigeen Products.
+              </p>
+            </div>
           </div>
         </div>
       </section>
