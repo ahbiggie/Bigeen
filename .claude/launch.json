@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "bigeen-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "5199", "--strictPort"],
+      "name": "bigeen-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5199"],
       "port": 5199,
       "autoPort": false
     }

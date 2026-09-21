@@ -1,153 +1,165 @@
 <!doctype html>
-<html lang="en-NG">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <title>Bigeen Solutions — Business Systems for Nigerian SMEs | Abuja</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bigeen Solutions — Business Systems + Technology</title>
     <meta
       name="description"
-      content="If you took two weeks off, would your business still run? Bigeen builds the systems — processes, financial visibility, tools your team actually uses — and stays until your team runs them. CAC-registered, Abuja. Book a free diagnostic call."
+      content="Bigeen combines business consulting, organisational capability and technology to help organisations strengthen the systems behind how they operate, adapt and scale."
     />
-    <meta name="author" content="Bigeen Solutions Limited" />
     <link rel="canonical" href="https://bigeensolutions.com/" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Open Graph -->
+    <meta name="theme-color" content="#f7f5f0" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bigeensolutions.com/" />
-    <meta
-      property="og:title"
-      content="Bigeen Solutions — Business Systems for Nigerian SMEs"
-    />
+    <meta property="og:title" content="Bigeen Solutions — Business Systems + Technology" />
     <meta
       property="og:description"
-      content="We build the systems that let your business run without you — and we stay until your team runs them competently. Book a free diagnostic call."
+      content="Build the systems behind your growth."
     />
-    <meta
-      property="og:image"
-      content="https://bigeensolutions.com/images/og-card.png"
-    />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_NG" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Bigeen Solutions — Business Systems for Nigerian SMEs"
-    />
-    <meta
-      name="twitter:description"
-      content="We build the systems that let your business run without you — and we stay until your team runs them competently. Book a free diagnostic call."
-    />
-    <meta
-      name="twitter:image"
-      content="https://bigeensolutions.com/images/og-card.png"
-    />
-
-    <!-- Structured data: Organization + LocalBusiness (Abuja, NG) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://bigeensolutions.com/#org",
-            "name": "Bigeen Solutions Limited",
-            "url": "https://bigeensolutions.com/",
-            "logo": "https://bigeensolutions.com/images/bigeen-logo.png",
-            "email": "info@bigeensolutions.com",
-            "telephone": "+2348158771727",
-            "foundingDate": "2026",
-            "founder": [
-              { "@type": "Person", "name": "Fatima Lawal", "jobTitle": "Co-founder & CEO" },
-              { "@type": "Person", "name": "Yusuf Shaibu", "jobTitle": "Co-founder & CTO" }
-            ],
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Abuja",
-              "addressCountry": "NG"
-            }
-          },
-          {
-            "@type": "LocalBusiness",
-            "@id": "https://bigeensolutions.com/#business",
-            "name": "Bigeen Solutions Limited",
-            "parentOrganization": { "@id": "https://bigeensolutions.com/#org" },
-            "url": "https://bigeensolutions.com/",
-            "image": "https://bigeensolutions.com/images/og-card.png",
-            "email": "info@bigeensolutions.com",
-            "telephone": "+2348158771727",
-            "priceRange": "₦₦",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Abuja",
-              "addressCountry": "NG"
-            },
-            "areaServed": ["Abuja", "Lagos", "Ibadan", "Port Harcourt"],
-            "description": "Business consulting and SaaS enablement for Nigerian SMEs: diagnostics, process and SOP design, financial planning, and software adoption — delivered until the client's team runs the systems independently."
-          }
-        ]
-      }
+    <meta property="og:url" content="https://bigeensolutions.com/" />
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <script>
+      document.documentElement.classList.add("js");
+      setTimeout(function () {
+        document.documentElement.classList.add("is-ready");
+      }, 1500);
     </script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <script src="assets/js/main.js" defer></script>
   </head>
   <body>
-    <div id="root">
-      <!-- Static shell: paints instantly on slow connections,
-           replaced when React mounts. Keep in sync with the hero. -->
-      <div
-        style="
-          font-family: system-ui, sans-serif;
-          background: #faf8f3;
-          color: #17251e;
-          min-height: 100vh;
-          padding: 4rem 1.5rem;
-        "
-      >
-        <div style="max-width: 640px; margin: 0 auto">
-          <p
-            style="
-              font-size: 0.85rem;
-              letter-spacing: 0.12em;
-              text-transform: uppercase;
-              color: #8a5c06;
-            "
-          >
-            Bigeen Solutions · Abuja
-          </p>
-          <h1 style="font-size: 2rem; line-height: 1.2; margin: 1rem 0">
-            If you took two weeks off, would your business still run?
-          </h1>
-          <p style="color: #46554c; line-height: 1.6">
-            We build the systems — processes, financial visibility, tools your
-            team actually uses — and we stay until your team runs them.
-          </p>
-          <a
-            href="https://wa.me/2348158771727"
-            style="
-              display: inline-block;
-              margin-top: 1rem;
-              background: #175239;
-              color: #fff;
-              padding: 0.9rem 1.8rem;
-              border-radius: 6px;
-              text-decoration: none;
-              font-weight: 600;
-            "
-            >Book a free diagnostic call</a
-          >
-        </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__logo" href="index.html" aria-label="Bigeen Solutions, home">
+          <img src="assets/images/bigeen-logo-header.png" alt="Bigeen Solutions" width="512" height="211" />
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="diagnostic.html">Diagnostic</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
       </div>
-    </div>
-    <script type="module" src="/src/main.tsx"></script>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container grid hero__inner">
+          <div class="hero__copy">
+            <p class="hero__eyebrow reveal" style="--i: 0">
+              <span>Bigeen Solutions</span>
+              <span>Business Systems + Technology</span>
+            </p>
+            <h1 id="hero-title" class="reveal" style="--i: 1">
+              Build the systems behind your growth.
+            </h1>
+            <p class="hero__lead reveal" style="--i: 2">
+              Bigeen combines business consulting, organisational capability and
+              technology to help organisations strengthen the systems behind how
+              they operate, adapt and scale.
+            </p>
+            <div class="hero__actions reveal" style="--i: 3">
+              <a class="btn btn--primary" href="diagnostic.html">Start Your Diagnostic</a>
+              <a class="btn btn--secondary" href="contact.html">
+                Talk to Bigeen <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__visual">
+            <svg
+              viewBox="0 0 400 560"
+              aria-hidden="true"
+              focusable="false"
+              preserveAspectRatio="xMinYMin meet"
+            >
+              <!-- Structural line that continues into the next section -->
+              <path class="sv-main draw" pathLength="1" d="M0.75 0 V560" style="--d: 0" />
+
+              <!-- Connectors -->
+              <path class="sv-line draw" pathLength="1" d="M0 90 H340" style="--d: 100" />
+              <path class="sv-line draw" pathLength="1" d="M0 250 H340" style="--d: 220" />
+              <path class="sv-line draw" pathLength="1" d="M0 410 H340" style="--d: 340" />
+              <path class="sv-line draw" pathLength="1" d="M200 90 V250" style="--d: 460" />
+              <path class="sv-line draw" pathLength="1" d="M200 250 V410" style="--d: 560" />
+              <path class="sv-line draw" pathLength="1" d="M200 410 V500 H400" style="--d: 660" />
+
+              <!-- Planes settle into a shared alignment -->
+              <rect class="sv-plane settle" x="200" y="26" width="140" height="64" style="--dx: 8px; --dy: -4px; --d: 0" />
+              <rect class="sv-plane settle" x="200" y="186" width="140" height="64" style="--dx: -6px; --dy: 4px; --d: 120" />
+              <rect class="sv-plane settle" x="200" y="346" width="140" height="64" style="--dx: 5px; --dy: -3px; --d: 240" />
+
+              <!-- Junctions on the main line -->
+              <rect class="sv-node settle" x="-2.25" y="87" width="6" height="6" style="--d: 0" />
+              <rect class="sv-node settle" x="-2.25" y="247" width="6" height="6" style="--d: 120" />
+              <rect class="sv-node settle" x="-2.25" y="407" width="6" height="6" style="--d: 240" />
+            </svg>
+            <div class="hero__tail"></div>
+          </div>
+
+          <p class="hero__cue" data-scroll-cue>Scroll to explore</p>
+        </div>
+      </section>
+
+      <section class="problems" aria-labelledby="problems-title">
+        <div class="container problems__inner">
+          <div class="grid problems__head" data-guide>
+            <div class="problems__title-block">
+              <p class="problems__label">The Problem</p>
+              <h2 id="problems-title">
+                <span>Growth changes an organisation.</span>
+                <span>Its systems don’t always change with it.</span>
+              </h2>
+            </div>
+            <div class="problems__aside">
+              <p>
+                As an organisation grows, the ways of working that once held it
+                together can become harder to rely on. Decisions take longer.
+                Knowledge stays in people’s heads. Visibility declines.
+                Technology is added around workflows that have not been properly
+                designed.
+              </p>
+              <p class="problems__emphasis">This is how systems debt develops.</p>
+            </div>
+          </div>
+
+          <ol class="problems__list" role="list">
+            <li>Processes remain informal.</li>
+            <li>Work becomes dependent on individuals.</li>
+            <li>Documentation falls behind reality.</li>
+            <li>Management loses visibility.</li>
+            <li>Technology is introduced without fixing the workflow.</li>
+            <li>People are asked to operate inside systems that were not designed for them.</li>
+          </ol>
+
+          <div class="grid problems__bridge">
+            <p class="problems__bridge-lead">
+              <span>Growth does not only create opportunity.</span>
+              <span>It can also create systems debt.</span>
+            </p>
+            <p class="problems__bridge-next">
+              The first step is to understand where the strain is—and what needs
+              to change together.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p class="site-footer__name">Bigeen Solutions</p>
+        <ul>
+          <li><a href="mailto:info@bigeensolutions.com">info@bigeensolutions.com</a></li>
+          <li><a href="tel:+2348158771727">+234 815 877 1727</a></li>
+          <li><a href="https://wa.me/2348158771727">WhatsApp</a></li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>

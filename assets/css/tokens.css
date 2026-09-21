@@ -1,0 +1,23 @@
+/* Design tokens. Brand blue is sampled from the official logo (bigeen-logo.png). */
+:root {
+  --colour-ink: #16181d;
+  --colour-ink-soft: #4b4e56;
+  --colour-canvas: #f7f5f0;
+  --colour-stone: #ebe7de;
+  --colour-brand: #142772;
+  --colour-line: #cfc9bc;
+
+  /* Phase 1 uses a system stack. Swap in licensed fonts here later. */
+  --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --space-section: clamp(4.5rem, 9vw, 8.5rem);
+  --space-content: clamp(1.5rem, 3vw, 2.5rem);
+  --container-max: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --grid-gap: clamp(1rem, 2vw, 2rem);
+
+  --radius: 2px;
+  --header-height: 4.5rem;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
