@@ -14,6 +14,9 @@
   --colour-brass: #b8914a;
   --colour-line-on-ink: rgba(247, 245, 240, 0.2);
 
+  /* Functional colour for form errors (always paired with text and a heavier border) */
+  --colour-error: #9b2c2c;
+
   /* Phase 1 uses a system stack. Swap in licensed fonts here later. */
   --font-display: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-body: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -1,0 +1,488 @@
+/* ---------- Business Diagnostic ---------- */
+.diag {
+  padding-block: var(--space-section);
+}
+
+.diag [hidden] {
+  display: none !important;
+}
+
+.diag__grid {
+  row-gap: var(--space-content);
+}
+
+.diag__intro,
+.diag__panel {
+  grid-column: 1 / -1;
+}
+
+.diag h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.diag__lead {
+  max-width: 34rem;
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  color: var(--colour-ink-soft);
+}
+
+.diag__note {
+  max-width: 34rem;
+  margin-top: 1rem;
+  color: var(--colour-ink);
+  font-weight: 600;
+}
+
+.diag__effort {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.diag__mark {
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: #8a6a2a;
+}
+
+.diag__panel {
+  min-width: 0;
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+}
+
+/* ---------- No-JS / script-failed fallback ---------- */
+.diag-fallback h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.diag-fallback p {
+  max-width: 32rem;
+  margin-top: 0.75rem;
+  color: var(--colour-ink-soft);
+}
+
+.diag-fallback__routes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Once diagnostic.js has run, swap the fallback for the form. */
+.diag-ready .diag-fallback {
+  display: none;
+}
+
+.diag-ready .diag-app {
+  display: block;
+}
+
+/* ---------- Progress ---------- */
+.diag-steps {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.diag-steps li {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0;
+}
+
+.diag-steps li:last-child {
+  flex: none;
+}
+
+.diag-steps li::before {
+  content: "";
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--colour-canvas);
+  border: 1px solid var(--colour-ink);
+}
+
+.diag-steps li:not(:last-child)::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  margin-inline: 0.35rem;
+  background: var(--colour-ink-soft);
+  opacity: 0.5;
+}
+
+.diag-steps li.is-done::before {
+  background: var(--colour-ink);
+}
+
+.diag-steps li.is-current::before {
+  background: var(--colour-brand);
+  border-color: var(--colour-brand);
+  outline: 1px solid var(--colour-brand);
+  outline-offset: 2px;
+}
+
+.diag-keep,
+.diag-key {
+  max-width: 34rem;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--colour-ink-soft);
+}
+
+.diag-key {
+  margin-top: 0.5rem;
+}
+
+/* ---------- Steps and fields ---------- */
+.step {
+  margin-top: 2rem;
+  animation: step-in 0.25s var(--ease);
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.step h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.step h2:focus {
+  outline: none;
+}
+
+.step h2:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 4px;
+}
+
+.step__kicker {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.field {
+  min-width: 0;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.field--sub {
+  margin-top: 0.75rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--colour-ink);
+}
+
+.field label,
+.field legend {
+  display: block;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--colour-ink);
+}
+
+.field__opt {
+  font-weight: 400;
+  color: var(--colour-ink-soft);
+}
+
+.field__hint {
+  margin-top: 0.35rem;
+  font-size: 0.9375rem;
+  color: var(--colour-ink-soft);
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="url"],
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  min-height: 3rem;
+  margin-top: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--colour-ink-soft);
+  border-radius: var(--radius);
+  background: var(--colour-surface);
+  color: var(--colour-ink);
+  font: inherit;
+  line-height: 1.4;
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field input:disabled {
+  background: var(--colour-stone);
+  color: var(--colour-ink-soft);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 2px;
+  border-color: var(--colour-brand);
+}
+
+/* Option rows: whole row is the tap target */
+.opts {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.field .opt,
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--colour-line);
+  border-radius: var(--radius);
+  background: var(--colour-surface);
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.opt input {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.125rem 0 0;
+  accent-color: var(--colour-brand);
+}
+
+.opt:has(input:checked) {
+  border-color: var(--colour-ink);
+  background: var(--colour-stone);
+}
+
+.opt:has(input:focus-visible) {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 2px;
+}
+
+.opt--inline {
+  margin-top: 0.75rem;
+}
+
+.field--consent {
+  margin-top: 2rem;
+}
+
+.field--consent .opt {
+  margin-top: 0;
+}
+
+/* Honeypot: off-screen, not focusable */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- Errors: text + heavier border + marker, never colour alone ---------- */
+.field__error {
+  margin-top: 0.5rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--colour-error);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--colour-error);
+  overflow-wrap: anywhere;
+}
+
+.field--invalid input:not([type="checkbox"]):not([type="radio"]),
+.field--invalid select,
+.field--invalid textarea {
+  border: 2px solid var(--colour-error);
+}
+
+.field--invalid legend,
+.field--invalid > label {
+  color: var(--colour-error);
+}
+
+.diag-errors {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--colour-error);
+  background: var(--colour-surface);
+}
+
+.diag-errors:focus {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 3px;
+}
+
+.diag-errors__title {
+  font-weight: 700;
+  color: var(--colour-error);
+}
+
+.diag-errors ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.diag-errors li + li {
+  margin-top: 0.35rem;
+}
+
+.diag-errors a {
+  color: var(--colour-ink);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Navigation, failure, confirmation ---------- */
+.diag-nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--colour-line);
+}
+
+.diag-nav [data-next] {
+  flex: 1;
+}
+
+.diag-nav [data-back] {
+  flex: none;
+  min-width: 6rem;
+}
+
+.diag-nav .btn[aria-busy="true"] {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.diag-failure {
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  border: 2px solid var(--colour-ink);
+  background: var(--colour-surface);
+}
+
+.diag-failure:focus {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 3px;
+}
+
+.diag-failure__title {
+  font-weight: 700;
+}
+
+.diag-failure p + p {
+  margin-top: 0.5rem;
+  color: var(--colour-ink-soft);
+}
+
+.diag-failure__actions,
+.diag-done__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.diag-done h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.diag-done h2:focus {
+  outline: none;
+}
+
+.diag-done p {
+  max-width: 32rem;
+  margin-top: 1rem;
+  color: var(--colour-ink-soft);
+  font-size: 1.125rem;
+}
+
+@media (min-width: 600px) {
+  .opts--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .diag-failure__actions,
+  .diag-done__actions,
+  .diag-fallback__routes {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 1024px) {
+  .diag__intro {
+    grid-column: 1 / span 5;
+    align-self: start;
+    position: sticky;
+    top: var(--space-content);
+  }
+
+  .diag__panel {
+    grid-column: 7 / -1;
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+/* No step transition for people who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    animation: none;
+  }
+}
