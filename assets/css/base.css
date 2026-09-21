@@ -17,6 +17,14 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* Keep the footer at the bottom on short pages. */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 h1,
@@ -72,6 +80,11 @@ a {
 .skip-link:focus {
   transform: none;
   outline-color: var(--colour-canvas);
+}
+
+/* Skip-link target receives focus programmatically; no ring needed. */
+main:focus {
+  outline: none;
 }
 
 .visually-hidden {
@@ -136,7 +149,9 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }

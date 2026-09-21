@@ -13,3 +13,41 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# The publish directory is the repo root, so explicitly refuse to serve
+# local/internal files that are not part of the site.
+[[redirects]]
+  from = "/.env*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/audit/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.claude/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.agents/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/skills-lock.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
