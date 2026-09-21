@@ -68,6 +68,49 @@
     });
   }
 
+  // How We Work: as the reader moves down the sequence, the connecting line fills
+  // and the current stage is emphasised (also mirrored in the small diagram).
+  // Purely visual: all seven stages are complete without this, and it is skipped
+  // under reduced motion.
+  var flow = document.querySelector("[data-flow]");
+  if (flow && !reduceMotion && "IntersectionObserver" in window) {
+    var stages = [].slice.call(flow.querySelectorAll(".stage"));
+    var miniNodes = [].slice.call(document.querySelectorAll("[data-mini] [data-n]"));
+    var ticking = false;
+    var mark = function (el, i, active) {
+      el.classList.toggle("is-active", i === active);
+      el.classList.toggle("is-passed", i < active);
+    };
+    var update = function () {
+      ticking = false;
+      var line = window.innerHeight * 0.5;
+      var active = -1;
+      stages.forEach(function (s, i) {
+        if (s.getBoundingClientRect().top < line) active = i;
+      });
+      stages.forEach(function (s, i) { mark(s, i, active); });
+      miniNodes.forEach(function (n, i) { mark(n, i, active); });
+    };
+    var onFlowScroll = function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    };
+    new IntersectionObserver(
+      function (entries) {
+        if (entries[0].isIntersecting) {
+          window.addEventListener("scroll", onFlowScroll, { passive: true });
+          onFlowScroll();
+        } else {
+          window.removeEventListener("scroll", onFlowScroll);
+          onFlowScroll();
+        }
+      },
+      { rootMargin: "0px 0px 0px 0px" }
+    ).observe(flow.parentElement);
+  }
+
   // The hero line continues into the Problems section as its opening guide.
   var guide = document.querySelector("[data-guide]");
   if (guide) {

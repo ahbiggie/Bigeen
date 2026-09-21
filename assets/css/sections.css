@@ -486,6 +486,310 @@
   color: var(--colour-ink-soft);
 }
 
+.build__aside p + p {
+  margin-top: 1rem;
+}
+
+/* ---------- Pillars ---------- */
+.pillars {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: calc(var(--space-section) * 0.6);
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 2.4vw, 2.25rem);
+  background: var(--colour-canvas);
+  border: 1px solid var(--colour-line);
+  border-top: 2px solid var(--colour-ink);
+}
+
+.pillar__eyebrow {
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.pillar__num {
+  color: var(--colour-brand);
+}
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.3vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.pillar__desc {
+  margin-top: 1rem;
+  color: var(--colour-ink-soft);
+}
+
+/* Business Systems and Digital Systems share a wall: one connected structure. */
+.pillar--digital {
+  position: relative;
+  border-top-color: var(--colour-ink);
+}
+
+.pillar--digital::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+/* Capability groups */
+.cap {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--colour-line);
+}
+
+.cap:first-of-type {
+  margin-top: 1.75rem;
+}
+
+.cap h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-ink);
+}
+
+.cap__list {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.cap__list li {
+  position: relative;
+  padding-left: 1.125rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--colour-ink-soft);
+}
+
+.cap__list li + li {
+  margin-top: 0.3rem;
+}
+
+.cap__list li::first-letter {
+  text-transform: uppercase;
+}
+
+.cap__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.3125rem;
+  height: 0.3125rem;
+  background: var(--colour-brand);
+}
+
+/* Links */
+.pillar__link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-brand);
+  text-decoration: none;
+}
+
+/* Underline the label only, so the arrow is not underlined separately. */
+.pillar__link-text {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.45em;
+}
+
+.pillar__link:hover .pillar__link-text {
+  text-decoration-thickness: 2px;
+}
+
+.pillar__link .btn__arrow {
+  transition: transform 0.2s var(--ease);
+}
+
+.pillar__link:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* Bigeen Products: deep ink, clearly a different kind of offering */
+.pillar--products {
+  margin-top: var(--space-content);
+  background: var(--colour-ink);
+  border-color: var(--colour-ink);
+  border-top-color: var(--colour-brass);
+  color: var(--colour-on-ink);
+}
+
+.pillar--products .pillar__eyebrow,
+.pillar--products .pillar__desc {
+  color: var(--colour-on-ink-soft);
+}
+
+.pillar--products .pillar__num {
+  color: var(--colour-brass);
+}
+
+.products {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 0;
+}
+
+.product {
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--colour-line-on-ink);
+}
+
+.product h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.product p {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--colour-on-ink-soft);
+}
+
+/* Status: always text, with a shape marker so colour is never the only cue */
+.product .status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-on-ink);
+}
+
+.status__mark {
+  flex: none;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brass);
+}
+
+.status__mark--future {
+  background: transparent;
+  border: 1px dashed var(--colour-brass);
+}
+
+.pillar--products .pillar__link {
+  color: var(--colour-on-ink);
+  padding-top: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.pillar--products :focus-visible,
+.pillar--products .pillar__link:focus-visible {
+  outline-color: var(--colour-on-ink);
+}
+
+.pillar__link:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 4px;
+}
+
+/* ---------- Bridge into How We Work ---------- */
+.build__bridge {
+  position: relative;
+  margin-top: calc(var(--space-section) * 0.7);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+  row-gap: var(--space-content);
+}
+
+.build__bridge-lead,
+.build__bridge-next {
+  grid-column: 1 / -1;
+}
+
+.build__bridge h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.build__bridge h3 span {
+  display: block;
+}
+
+.build__bridge h3 span + span {
+  color: var(--colour-brand);
+}
+
+.build__bridge-lead p {
+  max-width: 34rem;
+  margin-top: 1.25rem;
+  color: var(--colour-ink-soft);
+  font-size: 1.125rem;
+}
+
+.build__bridge-next .btn {
+  margin-bottom: 1.5rem;
+}
+
+.stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--colour-ink);
+  scroll-margin-top: 2rem;
+}
+
+/* Arrows trail each stage so a wrapped line never starts with one. */
+.stages li:not(:last-child)::after {
+  content: "→" / "";
+  margin-inline: 0.6rem;
+  font-weight: 400;
+  color: var(--colour-brand);
+}
+
+/* Hand-off line into the next section, at the same x as the guide above. */
+.build__bridge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  height: var(--space-section);
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
 @media (min-width: 768px) {
   .build__title-block {
     grid-column: 1 / span 7;
@@ -505,11 +809,597 @@
   .build__head::after {
     left: calc((100% + var(--grid-gap)) * 7 / 12 - 3.75px);
   }
+
+  .build__bridge-lead {
+    grid-column: 1 / span 7;
+  }
+
+  .build__bridge-next {
+    grid-column: 8 / -1;
+    align-self: end;
+    padding-left: var(--space-content);
+  }
+
+  .build__bridge::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+}
+
+/* Two columns: Business + Digital share a wall; Products takes the full row. */
+@media (min-width: 700px) {
+  .pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pillar--digital {
+    border-left: 0;
+  }
+
+  .pillar--digital::before {
+    left: -5px;
+  }
+
+  .pillar--products {
+    grid-column: 1 / -1;
+  }
+
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-content);
+  }
+
+  .product {
+    border-top: 1px solid var(--colour-line-on-ink);
+  }
+}
+
+@media (min-width: 700px) and (max-width: 899px) {
+  .products {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Three columns: the two connected pillars, then Products set apart. */
+@media (min-width: 1100px) {
+  .pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pillar--products {
+    grid-column: auto;
+    margin-top: 0;
+    margin-left: var(--space-content);
+  }
+
+  .products {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 699px) {
+  /* Stacked: Digital sits on Business Systems' bottom border (shared wall). */
+  .pillar--digital {
+    border-top: 0;
+  }
+
+  .pillar--digital::before {
+    top: -5px;
+    left: 1.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .map .conn,
   .map .node {
     animation: none !important;
+  }
+}
+
+/* ---------- Destination pages (Business Systems, Digital Systems, StitchFYN) ---------- */
+.page .eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+.page__caps {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: var(--space-content);
+  margin-top: var(--space-content);
+}
+
+.page__caps .cap,
+.page__caps .cap:first-of-type {
+  margin-top: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--colour-ink);
+}
+
+.page__more {
+  grid-column: 1 / -1;
+}
+
+.page__status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page__status .status__mark {
+  background: #8a6a2a;
+}
+
+@media (min-width: 900px) {
+  .page__caps:not(.page__caps--status) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+}
+
+/* Product names keep their own casing rather than the all-caps page title style. */
+.page h1.page__title--brand {
+  text-transform: none;
+}
+
+/* ---------- 05 How We Work ---------- */
+.how {
+  padding-block: var(--space-section);
+  /* Spine geometry shared by the stage list and the incoming guide */
+  --stage-pad: 2rem;
+  --node-y: calc(var(--stage-pad) + 0.7rem);
+}
+
+.how__inner {
+  position: relative;
+}
+
+.how__grid {
+  row-gap: var(--space-content);
+}
+
+.how h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.how__intro {
+  position: relative;
+  grid-column: 1 / -1;
+}
+
+/* Mobile and tablet: the guide from "What We Build" runs down beside the intro
+   and joins the first stage node. */
+.how__intro::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(-1 * var(--space-section));
+  bottom: calc(-1 * (var(--space-content) + var(--node-y)));
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+.how__title-block,
+.how__copy {
+  padding-left: 1.25rem;
+}
+
+.how__copy {
+  margin-top: var(--space-content);
+}
+
+.how__copy p {
+  max-width: 34rem;
+  color: var(--colour-ink-soft);
+}
+
+.how__copy .how__framework {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: var(--colour-ink);
+}
+
+.how__arrow {
+  margin-inline: 0.5rem;
+  font-weight: 400;
+  color: var(--colour-brand);
+}
+
+/* Small system diagram: desktop only, decorative */
+.how__mini {
+  display: none;
+  margin-top: var(--space-content);
+  overflow: visible;
+}
+
+.mini__spine {
+  stroke: var(--colour-ink-soft);
+  stroke-width: 1.5;
+  opacity: 0.4;
+}
+
+.mini__return {
+  fill: none;
+  stroke: var(--colour-ink-soft);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  opacity: 0.6;
+}
+
+.mini__arrow {
+  fill: var(--colour-ink-soft);
+  opacity: 0.6;
+}
+
+.mini__node rect {
+  fill: var(--colour-canvas);
+  stroke: var(--colour-ink);
+  stroke-width: 1;
+  transition: fill 0.3s var(--ease), stroke 0.3s var(--ease);
+}
+
+.mini__node text {
+  font: 600 10px var(--font-body);
+  letter-spacing: 0.08em;
+  fill: var(--colour-ink-soft);
+  transition: fill 0.3s var(--ease);
+}
+
+.mini__node.is-active rect,
+.mini__node.is-passed rect {
+  fill: var(--colour-brand);
+  stroke: var(--colour-brand);
+}
+
+.mini__node.is-active text {
+  fill: var(--colour-brand);
+}
+
+/* ---------- The stage sequence ---------- */
+.flow {
+  --spine-x: 0px;
+  position: relative;
+  grid-column: 1 / -1;
+  list-style: none;
+}
+
+.stage {
+  position: relative;
+  padding: var(--stage-pad) 0 var(--stage-pad) 1.25rem;
+}
+
+/* Node on the spine */
+.stage::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--spine-x) - 3.75px);
+  top: var(--node-y);
+  width: 0.5625rem;
+  height: 0.5625rem;
+  margin-top: -0.28rem;
+  background: var(--colour-canvas);
+  border: 1px solid var(--colour-ink);
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+/* Base line to the next node: each stage informs the next */
+.stage::after {
+  content: "";
+  position: absolute;
+  left: var(--spine-x);
+  top: var(--node-y);
+  height: 100%;
+  width: 1.5px;
+  background: var(--colour-ink-soft);
+  opacity: 0.4;
+}
+
+.stage:last-child::after {
+  display: none;
+}
+
+/* Progress fill (added by JS only) */
+.stage__line {
+  position: absolute;
+  z-index: 1;
+  left: var(--spine-x);
+  top: var(--node-y);
+  height: 100%;
+  width: 1.5px;
+  background: var(--colour-brand);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease);
+}
+
+.stage:last-child .stage__line {
+  display: none;
+}
+
+.stage.is-passed .stage__line {
+  transform: scaleY(1);
+}
+
+.stage.is-active::before,
+.stage.is-passed::before {
+  background: var(--colour-brand);
+  border-color: var(--colour-brand);
+}
+
+.stage__num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-ink-soft);
+  transition: color 0.3s var(--ease);
+}
+
+.stage.is-active .stage__num,
+.stage.is-passed .stage__num {
+  color: var(--colour-brand);
+}
+
+.stage h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage__loop {
+  flex: none;
+  fill: none;
+  stroke: var(--colour-ink-soft);
+  stroke-width: 1.5;
+  stroke-linecap: square;
+}
+
+.stage__copy {
+  max-width: 32rem;
+  margin-top: 0.75rem;
+  color: var(--colour-ink-soft);
+}
+
+/* ---------- Closing principle and bridge ---------- */
+.how__close {
+  margin-top: calc(var(--space-section) * 0.7);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+}
+
+.how__close h3 {
+  max-width: 44rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.how__close p {
+  max-width: 34rem;
+  margin-top: 1.25rem;
+  color: var(--colour-ink-soft);
+  font-size: 1.125rem;
+}
+
+.how__bridge {
+  position: relative;
+  margin-top: calc(var(--space-section) * 0.6);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-line);
+  display: grid;
+  gap: 1rem;
+}
+
+.how__bridge h3 {
+  max-width: 30rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.how__bridge p {
+  max-width: 30rem;
+  color: var(--colour-ink-soft);
+}
+
+/* Hand-off line into the next section, same motif as the sections above. */
+.how__bridge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  height: var(--space-section);
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+/* Tablet: a ruled table split by the spine, titles left and copy right */
+@media (min-width: 768px) {
+  .how__intro {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+
+  .how__intro::before {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+
+  .how__title-block {
+    grid-column: 1 / span 7;
+    padding-left: 0;
+  }
+
+  .how__copy {
+    grid-column: 8 / -1;
+    margin-top: 0;
+    align-self: end;
+    padding-left: var(--space-content);
+  }
+
+  .flow {
+    --spine-x: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns:
+      calc((100% + var(--grid-gap)) * 7 / 12 - var(--grid-gap))
+      minmax(0, 1fr);
+    column-gap: var(--grid-gap);
+    align-items: start;
+    padding-left: 0;
+    border-top: 1px solid var(--colour-line);
+  }
+
+  .stage:first-child {
+    border-top-color: var(--colour-ink);
+  }
+
+  .stage__num {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .stage h3 {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
+    /* Title sits beside the numeral */
+    padding-left: 3.75rem;
+    min-height: 2rem;
+  }
+
+  .stage__copy {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 0.15rem;
+    padding-left: var(--space-content);
+  }
+
+  .how__bridge {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+    align-items: end;
+  }
+
+  .how__bridge-lead {
+    grid-column: 1 / span 7;
+  }
+
+  .how__bridge-next {
+    grid-column: 8 / -1;
+    padding-left: var(--space-content);
+  }
+
+  .how__bridge::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+}
+
+/* Desktop: sticky intro on the left, the stage sequence on the right */
+@media (min-width: 1024px) {
+  .how__intro {
+    display: block;
+    grid-column: 1 / span 6;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    top: var(--space-content);
+  }
+
+  .how__intro::before {
+    display: none;
+  }
+
+  .how__title-block {
+    padding-left: 0;
+  }
+
+  .how__copy {
+    margin-top: var(--space-content);
+    padding-left: 0;
+  }
+
+  .how__mini {
+    display: block;
+  }
+
+  .flow {
+    --spine-x: 0px;
+    grid-column: 8 / -1;
+    grid-row: 1;
+  }
+
+  /* Incoming guide from the section above, down to the first node */
+  .flow::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(-1 * var(--space-section));
+    height: calc(var(--space-section) + var(--node-y));
+    width: 1.5px;
+    background: var(--colour-brand);
+  }
+
+  .stage {
+    display: block;
+    padding-left: var(--space-content);
+    border-top: 0;
+  }
+
+  .stage__num {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .stage h3 {
+    padding-left: 0;
+    min-height: 0;
+    margin-top: 0.75rem;
+  }
+
+  .stage__copy {
+    padding-left: 0;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .how__intro::before {
+    left: 0;
+  }
+
+  .how__bridge::after {
+    left: 0;
+  }
+
+  .stage {
+    padding-left: 1.25rem;
   }
 }
