@@ -1403,3 +1403,277 @@
     padding-left: 1.25rem;
   }
 }
+
+/* ---------- 06 Selected Experience ---------- */
+.exp {
+  background: var(--colour-stone);
+  padding-block: var(--space-section);
+}
+
+.exp__inner {
+  position: relative;
+}
+
+.exp__head {
+  position: relative;
+  row-gap: var(--space-content);
+}
+
+.exp h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Line arrives from How We Work and ends in a square anchor, as in Build. */
+.exp__head::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(-1 * var(--space-section));
+  bottom: 0;
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+.exp__head::after {
+  content: "";
+  position: absolute;
+  left: -3.75px;
+  bottom: -0.5625rem;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+.exp__title-block,
+.exp__aside {
+  grid-column: 1 / -1;
+  padding-left: 1.25rem;
+}
+
+.exp__aside p {
+  max-width: 34rem;
+  color: var(--colour-ink-soft);
+}
+
+.exp__aside p + p {
+  margin-top: 1rem;
+}
+
+/* Entries: a ruled editorial list. Static: no links, no hover behaviour. */
+.entries {
+  list-style: none;
+  margin-top: calc(var(--space-section) * 0.6);
+  border-bottom: 1px solid var(--colour-line);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 0.5rem;
+  row-gap: 0.85rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--colour-line);
+}
+
+.entry:first-child {
+  border-top-color: var(--colour-ink);
+}
+
+.entry__num {
+  padding-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--colour-brand);
+  font-variant-numeric: tabular-nums;
+}
+
+.entry h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+.entry__context {
+  margin-top: 0.5rem;
+  color: var(--colour-ink-soft);
+}
+
+/* Attribution: text plus a shape marker, so it is never colour alone */
+.entry__attr {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-ink);
+}
+
+.entry__mark {
+  flex: none;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border: 1px solid var(--colour-ink);
+}
+
+.exp__note {
+  max-width: 36rem;
+  margin-top: 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--colour-ink-soft);
+}
+
+/* Areas of experience: modular ruled grid, no decoration */
+.areas {
+  margin-top: calc(var(--space-section) * 0.6);
+}
+
+.areas h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.areas ul {
+  list-style: none;
+  display: grid;
+  gap: 0;
+  margin-top: 1rem;
+}
+
+.areas li {
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--colour-line);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.areas li:first-child {
+  border-top-color: var(--colour-ink);
+}
+
+/* Bridge into Bigeen Products */
+.exp__bridge {
+  position: relative;
+  margin-top: calc(var(--space-section) * 0.7);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+  row-gap: 1rem;
+}
+
+.exp__bridge-lead,
+.exp__bridge-next {
+  grid-column: 1 / -1;
+}
+
+.exp__bridge h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.exp__bridge p {
+  max-width: 32rem;
+  color: var(--colour-ink-soft);
+  font-size: 1.125rem;
+}
+
+.exp__bridge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  height: var(--space-section);
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+@media (min-width: 768px) {
+  .exp__title-block {
+    grid-column: 1 / span 7;
+    padding-left: 0;
+  }
+
+  .exp__aside {
+    grid-column: 8 / -1;
+    align-self: end;
+    padding-left: var(--space-content);
+  }
+
+  .exp__head::before {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+
+  .exp__head::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12 - 3.75px);
+  }
+
+  .entry {
+    grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 14rem);
+    column-gap: var(--grid-gap);
+    align-items: start;
+  }
+
+  .entry__attr {
+    grid-column: 3;
+    padding-top: 0.55rem;
+  }
+
+  .areas ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+
+  .areas li:nth-child(2) {
+    border-top-color: var(--colour-ink);
+  }
+
+  .exp__bridge-lead {
+    grid-column: 1 / span 7;
+  }
+
+  .exp__bridge-next {
+    grid-column: 8 / -1;
+    align-self: end;
+    padding-left: var(--space-content);
+  }
+
+  .exp__bridge::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+}
+
+@media (min-width: 1100px) {
+  .areas ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .areas li:nth-child(3),
+  .areas li:nth-child(4) {
+    border-top-color: var(--colour-ink);
+  }
+}
+
+@media (max-width: 767px) {
+  .exp__bridge::after {
+    left: 0;
+  }
+}
