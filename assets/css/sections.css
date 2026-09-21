@@ -1904,52 +1904,11 @@
   color: var(--colour-ink-soft);
 }
 
-/* Bridge into Start a Conversation */
-.prod__bridge {
-  position: relative;
-  margin-top: calc(var(--space-section) * 0.7);
-  padding-top: var(--space-content);
-  border-top: 1px solid var(--colour-ink);
-  row-gap: var(--space-content);
-}
 
-.prod__bridge-lead,
-.prod__bridge-next {
-  grid-column: 1 / -1;
-}
 
-.prod__bridge h3 {
-  max-width: 30rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
 
-.prod__bridge-lead p {
-  max-width: 32rem;
-  margin-top: 1.25rem;
-  color: var(--colour-ink-soft);
-  font-size: 1.125rem;
-}
 
-.prod__bridge-next {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
 
-.prod__bridge::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 100%;
-  height: var(--space-section);
-  width: 1.5px;
-  background: var(--colour-brand);
-}
 
 @media (min-width: 768px) {
   .prod__title-block {
@@ -1979,19 +1938,8 @@
     border-top-color: var(--colour-ink);
   }
 
-  .prod__bridge-lead {
-    grid-column: 1 / span 7;
-  }
 
-  .prod__bridge-next {
-    grid-column: 8 / -1;
-    align-self: end;
-    padding-left: var(--space-content);
-  }
 
-  .prod__bridge::after {
-    left: calc((100% + var(--grid-gap)) * 7 / 12);
-  }
 }
 
 @media (min-width: 900px) {
@@ -2005,8 +1953,184 @@
   }
 }
 
-@media (max-width: 767px) {
-  .prod__bridge::after {
-    left: 0;
+
+/* ---------- StitchFYN countdown (inside the feature panel) ---------- */
+.countdown {
+  max-width: 34rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--colour-line-on-ink);
+}
+
+.countdown__date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-on-ink-soft);
+}
+
+.countdown__date time {
+  color: var(--colour-on-ink);
+}
+
+/* The clock only appears once JS has computed it; the date above is the
+   complete no-JS fallback. */
+.countdown__clock {
+  display: none;
+  margin-top: 1rem;
+  gap: clamp(1rem, 3vw, 1.75rem);
+}
+
+.countdown.is-on .countdown__clock {
+  display: flex;
+}
+
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 3.25rem;
+}
+
+.cd-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--colour-on-ink);
+}
+
+.cd-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-on-ink-soft);
+}
+
+/* After the launch time */
+.countdown.is-live .countdown__clock {
+  display: none;
+}
+
+.countdown.is-live .countdown__date {
+  font-size: 0.875rem;
+  color: var(--colour-on-ink);
+}
+
+.cd-unit[hidden] {
+  display: none;
+}
+
+/* ---------- 08 Start a Conversation ---------- */
+/* Line from Bigeen Products ends in a square anchor just above the closing band. */
+.others {
+  position: relative;
+}
+
+.others::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 1rem);
+  height: calc(var(--space-section) - 1rem);
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+.others::before {
+  content: "";
+  position: absolute;
+  left: -3.75px;
+  top: calc(100% + var(--space-section) - 0.5625rem);
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+.start {
+  background: var(--colour-ink);
+  color: var(--colour-on-ink);
+  padding-block: var(--space-section);
+}
+
+.start__grid {
+  row-gap: var(--space-content);
+  align-items: end;
+}
+
+.start__lead,
+.start__actions {
+  grid-column: 1 / -1;
+}
+
+.start .eyebrow {
+  color: var(--colour-brass);
+}
+
+.start h2 {
+  max-width: 16em;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.2vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.start__copy {
+  max-width: 32rem;
+  margin-top: 1.5rem;
+  color: var(--colour-on-ink-soft);
+  font-size: 1.125rem;
+}
+
+.start__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-line-on-ink);
+}
+
+.start__actions .btn {
+  width: 100%;
+}
+
+.btn--outline-light {
+  background: transparent;
+  border-color: var(--colour-on-ink);
+  color: var(--colour-on-ink);
+}
+
+.btn--outline-light:hover {
+  background: var(--colour-on-ink);
+  color: var(--colour-ink);
+}
+
+.start :focus-visible {
+  outline-color: var(--colour-on-ink);
+}
+
+@media (min-width: 768px) {
+  .others::after {
+    left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+
+  .others::before {
+    left: calc((100% + var(--grid-gap)) * 7 / 12 - 3.75px);
+  }
+
+  .start__lead {
+    grid-column: 1 / span 7;
+  }
+
+  .start__actions {
+    grid-column: 8 / -1;
+    padding: 0 0 0 var(--space-content);
+    border-top: 0;
+    border-left: 1px solid var(--colour-line-on-ink);
   }
 }

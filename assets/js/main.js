@@ -111,6 +111,43 @@
     ).observe(flow.parentElement);
   }
 
+  // StitchFYN countdown. The target instant lives in data-launch on the element.
+  // Without JS the static "Launching 31 October 2026" line is shown instead. Under
+  // reduced motion the seconds are dropped and the display updates once a minute.
+  var countdown = document.querySelector("[data-countdown]");
+  if (countdown) {
+    var target = Date.parse(countdown.getAttribute("data-launch"));
+    if (!isNaN(target)) {
+      var cd = function (k) { return countdown.querySelector('[data-cd="' + k + '"]'); };
+      var pad = function (n) { return n < 10 ? "0" + n : String(n); };
+      var timer;
+      if (reduceMotion) {
+        var secs = countdown.querySelector("[data-cd-seconds]");
+        if (secs) secs.hidden = true;
+      }
+      var tick = function () {
+        var left = target - Date.now();
+        if (left <= 0) {
+          countdown.classList.remove("is-on");
+          countdown.classList.add("is-live");
+          countdown.querySelector(".countdown__date").textContent = "Now live";
+          window.clearInterval(timer);
+          return;
+        }
+        var s = Math.floor(left / 1000);
+        cd("days").textContent = pad(Math.floor(s / 86400));
+        cd("hours").textContent = pad(Math.floor((s % 86400) / 3600));
+        cd("minutes").textContent = pad(Math.floor((s % 3600) / 60));
+        cd("seconds").textContent = pad(s % 60);
+        countdown.classList.add("is-on");
+      };
+      tick();
+      if (!countdown.classList.contains("is-live")) {
+        timer = window.setInterval(tick, reduceMotion ? 30000 : 1000);
+      }
+    }
+  }
+
   // The hero line continues into the Problems section as its opening guide.
   var guide = document.querySelector("[data-guide]");
   if (guide) {

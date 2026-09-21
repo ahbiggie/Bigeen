@@ -56,15 +56,58 @@
       </div>
     </main>
 
+    <!-- footer:start (generated from partials/footer.html; edit it there, then run scripts/sync-footer.mjs) -->
     <footer class="site-footer">
-      <div class="container site-footer__inner">
-        <p class="site-footer__name">Bigeen Solutions</p>
-        <ul>
-          <li><a href="mailto:info@bigeensolutions.com">info@bigeensolutions.com</a></li>
-          <li><a href="tel:+2348158771727">+234 815 877 1727</a></li>
-          <li><a href="https://wa.me/2348158771727">WhatsApp</a></li>
-        </ul>
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a class="footer__logo" href="index.html" aria-label="Bigeen Solutions, home">
+              <img src="assets/images/bigeen-logo-header.png" alt="Bigeen Solutions" width="512" height="211" />
+            </a>
+            <p class="footer__tagline">Building the systems behind resilient organisations.</p>
+          </div>
+
+          <nav class="footer__nav" aria-label="Footer">
+            <div class="footer__group">
+              <p class="footer__title" id="footer-explore">Explore</p>
+              <ul aria-labelledby="footer-explore">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#build">What We Build</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <p class="footer__title" id="footer-build">What We Build</p>
+              <ul aria-labelledby="footer-build">
+                <li><a href="business-systems.html">Business Systems</a></li>
+                <li><a href="digital-systems.html">Digital Systems</a></li>
+                <li><a href="index.html#bigeen-products">Products</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <p class="footer__title" id="footer-products">Products</p>
+              <ul aria-labelledby="footer-products">
+                <li><a href="stitchfyn.html">StitchFYN</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <p class="footer__title" id="footer-conversation">Start a Conversation</p>
+              <ul aria-labelledby="footer-conversation">
+                <li><a href="diagnostic.html">Start Your Diagnostic</a></li>
+                <li><a href="contact.html">Talk to Bigeen</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <p class="footer__copy">© <span data-year>2026</span> Bigeen Solutions</p>
       </div>
+      <script>
+        (function () {
+          var y = document.querySelector("[data-year]");
+          if (y) y.textContent = new Date().getFullYear();
+        })();
+      </script>
     </footer>
+    <!-- footer:end -->
   </body>
 </html>

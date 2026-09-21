@@ -717,6 +717,17 @@
               <h3 id="stitchfyn-name" class="feature__name">StitchFYN</h3>
               <p class="pstatus pstatus--on-ink"><span class="pstatus__mark" aria-hidden="true"></span>In development · Pre-launch</p>
 
+              <!-- Launch: 31 October 2026. The target instant is data-launch (start of the day, WAT, UTC+1). -->
+              <div class="countdown" data-countdown data-launch="2026-10-31T00:00:00+01:00">
+                <p class="countdown__date" aria-live="polite">Launching <time datetime="2026-10-31">31 October 2026</time></p>
+                <div class="countdown__clock" aria-hidden="true">
+                  <div class="cd-unit"><span class="cd-num" data-cd="days">--</span><span class="cd-label">Days</span></div>
+                  <div class="cd-unit"><span class="cd-num" data-cd="hours">--</span><span class="cd-label">Hours</span></div>
+                  <div class="cd-unit"><span class="cd-num" data-cd="minutes">--</span><span class="cd-label">Minutes</span></div>
+                  <div class="cd-unit" data-cd-seconds><span class="cd-num" data-cd="seconds">--</span><span class="cd-label">Seconds</span></div>
+                </div>
+              </div>
+
               <p class="feature__desc">
                 StitchFYN helps tailoring workshops run orders on documented
                 evidence instead of memory and verbal promises.
@@ -764,18 +775,25 @@
               </p>
             </article>
           </div>
+        </div>
+      </section>
 
-          <div class="grid prod__bridge rv" data-reveal>
-            <div class="prod__bridge-lead">
-              <h3>Have an operating challenge you’re working through?</h3>
-              <p>
+      <section class="start" id="start-a-conversation" aria-labelledby="start-title">
+        <div class="container">
+          <div class="grid start__grid">
+            <div class="start__lead">
+              <p class="eyebrow rv" data-reveal style="--i: 0">START A CONVERSATION</p>
+              <h2 id="start-title" class="rv" data-reveal style="--i: 1">
+                Have an operating challenge you’re working through?
+              </h2>
+              <p class="start__copy rv" data-reveal style="--i: 2">
                 Whether you know what needs to change or need help
                 understanding the problem, start a conversation with Bigeen.
               </p>
             </div>
-            <div class="prod__bridge-next">
-              <a class="btn btn--primary" href="diagnostic.html">Start Your Diagnostic</a>
-              <a class="btn btn--secondary" href="contact.html">
+            <div class="start__actions rv" data-reveal style="--i: 3">
+              <a class="btn btn--light" href="diagnostic.html">Start Your Diagnostic</a>
+              <a class="btn btn--outline-light" href="contact.html">
                 Talk to Bigeen <span class="btn__arrow" aria-hidden="true">→</span>
               </a>
             </div>
@@ -784,15 +802,58 @@
       </section>
     </main>
 
+    <!-- footer:start (generated from partials/footer.html; edit it there, then run scripts/sync-footer.mjs) -->
     <footer class="site-footer">
-      <div class="container site-footer__inner">
-        <p class="site-footer__name">Bigeen Solutions</p>
-        <ul>
-          <li><a href="mailto:info@bigeensolutions.com">info@bigeensolutions.com</a></li>
-          <li><a href="tel:+2348158771727">+234 815 877 1727</a></li>
-          <li><a href="https://wa.me/2348158771727">WhatsApp</a></li>
-        </ul>
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a class="footer__logo" href="index.html" aria-label="Bigeen Solutions, home">
+              <img src="assets/images/bigeen-logo-header.png" alt="Bigeen Solutions" width="512" height="211" />
+            </a>
+            <p class="footer__tagline">Building the systems behind resilient organisations.</p>
+          </div>
+
+          <nav class="footer__nav" aria-label="Footer">
+            <div class="footer__group">
+              <p class="footer__title" id="footer-explore">Explore</p>
+              <ul aria-labelledby="footer-explore">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#build">What We Build</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <p class="footer__title" id="footer-build">What We Build</p>
+              <ul aria-labelledby="footer-build">
+                <li><a href="business-systems.html">Business Systems</a></li>
+                <li><a href="digital-systems.html">Digital Systems</a></li>
+                <li><a href="index.html#bigeen-products">Products</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <p class="footer__title" id="footer-products">Products</p>
+              <ul aria-labelledby="footer-products">
+                <li><a href="stitchfyn.html">StitchFYN</a></li>
+              </ul>
+            </div>
+            <div class="footer__group">
+              <p class="footer__title" id="footer-conversation">Start a Conversation</p>
+              <ul aria-labelledby="footer-conversation">
+                <li><a href="diagnostic.html">Start Your Diagnostic</a></li>
+                <li><a href="contact.html">Talk to Bigeen</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <p class="footer__copy">© <span data-year>2026</span> Bigeen Solutions</p>
       </div>
+      <script>
+        (function () {
+          var y = document.querySelector("[data-year]");
+          if (y) y.textContent = new Date().getFullYear();
+        })();
+      </script>
     </footer>
+    <!-- footer:end -->
   </body>
 </html>

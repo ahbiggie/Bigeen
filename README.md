@@ -18,4 +18,15 @@ Then open http://localhost:5199.
 - `assets/images/`: logo and favicon
 - `netlify.toml`, `robots.txt`, `sitemap.xml`: static-host config
 
+## Shared footer
+
+The footer lives in `partials/footer.html` and is copied into every page by a small script (no dependencies):
+
+```bash
+node scripts/sync-footer.mjs          # write the footer into every page
+node scripts/sync-footer.mjs --check  # fail if any page is out of date
+```
+
+Edit the partial, then run the script. Do not edit the footer inside a page.
+
 The previous React/MUI/Vite site is in git history (branch `siteUpdate`).
