@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
+    <link rel="stylesheet" href="assets/css/photos.css" />
     <link rel="stylesheet" href="assets/css/diagnostic.css" />
     <script src="assets/js/diagnostic.js" defer></script>
   </head>
@@ -45,16 +46,15 @@
           <p class="eyebrow">BUSINESS DIAGNOSTIC</p>
           <h1>Understand what is getting in the way of growth.</h1>
           <p class="diag__lead">
-            The first step is to understand where the strain is—and what needs to
-            change together. This diagnostic helps Bigeen understand your
-            organisation, the operating challenge you are working through, and
-            what needs to change before recommending a path forward.
+            This diagnostic helps Bigeen understand your organisation and the
+            challenge you are working through before recommending a path
+            forward.
           </p>
-          <p class="diag__note">
-            It is a structured intake, not a quiz. There is no score and no
-            automated report.
-          </p>
+          <p class="diag__note">There is no score and no automated report.</p>
           <p class="diag__effort"><span class="diag__mark" aria-hidden="true"></span>About 5 minutes</p>
+          <figure class="photo photo--diag diag__photo" aria-hidden="true" data-placeholder>
+            <div class="photo__ph"><b>Image placeholder</b><span>Notebook and pen, daylight</span></div>
+          </figure>
         </div>
 
         <div class="diag__panel">
@@ -84,8 +84,8 @@
           <li><span class="visually-hidden">Contact</span></li>
             </ol>
             <p class="diag-keep">
-              Your answers stay on this page until you submit. Nothing is sent or
-              saved before then, and refreshing or leaving the page clears them.
+              Nothing is sent or saved until you submit. Refreshing or leaving
+              the page clears your answers.
             </p>
             <p class="diag-key">All questions are required unless marked optional.</p>
 
@@ -104,7 +104,7 @@
                 </div>
                 <div class="field" id="org_website-field">
                   <label for="org_website">Website <span class="field__opt">(optional)</span></label>
-                  <p class="field__hint" id="org_website-hint">Leave blank or tick the box below if there is no website.</p>
+                  <p class="field__hint" id="org_website-hint">Leave blank if there is no website.</p>
                   <input id="org_website" name="org_website" type="text" autocomplete="url" inputmode="url" data-kind="url" data-msg="Enter a website address, for example organisation.com, or tick “No website”." aria-describedby="org_website-hint org_website-err" />
                   <p class="field__error" id="org_website-err" hidden></p>
                 </div>
@@ -143,7 +143,7 @@
                 <h2 id="step-2-title" tabindex="-1"><span class="step__kicker">Step 2 of 8</span> What are you working toward?</h2>
                 <div class="field" id="goal-field">
                   <label for="goal">What are you trying to achieve?</label>
-                  <p class="field__hint" id="goal-hint">Describe the change you are trying to make, not only the tool or service you think you need.</p>
+                  <p class="field__hint" id="goal-hint">Describe the change you are trying to make.</p>
                   <textarea id="goal" name="goal" rows="5" maxlength="3000" data-msg="Describe what you are trying to achieve." required aria-describedby="goal-hint goal-err"></textarea>
                   <p class="field__error" id="goal-err" hidden></p>
                 </div>
@@ -173,7 +173,7 @@
                 </fieldset>
                 <div class="field" id="challenge-field">
                   <label for="challenge">What is the main challenge you’re dealing with right now?</label>
-                  <p class="field__hint" id="challenge-hint">In your own words. There is no right or wrong way to describe it.</p>
+                  <p class="field__hint" id="challenge-hint">In your own words.</p>
                   <textarea id="challenge" name="challenge" rows="5" maxlength="3000" data-msg="Describe the main challenge in your own words." required aria-describedby="challenge-hint challenge-err"></textarea>
                   <p class="field__error" id="challenge-err" hidden></p>
                 </div>
@@ -204,7 +204,7 @@
                 </fieldset>
                 <div class="field" id="impact_detail-field">
                   <label for="impact_detail">Tell us more about the impact. <span class="field__opt">(optional)</span></label>
-                  <p class="field__hint" id="impact_detail-hint">You do not need to put a figure on it. Describe what you are seeing.</p>
+                  <p class="field__hint" id="impact_detail-hint">Describe what you are seeing. No figures needed.</p>
                   <textarea id="impact_detail" name="impact_detail" rows="5" maxlength="3000" aria-describedby="impact_detail-hint impact_detail-err"></textarea>
                   <p class="field__error" id="impact_detail-err" hidden></p>
                 </div>
@@ -213,7 +213,7 @@
                 <h2 id="step-5-title" tabindex="-1"><span class="step__kicker">Step 5 of 8</span> What has already been tried?</h2>
                 <div class="field" id="attempts-field">
                   <label for="attempts">What have you already tried to address this? <span class="field__opt">(optional)</span></label>
-                  <p class="field__hint" id="attempts-hint">Include any initiatives, tools, advisers, process or staffing changes. If nothing yet, you can say so.</p>
+                  <p class="field__hint" id="attempts-hint">Initiatives, tools, advisers, process or staffing changes. Nothing yet is fine.</p>
                   <textarea id="attempts" name="attempts" rows="5" maxlength="3000" aria-describedby="attempts-hint attempts-err"></textarea>
                   <p class="field__error" id="attempts-err" hidden></p>
                 </div>
@@ -265,7 +265,7 @@
                 </div>
                 <div class="field" id="contact_phone-field">
                   <label for="contact_phone">Phone number <span class="field__opt">(optional)</span></label>
-                  <p class="field__hint" id="contact_phone-hint">Only needed if you would like a call or a WhatsApp message.</p>
+                  <p class="field__hint" id="contact_phone-hint">Needed only for a call or WhatsApp.</p>
                   <input id="contact_phone" name="contact_phone" type="tel" autocomplete="tel" inputmode="tel" data-kind="phone" data-msg="Add a phone number so we can reach you by phone or WhatsApp." aria-describedby="contact_phone-hint contact_phone-err" />
                   <p class="field__error" id="contact_phone-err" hidden></p>
                 </div>
@@ -314,11 +314,8 @@
             <div class="diag-done" data-done hidden>
               <h2 tabindex="-1">Thank you. We have your diagnostic.</h2>
               <p>
-                Bigeen will review the information you have shared and determine
-                the appropriate next conversation or pathway.
-              </p>
-              <p>
-                Nothing on this page has scored or assessed your organisation.
+                Bigeen will review what you have shared and determine the
+                appropriate next conversation or pathway.
               </p>
               <div class="diag-done__actions">
                 <a class="btn btn--secondary" href="index.html">Back to home</a>

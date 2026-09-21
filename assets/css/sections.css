@@ -175,7 +175,8 @@
   display: block;
 }
 
-.idea__close span + span {
+.idea__close span + span,
+.idea__close span:only-child {
   color: var(--colour-brand);
 }
 
@@ -1139,21 +1140,15 @@
 }
 
 .how__close h3 {
-  max-width: 44rem;
+  max-width: 48rem;
   font-family: var(--font-display);
-  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
+  font-size: clamp(1.5rem, 3.3vw, 2.25rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
-.how__close p {
-  max-width: 34rem;
-  margin-top: 1.25rem;
-  color: var(--colour-ink-soft);
-  font-size: 1.125rem;
-}
 
 .how__bridge {
   position: relative;
@@ -1441,9 +1436,6 @@
 }
 
 .exp__bridge-lead,
-.exp__bridge-next {
-  grid-column: 1 / -1;
-}
 
 .exp__bridge h3 {
   font-family: var(--font-display);
@@ -1495,11 +1487,6 @@
     grid-column: 1 / span 7;
   }
 
-  .exp__bridge-next {
-    grid-column: 8 / -1;
-    align-self: end;
-    padding-left: var(--space-content);
-  }
 
   .exp__bridge::after {
     left: calc((100% + var(--grid-gap)) * 7 / 12);
@@ -1935,10 +1922,6 @@
    ========================================================================= */
 
 /* ---------- What We Build: tighter opening ---------- */
-.build__aside-key {
-  color: var(--colour-ink);
-  font-weight: 600;
-}
 
 /* ---------- Pillars: distinct visual languages ---------- */
 .pillar {
@@ -2340,4 +2323,12 @@
   .areas li:nth-child(4) {
     border-top-color: var(--colour-ink);
   }
+}
+
+/* The bridge out of How We Work is a single lead line. */
+.how__bridge-lead p {
+  max-width: 30rem;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--colour-ink);
 }

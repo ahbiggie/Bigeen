@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
+    <link rel="stylesheet" href="assets/css/photos.css" />
     <script src="assets/js/main.js" defer></script>
   </head>
   <body>
@@ -73,6 +74,9 @@
           </div>
 
           <div class="hero__visual">
+            <figure class="photo photo--hero hero__photo" aria-hidden="true" data-placeholder>
+              <div class="photo__ph"><b>Image placeholder</b><span>Working session: hands and paper</span></div>
+            </figure>
             <svg
               viewBox="0 0 400 560"
               aria-hidden="true"
@@ -120,10 +124,7 @@
             <div class="problems__aside">
               <p>
                 As an organisation grows, the ways of working that once held it
-                together can become harder to rely on. Decisions take longer.
-                Knowledge stays in people’s heads. Visibility declines.
-                Technology is added around workflows that have not been properly
-                designed.
+                together become harder to rely on.
               </p>
               <p class="problems__emphasis">This is how systems debt develops.</p>
             </div>
@@ -140,8 +141,7 @@
 
           <div class="grid problems__bridge">
             <p class="problems__bridge-lead">
-              <span>Growth does not only create opportunity.</span>
-              <span>It can also create systems debt.</span>
+              <span>Growth can also create systems debt.</span>
             </p>
             <p class="problems__bridge-next">
               The first step is to understand where the strain is—and what needs
@@ -165,15 +165,10 @@
                 <p>The issues that slow an organisation down rarely live in one place.</p>
                 <p>
                   A strategy can fail in execution. A process can depend on
-                  knowledge that was never documented. Technology can be
-                  introduced without changing the workflow around it. Leaders
-                  can be asked to make decisions without the visibility they
-                  need.
+                  knowledge that was never documented. Leaders can be asked to
+                  decide without the visibility they need.
                 </p>
-                <p>
-                  These are not isolated problems. They are connected systems
-                  problems.
-                </p>
+                <p>They are connected systems problems.</p>
               </div>
 
               <div class="idea__perspective rv" data-reveal style="--i: 3">
@@ -250,8 +245,8 @@
                 <div>
                   <h3>Understand the operating reality</h3>
                   <p>
-                    Look beyond the symptom to understand the work,
-                    dependencies, decisions, and constraints beneath it.
+                    Look beyond the symptom to the work, dependencies and
+                    constraints beneath it.
                   </p>
                 </div>
               </li>
@@ -259,25 +254,21 @@
                 <div>
                   <h3>Connect the right parts</h3>
                   <p>
-                    Bring strategy, operations, people, quality, technology, and
-                    performance into a system that can work together.
+                    Bring strategy, operations, people, quality, technology and
+                    performance into one working system.
                   </p>
                 </div>
               </li>
               <li class="principle rv" data-reveal data-principle="3" style="--i: 2">
                 <div>
                   <h3>Make the system usable</h3>
-                  <p>
-                    A system only matters when people can understand it, use it,
-                    and sustain it in everyday work.
-                  </p>
+                  <p>A system matters when people can understand, use and sustain it.</p>
                 </div>
               </li>
             </ol>
           </div>
 
           <p class="idea__close rv" data-reveal>
-            <span>Not disconnected interventions.</span>
             <span>Connected systems built around the organisation.</span>
           </p>
         </div>
@@ -299,15 +290,14 @@
                 organisations strengthen how they operate, build capability and
                 grow sustainably.
               </p>
-              <p class="build__aside-key">
-                We focus on building systems that work together — and work in
-                the realities of the organisation.
-              </p>
             </div>
           </div>
 
-          <div class="pillars">
+          <div class="pillars pillars--photos">
             <article class="pillar pillar--business rv" data-reveal style="--i: 0" aria-labelledby="pillar-business">
+              <figure class="photo photo--strip" aria-hidden="true" data-placeholder>
+                <div class="photo__ph"><b>Image placeholder</b><span>Process documents, close crop</span></div>
+              </figure>
               <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
                 <path class="art-line" d="M48 14V28M14 28H82M14 28V40M48 28V40M82 28V40" />
                 <rect class="art-plane art-plane--accent" x="38" y="2" width="20" height="12" />
@@ -365,6 +355,9 @@
             </article>
 
             <article class="pillar pillar--digital rv" data-reveal style="--i: 1" aria-labelledby="pillar-digital">
+              <figure class="photo photo--strip" aria-hidden="true" data-placeholder>
+                <div class="photo__ph"><b>Image placeholder</b><span>Workflow on a screen, blurred</span></div>
+              </figure>
               <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
                 <path class="art-line art-line--dash" d="M14 42V56H82V42" />
                 <path class="art-line" d="M24 32H38M58 32H72" />
@@ -421,6 +414,9 @@
             </article>
 
             <article class="pillar pillar--products rv" data-reveal style="--i: 2" aria-labelledby="pillar-products">
+              <figure class="photo photo--strip photo--on-ink" aria-hidden="true" data-placeholder>
+                <div class="photo__ph"><b>Image placeholder</b><span>Tailoring detail: fabric and tape</span></div>
+              </figure>
               <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
                 <rect class="art-frame" x="6" y="4" width="84" height="56" />
                 <path class="art-seam" d="M48 4V60" />
@@ -430,11 +426,6 @@
               </svg>
               <p class="pillar__eyebrow"><span class="pillar__num">03 /</span> BIGEEN PRODUCTS</p>
               <h3 id="pillar-products">Products built from real operating needs.</h3>
-              <p class="pillar__desc">
-                We develop products that address practical business problems,
-                bringing systems thinking and technology into focused solutions.
-              </p>
-
               <ul class="plist" role="list">
                 <li class="plist__item plist__item--lead">
                   <h4 class="plist__name">StitchFYN</h4>
@@ -462,9 +453,8 @@
                 <span>One connected way of working.</span>
               </h3>
               <p>
-                The work does not stop at identifying what an organisation
-                needs. We move from understanding the situation to designing,
-                building and embedding systems that people can use.
+                We move from understanding the situation to designing, building
+                and embedding systems that people can use.
               </p>
             </div>
             <div class="build__bridge-next rv" data-reveal style="--i: 1">
@@ -522,6 +512,9 @@
                   <g class="mini__node" data-n="6"><rect x="44" y="153.3" width="8" height="8" /><text x="6" y="160.8">06</text></g>
                   <g class="mini__node" data-n="7"><rect x="44" y="182" width="8" height="8" /><text x="6" y="189.5">07</text></g>
                 </svg>
+                <figure class="photo photo--how how__photo" aria-hidden="true" data-placeholder>
+                  <div class="photo__ph"><b>Image placeholder</b><span>Process on paper or a whiteboard</span></div>
+                </figure>
               </div>
             </div>
 
@@ -602,20 +595,16 @@
           </div>
 
           <div class="how__close rv" data-reveal>
-            <h3>The goal isn’t to leave you with a recommendation.</h3>
-            <p>
-              It is to leave the organisation with stronger systems, stronger
+            <h3>
+              We leave the organisation with stronger systems, stronger
               capability and a clearer way to keep improving.
-            </p>
+            </h3>
           </div>
 
           <div class="how__bridge rv" data-reveal>
             <div class="how__bridge-lead">
-              <h3>A framework is only useful when it can be applied.</h3>
-            </div>
-            <div class="how__bridge-next">
               <p>
-                Explore selected examples of strategy, operational, quality and
+                Selected examples of strategy, operational, quality and
                 technology work.
               </p>
             </div>
@@ -634,9 +623,8 @@
             </div>
             <div class="exp__aside rv" data-reveal style="--i: 2">
               <p>
-                The work represented here reflects the kinds of organisational
-                challenges we understand and the areas in which our experience
-                has been developed.
+                Examples of the organisational challenges we understand and the
+                areas our experience covers.
               </p>
             </div>
           </div>
@@ -648,6 +636,9 @@
                 <h3>Marketing Strategy &amp; Merger Integration</h3>
                 <p class="entry__context"><span>Private Organisation</span> <span class="entry__sep" aria-hidden="true">|</span> <span>United States</span></p>
               </div>
+              <figure class="photo photo--entry entry__photo" aria-hidden="true" data-placeholder>
+                <div class="photo__ph"><b>Image placeholder</b><span>Redacted work artefact, only if real</span></div>
+              </figure>
             </li>
             <li class="entry entry--2 rv" data-reveal>
               <span class="entry__num" aria-hidden="true">02</span>
@@ -655,6 +646,9 @@
                 <h3>Five-Year Strategic Roadmap &amp; Operating Model</h3>
                 <p class="entry__context"><span>International Organisation</span></p>
               </div>
+              <figure class="photo photo--entry entry__photo" aria-hidden="true" data-placeholder>
+                <div class="photo__ph"><b>Image placeholder</b><span>Redacted work artefact, only if real</span></div>
+              </figure>
             </li>
             <li class="entry entry--3 rv" data-reveal>
               <span class="entry__num" aria-hidden="true">03</span>
@@ -662,12 +656,14 @@
                 <h3>Audit, Diagnostic Assessment &amp; Recommendations</h3>
                 <p class="entry__context"><span>Healthcare Organisation</span></p>
               </div>
+              <figure class="photo photo--entry entry__photo" aria-hidden="true" data-placeholder>
+                <div class="photo__ph"><b>Image placeholder</b><span>Redacted work artefact, only if real</span></div>
+              </figure>
             </li>
           </ol>
 
           <p class="exp__note rv" data-reveal>
-            These entries are presented as selected experience. They are not
-            presented as Bigeen client engagements.
+            Shown as selected experience, not as Bigeen client engagements.
           </p>
 
           <div class="areas rv" data-reveal>
@@ -683,13 +679,6 @@
           <div class="grid exp__bridge rv" data-reveal>
             <div class="exp__bridge-lead">
               <h3>Systems thinking, applied to real operating needs.</h3>
-            </div>
-            <div class="exp__bridge-next">
-              <p>
-                Alongside our work with organisations, we are developing
-                products that address specific business problems through
-                focused systems and technology.
-              </p>
             </div>
           </div>
         </div>
@@ -710,15 +699,10 @@
                 products that address practical business problems through
                 focused systems and technology.
               </p>
-              <p>
-                Each product begins with a real operating need — and the work
-                of understanding what people need to do, what gets in their way
-                and what a useful solution must support.
-              </p>
             </div>
           </div>
 
-          <article class="feature rv" data-reveal aria-labelledby="stitchfyn-name">
+          <article class="feature feature--photo rv" data-reveal aria-labelledby="stitchfyn-name">
             <div class="feature__body">
               <p class="feature__label">A BIGEEN PRODUCT</p>
               <h3 id="stitchfyn-name" class="feature__name"><img class="feature__logo" src="assets/images/stitchfyn/logo-full.png" width="542" height="138" alt="StitchFYN" decoding="async" /></h3>
@@ -740,9 +724,8 @@
                 evidence instead of memory and verbal promises.
               </p>
               <p class="feature__support">
-                Designed for bespoke-tailoring businesses, StitchFYN focuses on
-                helping workshops keep clearer records around orders and key
-                customer confirmations.
+                For bespoke-tailoring businesses: clearer records of orders and
+                key customer confirmations.
               </p>
               <p class="feature__claim">Know exactly what fabric you received.</p>
 
@@ -762,6 +745,9 @@
               <rect class="fa-node" x="56" y="188" width="8" height="8" />
               <rect class="fa-node" x="56" y="314" width="8" height="8" />
             </svg>
+            <figure class="photo photo--on-ink photo--feature feature__photo" aria-hidden="true" data-placeholder>
+              <div class="photo__ph"><b>Image placeholder</b><span>Tailoring workshop, dark toned</span></div>
+            </figure>
           </article>
 
           <div class="others">
@@ -794,8 +780,8 @@
                 Have an operating challenge you’re working through?
               </h2>
               <p class="start__copy rv" data-reveal style="--i: 2">
-                Whether you know what needs to change or need help
-                understanding the problem, start a conversation with Bigeen.
+                Whether the problem is clear or not, start a conversation with
+                Bigeen.
               </p>
             </div>
             <div class="start__actions rv" data-reveal style="--i: 3">
