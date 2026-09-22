@@ -1,9 +1,10 @@
 /* ---------- Shared ---------- */
 .eyebrow {
   margin-bottom: 1.25rem;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--colour-ink-soft);
 }
@@ -126,9 +127,10 @@
 .principle::before {
   content: counter(principle, decimal-leading-zero);
   padding-top: 0.35rem;
+  font-family: var(--font-data);
   font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   color: var(--colour-brand);
   font-variant-numeric: tabular-nums;
 }
@@ -516,10 +518,6 @@
   color: var(--colour-ink-soft);
 }
 
-.pillar__num {
-  color: var(--colour-brand);
-}
-
 .pillar h3 {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.3vw, 1.875rem);
@@ -561,7 +559,7 @@
   margin-top: 1.75rem;
 }
 
-.cap h4 {
+.cap h2 {
   font-size: 0.8125rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -648,10 +646,6 @@
 .pillar--products .pillar__eyebrow,
 .pillar--products .pillar__desc {
   color: var(--colour-on-ink-soft);
-}
-
-.pillar--products .pillar__num {
-  color: var(--colour-brass);
 }
 
 
@@ -896,6 +890,19 @@
   text-transform: none;
 }
 
+/* The wordmark is white on transparent, built for the dark product panel on
+   the homepage — it disappears on this page's ivory background without one. */
+.page__brand-mark {
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  background: var(--colour-ink);
+}
+
+.page__brand-logo {
+  width: clamp(12rem, 30vw, 17rem);
+  height: auto;
+}
+
 /* ---------- 05 How We Work ---------- */
 .how {
   padding-block: var(--space-section);
@@ -1092,7 +1099,7 @@
 
 .stage__num {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font-data);
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
@@ -1564,9 +1571,10 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--colour-ink);
 }
@@ -1603,9 +1611,10 @@
 
 .feature__label {
   margin-bottom: 1rem;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--colour-brass);
 }
@@ -1660,31 +1669,10 @@
   color: var(--colour-on-ink-soft);
 }
 
-/* Decorative art: hidden where it would squeeze the copy */
-.feature__art {
+/* The real StitchFYN icon, held to a watermark so the wordmark above still
+   leads — hidden where it would squeeze the copy. */
+.feature__mark {
   display: none;
-  width: 100%;
-  max-width: 20rem;
-  height: auto;
-  justify-self: end;
-  align-self: center;
-}
-
-.fa-plane {
-  fill: none;
-  stroke: var(--colour-on-ink);
-  stroke-width: 1;
-  opacity: 0.35;
-}
-
-.fa-seam {
-  stroke: var(--colour-brass);
-  stroke-width: 1.5;
-  stroke-dasharray: 7 6;
-}
-
-.fa-node {
-  fill: var(--colour-brass);
 }
 
 /* Secondary products: subordinate, static */
@@ -1728,8 +1716,14 @@
     column-gap: var(--space-content);
   }
 
-  .feature__art {
+  .feature__mark {
     display: block;
+    justify-self: end;
+    align-self: center;
+    width: 85%;
+    max-width: 22rem;
+    height: auto;
+    opacity: 0.16;
   }
 }
 
@@ -1774,18 +1768,19 @@
 }
 
 .cd-num {
-  font-family: var(--font-display);
+  font-family: var(--font-data);
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   color: var(--colour-on-ink);
 }
 
 .cd-label {
+  font-family: var(--font-data);
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--colour-on-ink-soft);
 }
@@ -2173,14 +2168,13 @@
 
 .entry {
   position: relative;
-  display: grid;
-  grid-template-columns: 3.25rem minmax(0, 1fr);
-  column-gap: 0.75rem;
-  padding-block: 1.5rem 1.75rem;
+  padding: 1.5rem 0 1.75rem 1.75rem;
   border-top: 1px solid var(--colour-ink);
 }
 
-/* Structural marker where each rule begins */
+/* Structural marker where each rule begins — the same anchor square used
+   for the connecting line throughout the page, standing in for a numeral
+   these three curated examples don't need (they aren't a sequence). */
 .entry::before {
   content: "";
   position: absolute;
@@ -2189,15 +2183,6 @@
   width: 0.5625rem;
   height: 0.5625rem;
   background: var(--colour-brand);
-}
-
-.entry__num {
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
-  font-weight: 700;
-  line-height: 0.95;
-  font-variant-numeric: tabular-nums;
-  color: var(--colour-brand);
 }
 
 .entry h3 {
@@ -2214,9 +2199,10 @@
   flex-direction: column;
   gap: 0.2rem;
   margin-top: 0.9rem;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--colour-ink-soft);
 }
@@ -2286,10 +2272,6 @@
   .entry--2 { grid-column: 3 / span 10; }
   .entry--3 { grid-column: 2 / span 10; }
 
-  .entry {
-    grid-template-columns: 4.5rem minmax(0, 1fr);
-  }
-
   .areas ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--grid-gap);
@@ -2308,10 +2290,6 @@
   .entry--1 { grid-column: 1 / span 8; }
   .entry--2 { grid-column: 5 / span 8; }
   .entry--3 { grid-column: 2 / span 8; }
-
-  .entry {
-    grid-template-columns: 6rem minmax(0, 1fr);
-  }
 }
 
 @media (min-width: 1100px) {

@@ -44,9 +44,10 @@
   align-items: center;
   gap: 0.6rem;
   margin-top: 1.5rem;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -186,10 +187,10 @@
 .step__kicker {
   display: block;
   margin-bottom: 0.5rem;
-  font-family: var(--font-body);
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--colour-ink-soft);
 }

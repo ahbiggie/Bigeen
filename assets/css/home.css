@@ -123,9 +123,10 @@
   flex-direction: column;
   gap: 0.25rem;
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--colour-ink-soft);
 }
@@ -323,9 +324,10 @@
 
 .problems__label {
   margin-bottom: 1.25rem;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--colour-ink-soft);
 }
@@ -358,19 +360,17 @@
   font-weight: 600;
 }
 
+/* Six parallel symptoms, not a sequence — a small anchor square (the site's
+   own index device), not a numeral that would imply order or causality. */
 .problems__list {
   list-style: none;
-  counter-reset: symptom;
   margin-top: var(--space-content);
   border-bottom: 1px solid var(--colour-line);
 }
 
 .problems__list li {
-  counter-increment: symptom;
-  display: grid;
-  grid-template-columns: 3rem 1fr;
-  align-items: baseline;
-  padding-block: 1.25rem;
+  position: relative;
+  padding: 1.25rem 0 1.25rem 1.75rem;
   border-top: 1px solid var(--colour-line);
   font-size: 1.125rem;
   line-height: 1.45;
@@ -381,12 +381,13 @@
 }
 
 .problems__list li::before {
-  content: counter(symptom, decimal-leading-zero);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--colour-brand);
-  font-variant-numeric: tabular-nums;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.7rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--colour-brand);
 }
 
 .problems__bridge {
@@ -532,9 +533,10 @@
 .footer__title {
   margin-bottom: 0.5rem;
   white-space: nowrap;
+  font-family: var(--font-data);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--colour-ink-soft);
 }

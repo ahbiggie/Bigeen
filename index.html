@@ -24,11 +24,11 @@
         document.documentElement.classList.add("is-ready");
       }, 1500);
     </script>
+    <link rel="stylesheet" href="assets/css/fonts.css" />
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
-    <link rel="stylesheet" href="assets/css/photos.css" />
     <script src="assets/js/main.js" defer></script>
   </head>
   <body>
@@ -74,9 +74,6 @@
           </div>
 
           <div class="hero__visual">
-            <figure class="photo photo--hero hero__photo" aria-hidden="true" data-placeholder>
-              <div class="photo__ph"><b>Image placeholder</b><span>Working session: hands and paper</span></div>
-            </figure>
             <svg
               viewBox="0 0 400 560"
               aria-hidden="true"
@@ -130,14 +127,14 @@
             </div>
           </div>
 
-          <ol class="problems__list" role="list">
+          <ul class="problems__list" role="list">
             <li>Processes remain informal.</li>
             <li>Work becomes dependent on individuals.</li>
             <li>Documentation falls behind reality.</li>
             <li>Management loses visibility.</li>
             <li>Technology is introduced without fixing the workflow.</li>
             <li>People are asked to operate inside systems that were not designed for them.</li>
-          </ol>
+          </ul>
 
           <div class="grid problems__bridge">
             <p class="problems__bridge-lead">
@@ -293,11 +290,8 @@
             </div>
           </div>
 
-          <div class="pillars pillars--photos">
+          <div class="pillars">
             <article class="pillar pillar--business rv" data-reveal style="--i: 0" aria-labelledby="pillar-business">
-              <figure class="photo photo--strip" aria-hidden="true" data-placeholder>
-                <div class="photo__ph"><b>Image placeholder</b><span>Process documents, close crop</span></div>
-              </figure>
               <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
                 <path class="art-line" d="M48 14V28M14 28H82M14 28V40M48 28V40M82 28V40" />
                 <rect class="art-plane art-plane--accent" x="38" y="2" width="20" height="12" />
@@ -306,7 +300,7 @@
                 <rect class="art-plane" x="72" y="40" width="20" height="12" />
                 <rect class="art-node" x="45" y="25" width="6" height="6" />
               </svg>
-              <p class="pillar__eyebrow"><span class="pillar__num">01 /</span> BUSINESS SYSTEMS</p>
+              <p class="pillar__eyebrow">BUSINESS SYSTEMS</p>
               <h3 id="pillar-business">Business Systems</h3>
               <p class="pillar__desc">
                 The structures, processes and capabilities that help an
@@ -355,9 +349,6 @@
             </article>
 
             <article class="pillar pillar--digital rv" data-reveal style="--i: 1" aria-labelledby="pillar-digital">
-              <figure class="photo photo--strip" aria-hidden="true" data-placeholder>
-                <div class="photo__ph"><b>Image placeholder</b><span>Workflow on a screen, blurred</span></div>
-              </figure>
               <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
                 <path class="art-line art-line--dash" d="M14 42V56H82V42" />
                 <path class="art-line" d="M24 32H38M58 32H72" />
@@ -368,7 +359,7 @@
                 <rect class="art-node" x="11" y="29" width="6" height="6" />
                 <rect class="art-node" x="45" y="29" width="6" height="6" />
               </svg>
-              <p class="pillar__eyebrow"><span class="pillar__num">02 /</span> DIGITAL SYSTEMS</p>
+              <p class="pillar__eyebrow">DIGITAL SYSTEMS</p>
               <h3 id="pillar-digital">Digital Systems</h3>
               <p class="pillar__desc">
                 Technology designed around business needs — helping
@@ -414,9 +405,6 @@
             </article>
 
             <article class="pillar pillar--products rv" data-reveal style="--i: 2" aria-labelledby="pillar-products">
-              <figure class="photo photo--strip photo--on-ink" aria-hidden="true" data-placeholder>
-                <div class="photo__ph"><b>Image placeholder</b><span>Tailoring detail: fabric and tape</span></div>
-              </figure>
               <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
                 <rect class="art-frame" x="6" y="4" width="84" height="56" />
                 <path class="art-seam" d="M48 4V60" />
@@ -424,7 +412,7 @@
                 <rect class="art-frame art-frame--inner" x="56" y="34" width="26" height="14" />
                 <rect class="art-brass" x="45" y="29" width="6" height="6" />
               </svg>
-              <p class="pillar__eyebrow"><span class="pillar__num">03 /</span> BIGEEN PRODUCTS</p>
+              <p class="pillar__eyebrow">BIGEEN PRODUCTS</p>
               <h3 id="pillar-products">Products built from real operating needs.</h3>
               <ul class="plist" role="list">
                 <li class="plist__item plist__item--lead">
@@ -512,9 +500,6 @@
                   <g class="mini__node" data-n="6"><rect x="44" y="153.3" width="8" height="8" /><text x="6" y="160.8">06</text></g>
                   <g class="mini__node" data-n="7"><rect x="44" y="182" width="8" height="8" /><text x="6" y="189.5">07</text></g>
                 </svg>
-                <figure class="photo photo--how how__photo" aria-hidden="true" data-placeholder>
-                  <div class="photo__ph"><b>Image placeholder</b><span>Process on paper or a whiteboard</span></div>
-                </figure>
               </div>
             </div>
 
@@ -629,38 +614,26 @@
             </div>
           </div>
 
-          <ol class="entries" role="list">
+          <ul class="entries" role="list">
             <li class="entry entry--1 rv" data-reveal>
-              <span class="entry__num" aria-hidden="true">01</span>
               <div class="entry__body">
                 <h3>Marketing Strategy &amp; Merger Integration</h3>
                 <p class="entry__context"><span>Private Organisation</span> <span class="entry__sep" aria-hidden="true">|</span> <span>United States</span></p>
               </div>
-              <figure class="photo photo--entry entry__photo" aria-hidden="true" data-placeholder>
-                <div class="photo__ph"><b>Image placeholder</b><span>Redacted work artefact, only if real</span></div>
-              </figure>
             </li>
             <li class="entry entry--2 rv" data-reveal>
-              <span class="entry__num" aria-hidden="true">02</span>
               <div class="entry__body">
                 <h3>Five-Year Strategic Roadmap &amp; Operating Model</h3>
                 <p class="entry__context"><span>International Organisation</span></p>
               </div>
-              <figure class="photo photo--entry entry__photo" aria-hidden="true" data-placeholder>
-                <div class="photo__ph"><b>Image placeholder</b><span>Redacted work artefact, only if real</span></div>
-              </figure>
             </li>
             <li class="entry entry--3 rv" data-reveal>
-              <span class="entry__num" aria-hidden="true">03</span>
               <div class="entry__body">
                 <h3>Audit, Diagnostic Assessment &amp; Recommendations</h3>
                 <p class="entry__context"><span>Healthcare Organisation</span></p>
               </div>
-              <figure class="photo photo--entry entry__photo" aria-hidden="true" data-placeholder>
-                <div class="photo__ph"><b>Image placeholder</b><span>Redacted work artefact, only if real</span></div>
-              </figure>
             </li>
-          </ol>
+          </ul>
 
           <p class="exp__note rv" data-reveal>
             Shown as selected experience, not as Bigeen client engagements.
@@ -702,7 +675,7 @@
             </div>
           </div>
 
-          <article class="feature feature--photo rv" data-reveal aria-labelledby="stitchfyn-name">
+          <article class="feature rv" data-reveal aria-labelledby="stitchfyn-name">
             <div class="feature__body">
               <p class="feature__label">A BIGEEN PRODUCT</p>
               <h3 id="stitchfyn-name" class="feature__name"><img class="feature__logo" src="assets/images/stitchfyn/logo-full.png" width="542" height="138" alt="StitchFYN" decoding="async" /></h3>
@@ -735,19 +708,8 @@
               <p class="feature__credit">StitchFYN is a product of Bigeen Solutions.</p>
             </div>
 
-            <!-- Decorative: abstract modular planes joined by a stitched seam. Not an interface. -->
-            <svg class="feature__art" viewBox="0 0 320 380" aria-hidden="true" focusable="false">
-              <rect class="fa-plane" x="90" y="20" width="200" height="88" />
-              <rect class="fa-plane" x="60" y="146" width="200" height="88" />
-              <rect class="fa-plane" x="90" y="272" width="200" height="88" />
-              <line class="fa-seam" x1="60" y1="8" x2="60" y2="372" />
-              <rect class="fa-node" x="56" y="62" width="8" height="8" />
-              <rect class="fa-node" x="56" y="188" width="8" height="8" />
-              <rect class="fa-node" x="56" y="314" width="8" height="8" />
-            </svg>
-            <figure class="photo photo--on-ink photo--feature feature__photo" aria-hidden="true" data-placeholder>
-              <div class="photo__ph"><b>Image placeholder</b><span>Tailoring workshop, dark toned</span></div>
-            </figure>
+            <!-- The real StitchFYN mark, quiet and large, rather than an invented shape. Decorative: the wordmark above already carries the name. -->
+            <img class="feature__mark" src="assets/images/stitchfyn/logo-icon.png" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async" />
           </article>
 
           <div class="others">

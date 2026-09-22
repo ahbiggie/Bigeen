@@ -14,11 +14,11 @@
     <script>
       document.documentElement.classList.add("js");
     </script>
+    <link rel="stylesheet" href="assets/css/fonts.css" />
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
-    <link rel="stylesheet" href="assets/css/photos.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -41,18 +41,25 @@
     <main id="main" class="page" tabindex="-1">
       <div class="container grid page__inner">
         <div class="page__body">
-          <p class="eyebrow">02 / DIGITAL SYSTEMS</p>
+          <svg class="pillar__art" viewBox="0 0 96 64" aria-hidden="true" focusable="false">
+            <path class="art-line art-line--dash" d="M14 42V56H82V42" />
+            <path class="art-line" d="M24 32H38M58 32H72" />
+            <path class="art-chevron" d="M34 28L38 32L34 36M68 28L72 32L68 36" />
+            <rect class="art-plane" x="4" y="22" width="20" height="20" />
+            <rect class="art-plane" x="38" y="22" width="20" height="20" />
+            <rect class="art-plane art-plane--accent" x="72" y="22" width="20" height="20" />
+            <rect class="art-node" x="11" y="29" width="6" height="6" />
+            <rect class="art-node" x="45" y="29" width="6" height="6" />
+          </svg>
+          <p class="eyebrow">DIGITAL SYSTEMS</p>
           <h1>Digital Systems</h1>
           <p class="page__lead">
             Technology designed around business needs — helping organisations improve workflows, connect information and make better use of data.
           </p>
         </div>
-        <figure class="photo photo--banner" aria-hidden="true" data-placeholder>
-          <div class="photo__ph"><b>Image placeholder</b><span>Wide detail banner</span></div>
-        </figure>
         <div class="page__caps">
             <div class="cap">
-              <h4>Digital Transformation</h4>
+              <h2>Digital Transformation</h2>
               <ul class="cap__list">
                 <li>digital transformation strategy</li>
                 <li>process digitisation</li>
@@ -61,7 +68,7 @@
               </ul>
             </div>
             <div class="cap">
-              <h4>Technology &amp; Applications</h4>
+              <h2>Technology &amp; Applications</h2>
               <ul class="cap__list">
                 <li>business applications</li>
                 <li>custom software</li>
@@ -71,7 +78,7 @@
               </ul>
             </div>
             <div class="cap">
-              <h4>Data &amp; Intelligence</h4>
+              <h2>Data &amp; Intelligence</h2>
               <ul class="cap__list">
                 <li>dashboards</li>
                 <li>business intelligence</li>
