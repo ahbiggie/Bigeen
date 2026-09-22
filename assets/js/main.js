@@ -69,13 +69,12 @@
   }
 
   // How We Work: as the reader moves down the sequence, the connecting line fills
-  // and the current stage is emphasised (also mirrored in the small diagram).
+  // and the current stage is emphasised.
   // Purely visual: all seven stages are complete without this, and it is skipped
   // under reduced motion.
   var flow = document.querySelector("[data-flow]");
   if (flow && !reduceMotion && "IntersectionObserver" in window) {
     var stages = [].slice.call(flow.querySelectorAll(".stage"));
-    var miniNodes = [].slice.call(document.querySelectorAll("[data-mini] [data-n]"));
     var ticking = false;
     var mark = function (el, i, active) {
       el.classList.toggle("is-active", i === active);
@@ -89,7 +88,6 @@
         if (s.getBoundingClientRect().top < line) active = i;
       });
       stages.forEach(function (s, i) { mark(s, i, active); });
-      miniNodes.forEach(function (n, i) { mark(n, i, active); });
     };
     var onFlowScroll = function () {
       if (!ticking) {

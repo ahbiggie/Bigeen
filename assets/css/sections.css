@@ -693,23 +693,6 @@
   grid-column: 1 / -1;
 }
 
-.build__bridge h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-.build__bridge h3 span {
-  display: block;
-}
-
-.build__bridge h3 span + span {
-  color: var(--colour-brand);
-}
-
 .build__bridge-lead p {
   max-width: 34rem;
   margin-top: 1.25rem;
@@ -973,56 +956,6 @@
   margin-inline: 0.5rem;
   font-weight: 400;
   color: var(--colour-brand);
-}
-
-/* Small system diagram: desktop only, decorative */
-.how__mini {
-  display: none;
-  margin-top: var(--space-content);
-  overflow: visible;
-}
-
-.mini__spine {
-  stroke: var(--colour-ink-soft);
-  stroke-width: 1.5;
-  opacity: 0.4;
-}
-
-.mini__return {
-  fill: none;
-  stroke: var(--colour-ink-soft);
-  stroke-width: 1;
-  stroke-dasharray: 3 4;
-  opacity: 0.6;
-}
-
-.mini__arrow {
-  fill: var(--colour-ink-soft);
-  opacity: 0.6;
-}
-
-.mini__node rect {
-  fill: var(--colour-canvas);
-  stroke: var(--colour-ink);
-  stroke-width: 1;
-  transition: fill 0.3s var(--ease), stroke 0.3s var(--ease);
-}
-
-.mini__node text {
-  font: 600 10px var(--font-body);
-  letter-spacing: 0.08em;
-  fill: var(--colour-ink-soft);
-  transition: fill 0.3s var(--ease);
-}
-
-.mini__node.is-active rect,
-.mini__node.is-passed rect {
-  fill: var(--colour-brand);
-  stroke: var(--colour-brand);
-}
-
-.mini__node.is-active text {
-  fill: var(--colour-brand);
 }
 
 /* ---------- The stage sequence ---------- */
@@ -1299,10 +1232,6 @@
     padding-left: 0;
   }
 
-  .how__mini {
-    display: block;
-  }
-
   .flow {
     --spine-x: 0px;
     grid-column: 8 / -1;
@@ -1433,42 +1362,6 @@
 /* Areas of experience: modular ruled grid, no decoration */
 
 
-/* Bridge into Bigeen Products */
-.exp__bridge {
-  position: relative;
-  margin-top: calc(var(--space-section) * 0.7);
-  padding-top: var(--space-content);
-  border-top: 1px solid var(--colour-ink);
-  row-gap: 1rem;
-}
-
-.exp__bridge-lead,
-
-.exp__bridge h3 {
-  font-family: var(--font-display);
-  font-size: clamp(1.625rem, 4.6vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-.exp__bridge p {
-  max-width: 32rem;
-  color: var(--colour-ink-soft);
-  font-size: 1.125rem;
-}
-
-.exp__bridge::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 100%;
-  height: var(--space-section);
-  width: 1.5px;
-  background: var(--colour-brand);
-}
-
 @media (min-width: 768px) {
   .exp__title-block {
     grid-column: 1 / span 7;
@@ -1487,23 +1380,6 @@
 
   .exp__head::after {
     left: calc((100% + var(--grid-gap)) * 7 / 12 - 3.75px);
-  }
-
-
-  .exp__bridge-lead {
-    grid-column: 1 / span 7;
-  }
-
-
-  .exp__bridge::after {
-    left: calc((100% + var(--grid-gap)) * 7 / 12);
-  }
-}
-
-
-@media (max-width: 767px) {
-  .exp__bridge::after {
-    left: 0;
   }
 }
 
