@@ -2408,3 +2408,89 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* ---------- What We Build: capability lists fold away ---------- */
+/* Closed, the summary still names the three groups, so a glance gives the
+   shape of the offer; opening shows every capability. Native <details>:
+   keyboard, screen readers and no-JS all work. */
+.caps {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--colour-ink);
+}
+
+.caps__summary {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.caps__summary::-webkit-details-marker {
+  display: none;
+}
+
+.caps__groups {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--colour-ink);
+}
+
+.caps__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  min-height: 2.75rem;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-brand);
+}
+
+.caps__summary:hover .caps__toggle {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.caps__summary:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 2px;
+}
+
+.caps__chevron {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.12rem) rotate(45deg);
+  transition: transform 0.2s var(--ease);
+}
+
+.caps[open] .caps__chevron {
+  transform: translateY(0.12rem) rotate(-135deg);
+}
+
+.caps__less,
+.caps[open] .caps__more {
+  display: none;
+}
+
+.caps[open] .caps__less {
+  display: inline;
+}
+
+/* Inside the fold the groups sit directly under the summary. */
+.caps .groups {
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+}
+
+.caps .groups--ruled .group:first-child {
+  border-top-color: var(--colour-line);
+}
