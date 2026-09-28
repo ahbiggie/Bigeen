@@ -1,0 +1,10 @@
+# Static site served from the repo root: keep internal files out of the deployment.
+audit
+partials
+scripts
+.claude
+.agents
+README.md
+skills-lock.json
+.env
+.env.*
