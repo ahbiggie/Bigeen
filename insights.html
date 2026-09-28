@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>StitchFYN — Bigeen Solutions</title>
+    <title>Insights — Bigeen Solutions</title>
     <meta
       name="description"
-      content="A bespoke-tailoring business product in active development, designed to help tailoring workshops manage orders with clearer records and documented evidence."
+      content="Bigeen's thinking on organisational systems: operations, quality, capability, resilience and technology."
     />
-    <link rel="canonical" href="https://bigeensolutions.com/stitchfyn.html" />
+    <link rel="canonical" href="https://bigeensolutions.com/insights.html" />
     <meta name="theme-color" content="#f7f5f0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Insights — Bigeen Solutions" />
+    <meta property="og:description" content="Bigeen's thinking on the systems behind how organisations work." />
+    <meta property="og:url" content="https://bigeensolutions.com/insights.html" />
     <link rel="icon" type="image/png" href="assets/images/favicon.png" />
     <script>
       document.documentElement.classList.add("js");
@@ -19,6 +23,7 @@
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/sections.css" />
+    <link rel="stylesheet" href="assets/css/insights.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -32,7 +37,7 @@
           <ul>
             <li class="site-nav__home"><a href="index.html">Home</a></li>
             <li><a href="why-bigeen.html">Why Bigeen</a></li>
-            <li><a href="insights.html">Insights</a></li>
+            <li><a href="insights.html" aria-current="page">Insights</a></li>
             <li><a href="diagnostic.html">Diagnostic</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -40,26 +45,70 @@
       </div>
     </header>
 
-    <main id="main" class="page" tabindex="-1">
-      <div class="container grid page__inner">
-        <div class="page__body">
-          <p class="eyebrow">BIGEEN PRODUCTS</p>
-          <h1 class="page__title--brand"><span class="page__brand-mark"><img class="page__brand-logo" src="assets/images/stitchfyn/logo-full.png" width="542" height="138" alt="StitchFYN" decoding="async" /></span></h1>
-          <p class="page__lead">
-            A bespoke-tailoring business product in active development, designed to help tailoring workshops manage orders with clearer records and documented evidence.
+    <main id="main" class="ins" tabindex="-1">
+      <div class="container grid ins__grid">
+        <div class="ins-intro">
+          <p class="eyebrow">Insights</p>
+          <h1>Thinking on the systems behind how organisations work.</h1>
+          <p class="ins-intro__lead">
+            Short essays on the problems we see organisations working through,
+            and the ideas that shape how Bigeen approaches them.
           </p>
+          <ul class="ins-topics ins-label" aria-label="Topics we write about">
+            <li>Systems</li>
+            <li>Operations</li>
+            <li>Quality</li>
+            <li>Capability</li>
+            <li>Resilience</li>
+            <li>Technology</li>
+          </ul>
         </div>
-        <div class="page__caps page__caps--status">
-          <p class="page__status"><span class="status__mark" aria-hidden="true"></span>In development · Pre-launch</p>
-        </div>
-        <div class="page__more">
-          <div class="page__routes">
-            <a class="btn btn--primary" href="mailto:info@bigeensolutions.com?subject=StitchFYN">Email Bigeen</a>
-            <a class="btn btn--secondary" href="https://wa.me/2348158771727">
-              Message on WhatsApp <span class="btn__arrow" aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
+
+        <ol class="ins-articles" role="list" aria-label="Articles">
+          <li class="ins-card ins-card--lead">
+            <p class="ins-label ins-topic">Systems</p>
+            <h2 class="ins-card__title">
+              <a class="ins-card__link" href="insight-systems-debt.html">Systems debt: how organisations outgrow the way they work</a>
+            </h2>
+            <p class="ins-card__dek">
+              Most organisations do not decide to run on informal processes and
+              individual memory. They drift there, one reasonable shortcut at a
+              time.
+            </p>
+            <p class="ins-card__meta ins-label">
+              <time datetime="2026-09-28">28 Sep 2026</time>
+              <span>3 min read</span>
+            </p>
+          </li>
+          <li class="ins-card">
+            <p class="ins-label ins-topic">Technology</p>
+            <h2 class="ins-card__title">
+              <a class="ins-card__link" href="insight-workflow-before-automation.html">Understand the workflow before you automate it</a>
+            </h2>
+            <p class="ins-card__dek">
+              Software can make a sound process faster. It can also make a poor
+              one more expensive, harder to change and easier to ignore.
+            </p>
+            <p class="ins-card__meta ins-label">
+              <time datetime="2026-09-28">28 Sep 2026</time>
+              <span>2 min read</span>
+            </p>
+          </li>
+          <li class="ins-card">
+            <p class="ins-label ins-topic">Capability</p>
+            <h2 class="ins-card__title">
+              <a class="ins-card__link" href="insight-systems-people-can-run.html">A system is only as good as the people who run it</a>
+            </h2>
+            <p class="ins-card__dek">
+              Documentation nobody reads and software nobody trusts are not
+              working systems. Capability is part of the design.
+            </p>
+            <p class="ins-card__meta ins-label">
+              <time datetime="2026-09-28">28 Sep 2026</time>
+              <span>2 min read</span>
+            </p>
+          </li>
+        </ol>
       </div>
     </main>
 
