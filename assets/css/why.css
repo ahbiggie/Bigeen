@@ -1,0 +1,487 @@
+/* Why Bigeen. Builds on tokens/base/home/sections: eyebrow, buttons, the
+   closing .start band and the full-viewport section rule all come from there. */
+
+/* ---------- Guide rail ---------- */
+/* One structural line runs down the page at the container's content edge; each
+   section label sits on it as a square anchor, the homepage's joint motif. */
+.why-sec,
+.why .start {
+  --rail-x: calc((100% - min(100%, var(--container-max))) / 2 + var(--gutter));
+  --rail-pad: clamp(1.25rem, 3vw, 2.5rem);
+  position: relative;
+}
+
+.why-sec {
+  padding-block: var(--space-section);
+}
+
+.why-sec::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--rail-x);
+  width: 1.5px;
+  background: var(--colour-brand);
+}
+
+.why-sec .container > * {
+  padding-left: var(--rail-pad);
+}
+
+.why-mark {
+  position: relative;
+}
+
+.why-mark::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--rail-pad) - 3.75px);
+  top: 0.2em;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+/* The rail ends on the top edge of the closing band. */
+.why .start::before {
+  content: "";
+  position: absolute;
+  top: -0.5625rem;
+  left: calc(var(--rail-x) - 3.75px);
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+.why-stone {
+  background: var(--colour-stone);
+}
+
+/* ---------- Shared heads ---------- */
+.why-head {
+  row-gap: 1rem;
+  margin-bottom: calc(var(--space-content) * 1.5);
+}
+
+.why-head > * {
+  grid-column: 1 / -1;
+}
+
+.why-head .eyebrow {
+  margin-bottom: 0.25rem;
+}
+
+.why h2 {
+  max-width: 20em;
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 4.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.why h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.why-head__aside p {
+  max-width: 30rem;
+  color: var(--colour-ink-soft);
+}
+
+.why-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: var(--colour-brand);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.why-link:hover {
+  color: var(--colour-ink);
+}
+
+.why-link:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- Intro ---------- */
+/* Shares the first screen with the header, like the homepage hero. */
+main > section.why-intro {
+  min-height: max(30rem, calc(100svh - var(--header-height)));
+}
+
+.why-intro__grid {
+  row-gap: var(--space-content);
+}
+
+.why-intro__grid > * {
+  grid-column: 1 / -1;
+}
+
+.why-intro .eyebrow {
+  margin-bottom: 0;
+}
+
+.why-intro h1 {
+  max-width: 13em;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.why-intro__lead {
+  max-width: 38rem;
+  font-size: clamp(1.125rem, 1.8vw, 1.3125rem);
+  line-height: 1.5;
+}
+
+.why-intro__note {
+  max-width: 30rem;
+  color: var(--colour-ink-soft);
+}
+
+/* ---------- Beliefs ---------- */
+.beliefs {
+  list-style: none;
+  border-bottom: 1px solid var(--colour-line);
+}
+
+.belief {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--colour-line);
+}
+
+.belief:first-child {
+  border-top-color: var(--colour-ink);
+}
+
+.belief h3 {
+  font-size: clamp(1.1875rem, 2vw, 1.5rem);
+}
+
+.belief p {
+  max-width: 36rem;
+  color: var(--colour-ink-soft);
+}
+
+/* ---------- Approach ---------- */
+.habits {
+  display: grid;
+  gap: var(--space-content);
+  list-style: none;
+}
+
+.habit {
+  padding-top: 1.25rem;
+  border-top: 1.5px solid var(--colour-brand);
+}
+
+.habit h3 {
+  font-size: clamp(1.1875rem, 2vw, 1.375rem);
+}
+
+.habit p {
+  margin-top: 0.75rem;
+  color: var(--colour-ink-soft);
+}
+
+/* ---------- Business + digital ---------- */
+.both {
+  row-gap: var(--space-content);
+  align-items: center;
+}
+
+.both > * {
+  grid-column: 1 / -1;
+}
+
+.both__copy p {
+  max-width: 34rem;
+  font-size: 1.125rem;
+}
+
+.both__copy p + p {
+  margin-top: 1rem;
+  color: var(--colour-ink-soft);
+}
+
+.both__pair {
+  display: grid;
+  justify-items: stretch;
+}
+
+.side {
+  display: grid;
+  gap: 0.375rem;
+  padding: 1.5rem;
+  background: var(--colour-surface);
+  border: 1px solid var(--colour-line);
+  color: var(--colour-ink);
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.side:hover {
+  border-color: var(--colour-brand);
+  transform: translateY(-2px);
+}
+
+.side__label {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.side__desc {
+  color: var(--colour-ink-soft);
+}
+
+.side__more {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-brand);
+}
+
+.side:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+/* The two sides are joined by a short line through a square node. */
+.both__join {
+  position: relative;
+  justify-self: center;
+  width: 1.5px;
+  height: 3rem;
+  background: var(--colour-brand);
+}
+
+.both__join::after {
+  content: "";
+  position: absolute;
+  left: -3.75px;
+  top: calc(50% - 0.28125rem);
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--colour-brand);
+}
+
+/* ---------- Character ---------- */
+.instincts {
+  row-gap: var(--space-content);
+}
+
+.instinct {
+  grid-column: 1 / -1;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--colour-ink);
+}
+
+.instinct__label {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-brand);
+}
+
+.instinct h3 {
+  margin-top: 0.75rem;
+  font-size: clamp(1.625rem, 3.2vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.instinct p:last-child {
+  max-width: 32rem;
+  margin-top: 1rem;
+  color: var(--colour-ink-soft);
+}
+
+/* ---------- Founder ---------- */
+.profile {
+  row-gap: var(--space-content);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-ink);
+}
+
+.profile > * {
+  grid-column: 1 / -1;
+}
+
+.profile__id {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Monogram: the honest no-photo state until an approved portrait exists. */
+.profile__mono {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: var(--colour-brand);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.profile__id h3 {
+  font-size: clamp(1.625rem, 3vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.profile__role {
+  margin-top: 0.375rem;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.profile__body > p {
+  max-width: 36rem;
+}
+
+.profile__body > p + p {
+  margin-top: 1rem;
+  color: var(--colour-ink-soft);
+}
+
+.ledger {
+  margin: var(--space-content) 0 1rem;
+  border-bottom: 1px solid var(--colour-line);
+}
+
+.ledger__row {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--colour-line);
+}
+
+.ledger dt {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.ledger dd {
+  margin: 0;
+}
+
+.ledger ul {
+  list-style: none;
+}
+
+.ledger li + li {
+  margin-top: 0.25rem;
+}
+
+/* ---------- Medium and large screens ---------- */
+@media (min-width: 768px) {
+  .why-intro__grid h1 {
+    grid-column: 1 / span 10;
+  }
+
+  .why-intro__lead {
+    grid-column: 1 / span 7;
+  }
+
+  .why-intro__note {
+    grid-column: 8 / -1;
+    align-self: end;
+    padding-left: var(--space-content);
+    border-left: 1px solid var(--colour-line);
+  }
+
+  .why-head h2 {
+    grid-column: 1 / span 7;
+  }
+
+  .why-head__aside {
+    grid-column: 8 / -1;
+    grid-row: 2;
+    align-self: end;
+    padding-left: var(--space-content);
+  }
+
+  .belief {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+    padding-block: 1.75rem;
+  }
+
+  .belief h3 {
+    grid-column: 1 / span 5;
+  }
+
+  .belief p {
+    grid-column: 7 / -1;
+  }
+
+  .instinct {
+    grid-column: span 6;
+  }
+
+  .ledger__row {
+    grid-template-columns: 9rem 1fr;
+    column-gap: var(--grid-gap);
+  }
+}
+
+@media (min-width: 900px) {
+  .habits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+}
+
+@media (min-width: 1024px) {
+  .both__copy {
+    grid-column: 1 / span 6;
+  }
+
+  .both__pair {
+    grid-column: 8 / -1;
+  }
+
+  .profile__id {
+    grid-column: 1 / span 4;
+    align-self: start;
+  }
+
+  .profile__body {
+    grid-column: 6 / -1;
+  }
+}
