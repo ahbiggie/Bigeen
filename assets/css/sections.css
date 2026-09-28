@@ -52,6 +52,7 @@
 }
 
 .idea__grid {
+  position: relative;
   row-gap: var(--space-content);
 }
 
@@ -159,32 +160,9 @@
   outline-offset: 4px;
 }
 
-/* Closing statement */
-.idea__close {
-  position: relative;
-  margin-top: calc(var(--space-section) * 0.7);
-  padding-block: var(--space-content);
-  border-top: 1px solid var(--colour-ink);
-  font-family: var(--font-display);
-  font-size: clamp(1.625rem, 5vw, 3rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-
-.idea__close span {
-  display: block;
-}
-
-.idea__close span + span,
-.idea__close span:only-child {
-  color: var(--colour-brand);
-}
-
 /* Hand-off line into "What We Build": same motif as hero to Problems. It hangs
-   off the closing statement (content-width) so its x matches the Build guide. */
-.idea__close::after {
+   off the content-width grid so its x matches the Build guide. */
+.idea__grid::after {
   content: "";
   position: absolute;
   left: 0;
@@ -437,7 +415,7 @@
 }
 
 @media (min-width: 768px) {
-  .idea__close::after {
+  .idea__grid::after {
     left: calc((100% + var(--grid-gap)) * 7 / 12);
   }
 }
@@ -942,22 +920,6 @@
   color: var(--colour-ink-soft);
 }
 
-.how__copy .how__framework {
-  margin-top: 1.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.9;
-  color: var(--colour-ink);
-}
-
-.how__arrow {
-  margin-inline: 0.5rem;
-  font-weight: 400;
-  color: var(--colour-brand);
-}
-
 /* ---------- The stage sequence ---------- */
 .flow {
   --spine-x: 0px;
@@ -1072,14 +1034,15 @@
   color: var(--colour-ink-soft);
 }
 
-/* ---------- Closing principle and bridge ---------- */
+/* ---------- Closing principle ---------- */
 .how__close {
+  position: relative;
   margin-top: calc(var(--space-section) * 0.7);
   padding-top: var(--space-content);
   border-top: 1px solid var(--colour-ink);
 }
 
-.how__close h3 {
+.how__close p {
   max-width: 48rem;
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3.3vw, 2.25rem);
@@ -1089,32 +1052,8 @@
   text-wrap: balance;
 }
 
-
-.how__bridge {
-  position: relative;
-  margin-top: calc(var(--space-section) * 0.6);
-  padding-top: var(--space-content);
-  border-top: 1px solid var(--colour-line);
-  display: grid;
-  gap: 1rem;
-}
-
-.how__bridge h3 {
-  max-width: 30rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.375rem, 3vw, 1.75rem);
-  font-weight: 700;
-  line-height: 1.2;
-  text-wrap: balance;
-}
-
-.how__bridge p {
-  max-width: 30rem;
-  color: var(--colour-ink-soft);
-}
-
 /* Hand-off line into the next section, same motif as the sections above. */
-.how__bridge::after {
+.how__close::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1188,22 +1127,7 @@
     padding-left: var(--space-content);
   }
 
-  .how__bridge {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--grid-gap);
-    align-items: end;
-  }
-
-  .how__bridge-lead {
-    grid-column: 1 / span 7;
-  }
-
-  .how__bridge-next {
-    grid-column: 8 / -1;
-    padding-left: var(--space-content);
-  }
-
-  .how__bridge::after {
+  .how__close::after {
     left: calc((100% + var(--grid-gap)) * 7 / 12);
   }
 }
@@ -1277,7 +1201,7 @@
     left: 0;
   }
 
-  .how__bridge::after {
+  .how__close::after {
     left: 0;
   }
 
@@ -2179,10 +2103,73 @@
   }
 }
 
-/* The bridge out of How We Work is a single lead line. */
-.how__bridge-lead p {
-  max-width: 30rem;
-  font-size: 1.25rem;
-  line-height: 1.45;
-  color: var(--colour-ink);
+
+/* ---------- Full-screen sections (medium and large screens) ---------- */
+/* Every homepage section fills at least one viewport, with its content centred
+   vertically; taller sections simply grow. The hero already fills the first
+   screen together with the header. Centring adds free space above and below the
+   content, so the guide lines that cross between sections are extended by up to
+   half a viewport and clipped at the section edge — they still meet exactly. */
+@media (min-width: 768px) {
+  main > section:not(.hero) {
+    --slack: 50svh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* clip, not hidden: it does not create a scroll container, so the sticky
+     How We Work intro keeps working. */
+  main > section:not(.hero):not(.start) {
+    overflow-y: clip;
+  }
+
+  /* Incoming lines reach up to the top of their section */
+  .problems__head::before,
+  .build__head::before,
+  .how__intro::before,
+  .exp__head::before,
+  .prod__head::before {
+    top: calc(-1 * (var(--space-section) + var(--slack)));
+  }
+
+  /* Outgoing lines reach down to the bottom of their section */
+  .idea__grid::after,
+  .build__bridge::after,
+  .how__close::after,
+  .others::after {
+    height: calc(var(--space-section) + var(--slack));
+  }
+
+  /* The anchor square that ended the Products line now sits on the top edge of
+     the closing band, at the same x as the line (container content-box maths). */
+  .others::before {
+    display: none;
+  }
+
+  .start {
+    position: relative;
+  }
+
+  .start::before {
+    content: "";
+    position: absolute;
+    top: -0.5625rem;
+    left: calc(
+      (100% - min(100%, var(--container-max))) / 2 + var(--gutter) +
+        (min(100%, var(--container-max)) - 2 * var(--gutter) + var(--grid-gap)) * 7 / 12 -
+        3.75px
+    );
+    width: 0.5625rem;
+    height: 0.5625rem;
+    background: var(--colour-brand);
+  }
+}
+
+@media (min-width: 1024px) {
+  .flow::before {
+    top: calc(-1 * (var(--space-section) + var(--slack)));
+    height: calc(var(--space-section) + var(--slack) + var(--node-y));
+  }
 }
