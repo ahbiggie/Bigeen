@@ -1543,10 +1543,18 @@
   color: var(--colour-on-ink-soft);
 }
 
-/* The real StitchFYN icon, held to a watermark so the wordmark above still
-   leads — hidden where it would squeeze the copy. */
-.feature__mark {
-  display: none;
+/* Photo of the product's world. Below the copy on narrow screens, then its
+   own column from 900px, running the full height of the panel. */
+.feature__photo {
+  margin: var(--space-content) 0 0;
+}
+
+.feature__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 /* Secondary products: subordinate, static */
@@ -1590,14 +1598,20 @@
     column-gap: var(--space-content);
   }
 
-  .feature__mark {
+  .feature__photo {
+    margin: 0;
+    align-self: stretch;
+  }
+
+  .feature__photo picture {
     display: block;
-    justify-self: end;
-    align-self: center;
-    width: 85%;
-    max-width: 22rem;
-    height: auto;
-    opacity: 0.16;
+    height: 100%;
+  }
+
+  .feature__photo img {
+    height: 100%;
+    min-height: 22rem;
+    aspect-ratio: auto;
   }
 }
 
@@ -2298,7 +2312,7 @@
 }
 
 /* Desktop: the intro is pinned, so it must fit the screen. A wider crop keeps
-   it short enough; on unusually short screens the photo steps aside. */
+   it short enough; on short screens the intro simply scrolls instead. */
 @media (min-width: 1024px) {
   .how__photo img {
     aspect-ratio: 16 / 9;
@@ -2307,8 +2321,9 @@
 }
 
 @media (min-width: 1024px) and (max-height: 720px) {
-  .how__photo {
-    display: none;
+  .how__intro {
+    position: relative;
+    top: auto;
   }
 }
 
@@ -2317,4 +2332,79 @@
 .is-live > .pstatus__mark,
 .is-live > .status__mark {
   border-radius: 50%;
+}
+
+/* Start band with a photo behind it (homepage). The ink overlay is dense enough
+   that the cream text keeps the band's normal contrast; the photo is texture.
+   Stock placeholder (Unsplash licence) until real Bigeen photography exists:
+   https://unsplash.com/photos/team-collaborating-with-sticky-notes-w00FkE6e8zE */
+.start--photo {
+  background:
+    linear-gradient(rgba(22, 24, 29, 0.86), rgba(22, 24, 29, 0.86)),
+    image-set(
+      url("../images/photos/workshop-hands-800.webp") type("image/webp"),
+      url("../images/photos/workshop-hands-800.jpg") type("image/jpeg")
+    ) center 30% / cover no-repeat,
+    var(--colour-ink);
+}
+
+@media (min-width: 900px) {
+  .start--photo {
+    background:
+      linear-gradient(rgba(22, 24, 29, 0.86), rgba(22, 24, 29, 0.86)),
+      image-set(
+        url("../images/photos/workshop-hands-1600.webp") type("image/webp"),
+        url("../images/photos/workshop-hands-1600.jpg") type("image/jpeg")
+      ) center 30% / cover no-repeat,
+      var(--colour-ink);
+  }
+}
+
+/* Areas of experience as image tiles: the words stay as captions. Two across
+   on phones, then the list's own 2 and 4 column layout. */
+.areas ul.areas__tiles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem var(--grid-gap);
+}
+
+.areas__tiles li {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding: 0;
+  border-top: 0;
+}
+
+.areas__tiles li::before {
+  content: none;
+}
+
+.areas__tiles img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--colour-line);
+}
+
+.areas__label {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.areas__label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  background: var(--colour-brand);
+}
+
+@media (min-width: 1100px) {
+  .areas ul.areas__tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

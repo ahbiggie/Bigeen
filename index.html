@@ -590,11 +590,39 @@
 
           <div class="areas rv" data-reveal>
             <h3>Areas of experience</h3>
-            <ul role="list">
-              <li>Process and documentation systems</li>
-              <li>Digital workflows and reporting</li>
-              <li>Healthcare quality and operations</li>
-              <li>Product and technology development</li>
+            <!-- Stock placeholders (Unsplash licence) until real Bigeen photography exists:
+                 colorful-ring-binders-on-office-shelves-05HLFQu8bFw, a-computer-screen-with-a-bunch-of-data-on-it-bMWHu8wU1Vk,
+                 empty-hospital-corridor-with-benches-and-doors-Pk-KuizxQv8, yellow-click-pen-on-white-printer-paper-gcHFXsdcmJE
+                 (all at https://unsplash.com/photos/<id>). Illustrations of the areas, not of Bigeen engagements. -->
+            <ul class="areas__tiles" role="list">
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-documentation-480.webp 480w, assets/images/photos/area-documentation-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-documentation-480.jpg" srcset="assets/images/photos/area-documentation-480.jpg 480w, assets/images/photos/area-documentation-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="Labelled ring binders arranged on office shelves." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Process and documentation systems</span>
+              </li>
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-reporting-480.webp 480w, assets/images/photos/area-reporting-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-reporting-480.jpg" srcset="assets/images/photos/area-reporting-480.jpg 480w, assets/images/photos/area-reporting-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="A reporting dashboard with charts on a screen." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Digital workflows and reporting</span>
+              </li>
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-healthcare-480.webp 480w, assets/images/photos/area-healthcare-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-healthcare-480.jpg" srcset="assets/images/photos/area-healthcare-480.jpg 480w, assets/images/photos/area-healthcare-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="An empty, clean clinic corridor with waiting chairs." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Healthcare quality and operations</span>
+              </li>
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-product-480.webp 480w, assets/images/photos/area-product-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-product-480.jpg" srcset="assets/images/photos/area-product-480.jpg 480w, assets/images/photos/area-product-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="Hands sketching app wireframes on paper." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Product and technology development</span>
+              </li>
             </ul>
           </div>
 
@@ -650,8 +678,14 @@
               <p class="feature__credit">StitchFYN is a product of Bigeen Solutions.</p>
             </div>
 
-            <!-- The real StitchFYN mark, quiet and large, rather than an invented shape. Decorative: the wordmark above already carries the name. -->
-            <img class="feature__mark" src="assets/images/stitchfyn/logo-icon.png" alt="" aria-hidden="true" width="512" height="512" loading="lazy" decoding="async" />
+            <!-- Stock placeholder (Unsplash licence) until real StitchFYN photography exists:
+                 https://unsplash.com/photos/assorted-color-textiles-SfPOkp6-2eA -->
+            <figure class="feature__photo">
+              <picture>
+                <source type="image/webp" srcset="assets/images/photos/fabric-portrait-480.webp 480w, assets/images/photos/fabric-portrait-720.webp 720w" sizes="(min-width: 900px) 30vw, calc(100vw - 6rem)" />
+                <img src="assets/images/photos/fabric-portrait-480.jpg" srcset="assets/images/photos/fabric-portrait-480.jpg 480w, assets/images/photos/fabric-portrait-720.jpg 720w" sizes="(min-width: 900px) 30vw, calc(100vw - 6rem)" width="720" height="960" alt="Rolls of colourful African wax-print fabric." loading="lazy" decoding="async" />
+              </picture>
+            </figure>
           </article>
 
           <div class="others">
@@ -673,7 +707,7 @@
         </div>
       </section>
 
-      <section class="start" id="start-a-conversation" aria-labelledby="start-title">
+      <section class="start start--photo" id="start-a-conversation" aria-labelledby="start-title">
         <div class="container">
           <div class="grid start__grid">
             <div class="start__lead">
