@@ -45,27 +45,68 @@
     });
   }
 
-  // Principles lightly emphasise the related parts of the systems map.
-  // Nothing depends on this: the map and principles are complete without it.
+  // Systems map as scroll steps (two-column layout only). The map stays pinned
+  // while the principles scroll past; the one crossing the middle of the viewport
+  // lights its parts. Each principle also carries its own mini-map, so nothing
+  // depends on this: without it the map simply shows all six parts.
   var map = document.querySelector("[data-map]");
   var principles = document.querySelectorAll("[data-principle]");
   if (map && principles.length) {
     var parts = map.querySelectorAll("[data-p]");
+    var wide = window.matchMedia("(min-width: 900px)");
+    var current = null;
+
     var light = function (n) {
+      if (n === current) return;
+      current = n;
       parts.forEach(function (el) {
         var on = n !== null && el.getAttribute("data-p").split(" ").indexOf(n) > -1;
         el.classList.toggle("is-lit", on);
         el.classList.toggle("is-dim", n !== null && !on);
       });
+      principles.forEach(function (li) {
+        li.classList.toggle("is-active", li.getAttribute("data-principle") === n);
+      });
+      map.classList.toggle("is-stepping", n !== null);
     };
-    principles.forEach(function (li) {
-      var n = li.getAttribute("data-principle");
-      li.setAttribute("tabindex", "0");
-      li.addEventListener("mouseenter", function () { light(n); });
-      li.addEventListener("mouseleave", function () { light(null); });
-      li.addEventListener("focus", function () { light(n); });
-      li.addEventListener("blur", function () { light(null); });
-    });
+
+    // The principle whose box spans the viewport's midline, if any.
+    var pick = function () {
+      if (!wide.matches) { light(null); return; }
+      var mid = window.innerHeight / 2;
+      var hit = null;
+      principles.forEach(function (li) {
+        var r = li.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) hit = li.getAttribute("data-principle");
+      });
+      light(hit);
+    };
+
+    // Centre the pinned map vertically using its real height.
+    var size = function () {
+      map.style.setProperty("--map-h", map.offsetHeight + "px");
+      pick();
+    };
+
+    document.documentElement.classList.add("map-steps");
+    // Step animations take over only once the entrance animation (which starts
+    // when the map is revealed) has finished; without scroll reveal, at once.
+    var settle = function () {
+      window.setTimeout(function () { map.classList.add("is-settled"); }, 900);
+    };
+    if (!root.classList.contains("rv-on") || map.classList.contains("is-in")) {
+      settle();
+    } else if ("MutationObserver" in window) {
+      var watch = new MutationObserver(function () {
+        if (map.classList.contains("is-in")) { watch.disconnect(); settle(); }
+      });
+      watch.observe(map, { attributes: true, attributeFilter: ["class"] });
+    }
+    window.addEventListener("scroll", pick, { passive: true });
+    window.addEventListener("resize", size);
+    // Fonts and layout can change the map's height after load.
+    if ("ResizeObserver" in window) new ResizeObserver(size).observe(map);
+    size();
   }
 
   // How We Work: as the reader moves down the sequence, the connecting line fills

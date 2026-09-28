@@ -149,15 +149,47 @@
   color: var(--colour-ink-soft);
 }
 
-/* Interactive only when JS has made them focusable (data-interactive). */
-.principle[tabindex]:hover h3,
-.principle[tabindex]:focus-visible h3 {
-  color: var(--colour-brand);
+/* Each principle's own mini-map: which parts of the system it involves. */
+.principle__map {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-top: 1rem;
 }
 
-.principle[tabindex]:focus-visible {
-  outline: 2px solid var(--colour-brand);
-  outline-offset: 4px;
+.mini {
+  flex: none;
+  overflow: visible;
+}
+
+.mini__line {
+  fill: none;
+  stroke: var(--colour-line);
+  stroke-width: 1.5;
+}
+
+.mini__line.is-lit {
+  stroke: var(--colour-brand);
+}
+
+.mini__node {
+  fill: var(--colour-canvas);
+  stroke: var(--colour-ink-soft);
+  stroke-width: 1;
+}
+
+.mini__node.is-lit {
+  fill: var(--colour-brand);
+  stroke: var(--colour-brand);
+}
+
+.principle__parts {
+  font-family: var(--font-data);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
 }
 
 /* Hand-off line into "What We Build": same motif as hero to Problems. It hangs
@@ -412,6 +444,48 @@
     top: var(--space-content);
   }
 
+  /* Scroll steps (main.js adds .map-steps): the map is pinned mid-screen while
+     each principle takes a step's worth of scroll. The big map now does the
+     mini-maps' job, so they step aside. */
+  .map-steps .idea__map {
+    top: max(var(--space-content), calc(50svh - var(--map-h, 0px) / 2));
+  }
+
+  .map-steps .principle {
+    min-height: 55svh;
+    align-content: center;
+    transition: opacity 0.35s var(--ease);
+  }
+
+  .map-steps .principle__map {
+    display: none;
+  }
+
+  .map-steps .principles:has(.is-active) .principle:not(.is-active) {
+    opacity: 0.4;
+  }
+
+  .map-steps .principle.is-active h3 {
+    color: var(--colour-brand);
+  }
+
+  /* After the entrance animation, lines draw in again as each step lights them. */
+  .rv-on .map.is-in.is-settled .conn,
+  .rv-on .map.is-in.is-settled .node {
+    animation: none;
+  }
+
+  .rv-on .map.is-in.is-settled.is-stepping .conn--v.is-lit {
+    animation: draw-down 0.4s var(--ease);
+  }
+
+  .rv-on .map.is-in.is-settled.is-stepping .conn--left.is-lit {
+    animation: draw-left 0.4s var(--ease);
+  }
+
+  .rv-on .map.is-in.is-settled.is-stepping .conn--right.is-lit {
+    animation: draw-right 0.4s var(--ease);
+  }
 }
 
 @media (min-width: 768px) {
