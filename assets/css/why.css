@@ -341,23 +341,26 @@ main > section.why-intro {
 
 .profile__id {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 1.25rem;
 }
 
-/* Monogram: the honest no-photo state until an approved portrait exists. */
-.profile__mono {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: var(--colour-brand);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+/* Founder portrait: 4:5, the site's quiet photo frame. */
+.profile__photo {
+  width: min(100%, 14rem);
+  margin: 0;
+}
+
+.profile__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--colour-stone);
+  outline: 1px solid var(--colour-line);
+  outline-offset: -1px;
 }
 
 .profile__id h3 {
@@ -522,6 +525,10 @@ main > section.why-intro {
   .profile__id {
     grid-column: 1 / span 4;
     align-self: start;
+  }
+
+  .profile__photo {
+    width: min(100%, 18rem);
   }
 
   .profile__body {
