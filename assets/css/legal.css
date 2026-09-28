@@ -1,0 +1,212 @@
+/* Privacy Notice and Terms of Use: a reading layout. Builds on tokens/base/home
+   (header, footer, links) and sections (eyebrow). */
+
+.legal {
+  padding-block: var(--space-section);
+}
+
+.legal__grid {
+  row-gap: var(--space-content);
+}
+
+.legal__grid > * {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Head ---------- */
+.legal__head {
+  padding-bottom: var(--space-content);
+  border-bottom: 1px solid var(--colour-ink);
+}
+
+.legal h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.legal__lead {
+  max-width: 36rem;
+  margin-top: 1.25rem;
+  font-size: 1.125rem;
+  color: var(--colour-ink-soft);
+}
+
+.legal__meta {
+  margin-top: 1rem;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+/* ---------- Contents ---------- */
+.legal__toc-title {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.legal__toc ol {
+  list-style: none;
+  counter-reset: toc;
+  border-top: 1px solid var(--colour-line);
+}
+
+.legal__toc li {
+  counter-increment: toc;
+  border-bottom: 1px solid var(--colour-line);
+}
+
+.legal__toc a {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--colour-ink);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.legal__toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  color: var(--colour-brand);
+}
+
+.legal__toc a:hover {
+  color: var(--colour-brand);
+}
+
+/* ---------- Body ---------- */
+.legal__body {
+  max-width: 44rem;
+  counter-reset: clause;
+}
+
+.legal__body section {
+  counter-increment: clause;
+  scroll-margin-top: 1.5rem;
+}
+
+.legal__body section + section {
+  margin-top: var(--space-content);
+  padding-top: var(--space-content);
+  border-top: 1px solid var(--colour-line);
+}
+
+/* Clause numbers match the contents list, so a clause can be referred to. */
+.legal__body h2 {
+  display: flex;
+  gap: 0.875rem;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.6vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.legal__body h2::before {
+  content: counter(clause, decimal-leading-zero);
+  flex: none;
+  font-family: var(--font-data);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--colour-brand);
+}
+
+.legal__body h3 {
+  margin-top: 1.75rem;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.legal__body p,
+.legal__body ul,
+.legal__body dl {
+  margin-top: 1rem;
+}
+
+.legal__body ul {
+  padding-left: 1.25rem;
+}
+
+.legal__body li + li {
+  margin-top: 0.5rem;
+}
+
+.legal__body a {
+  color: var(--colour-brand);
+  text-underline-offset: 0.2em;
+}
+
+.legal__body a:hover {
+  color: var(--colour-ink);
+}
+
+.legal__body .legal__summary {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  background: var(--colour-stone);
+}
+
+.legal__list {
+  border-top: 1px solid var(--colour-line);
+}
+
+.legal__list > div {
+  display: grid;
+  gap: 0.25rem;
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--colour-line);
+}
+
+.legal__list dt {
+  font-weight: 600;
+}
+
+.legal__list dd {
+  margin: 0;
+  color: var(--colour-ink-soft);
+}
+
+/* Unresolved facts: deliberately loud so they cannot ship unnoticed. */
+.pending {
+  padding: 0 0.25rem;
+  background: #fff3cd;
+  outline: 1px dashed var(--colour-brass);
+  color: var(--colour-ink);
+}
+
+@media (min-width: 768px) {
+  .legal__list > div {
+    grid-template-columns: 13rem 1fr;
+    column-gap: var(--grid-gap);
+  }
+}
+
+@media (min-width: 1024px) {
+  .legal__head {
+    grid-column: 1 / -1;
+  }
+
+  .legal__toc {
+    grid-column: 1 / span 3;
+    align-self: start;
+    position: sticky;
+    top: var(--space-content);
+  }
+
+  .legal__body {
+    grid-column: 5 / -1;
+  }
+}

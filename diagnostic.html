@@ -87,9 +87,11 @@
             </p>
             <p class="diag-key">All questions are required unless marked optional.</p>
 
-            <!-- Submission: set data-endpoint to a real form endpoint that accepts a JSON POST.
-                 It is intentionally empty; until it is set, Submit reports a failure. -->
-            <form id="diagnostic-form" novalidate data-endpoint="" aria-label="Business Diagnostic">
+            <!-- Submission: Bigeen's Formspree form (JSON POST; notifications go to Bigeen's inbox).
+                 Keep privacy.html in step with any change of provider or Formspree settings
+                 (e.g. reCAPTCHA would add Google as a processor). An empty value makes Submit
+                 report a failure rather than pretend the answers were sent. -->
+            <form id="diagnostic-form" novalidate data-endpoint="https://formspree.io/f/movwonva" aria-label="Business Diagnostic">
               <div class="diag-errors" data-errors role="alert" tabindex="-1" hidden></div>
 
               <section class="step" data-step="1" aria-labelledby="step-1-title">
@@ -287,6 +289,10 @@
                 <div class="field field--consent" id="consent-field">
                   <label class="opt opt--inline"><input type="checkbox" id="consent" name="consent" value="Agreed" required data-msg="Please confirm this so Bigeen can review your diagnostic and respond." aria-describedby="consent-err" /><span>I agree that Bigeen may use the information I have provided to review this diagnostic and contact me about it.</span></label>
                   <p class="field__error" id="consent-err" hidden></p>
+                  <p class="field__hint consent-note">
+                    How Bigeen handles this information is set out in the
+                    <a href="privacy.html" target="_blank" rel="noopener">Privacy Notice<span class="visually-hidden"> (opens in a new tab)</span></a>.
+                  </p>
                 </div>
               </section>
 
@@ -368,7 +374,13 @@
           </nav>
         </div>
 
-        <p class="footer__copy">© <span data-year>2026</span> Bigeen Solutions</p>
+        <div class="footer__base">
+          <p class="footer__copy">© <span data-year>2026</span> Bigeen Solutions</p>
+          <ul class="footer__legal" aria-label="Legal">
+            <li><a href="privacy.html">Privacy Notice</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+          </ul>
+        </div>
       </div>
       <script>
         (function () {
