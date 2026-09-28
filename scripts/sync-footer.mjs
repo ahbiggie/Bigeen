@@ -20,7 +20,8 @@ const END = "    <!-- footer:end -->";
 const partial = readFileSync(join(root, "partials", "footer.html"), "utf8").replace(/\r\n/g, "\n").trimEnd();
 const block = `${START}\n${partial}\n${END}`;
 
-const pages = readdirSync(root).filter((f) => f.endsWith(".html"));
+// Search-engine verification files (e.g. google<hex>.html) must stay byte-for-byte.
+const pages = readdirSync(root).filter((f) => f.endsWith(".html") && !/^google[0-9a-f]+\.html$/.test(f));
 let stale = 0;
 
 for (const page of pages) {
