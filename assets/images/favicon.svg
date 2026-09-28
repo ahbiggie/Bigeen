@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    path, polygon { fill: #16181d; }
+    @media (prefers-color-scheme: dark) { path, polygon { fill: #f7f5f0; } }
+  </style>
+  <path fill-rule="evenodd" d="M30.6 9 L56.6 9 L62.2 16 L60.0 27 L55.0 32 L58.0 37 L55.8 48 L47.4 55 L21.4 55 Z M39.0 17 L51.0 17 L51.8 18 L50.2 26 L49.0 27 L37.0 27 Z M35.0 37 L47.0 37 L47.8 38 L46.2 46 L45.0 47 L33.0 47 Z" />
+  <polygon points="7.6,14 26.12,11.4 25.08,16.6" />
+  <polygon points="5.4,25 23.92,22.4 22.88,27.6" />
+  <polygon points="3.2,36 21.72,33.4 20.68,38.6" />
+  <polygon points="1.0,47 19.52,44.4 18.48,49.6" />
+</svg>
