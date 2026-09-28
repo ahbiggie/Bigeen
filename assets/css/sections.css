@@ -2311,3 +2311,10 @@
     display: none;
   }
 }
+
+/* Launched: a round marker, so "live" differs by shape as well as by wording
+   (solid square = in development, dashed square = future). */
+.is-live > .pstatus__mark,
+.is-live > .status__mark {
+  border-radius: 50%;
+}

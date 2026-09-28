@@ -150,6 +150,26 @@
     ).observe(flow.parentElement);
   }
 
+  // Launch-dependent wording. Each element carries its launch instant (data-launch)
+  // and the text to show from then on (data-live-text); the HTML holds the
+  // pre-launch text. The badge's parent gets .is-live so its marker changes shape.
+  var liveBits = document.querySelectorAll("[data-live-text]");
+  if (liveBits.length) {
+    var goLive = function (el) {
+      el.textContent = el.getAttribute("data-live-text");
+      el.removeAttribute("data-live-text");
+      if (el.parentElement) el.parentElement.classList.add("is-live");
+    };
+    Array.prototype.forEach.call(liveBits, function (el) {
+      var at = Date.parse(el.getAttribute("data-launch"));
+      if (isNaN(at)) return;
+      var wait = at - Date.now();
+      if (wait <= 0) goLive(el);
+      // setTimeout caps at about 24.8 days; a page open that long can reload.
+      else if (wait < 2147483647) window.setTimeout(function () { goLive(el); }, wait);
+    });
+  }
+
   // StitchFYN countdown. The target instant lives in data-launch on the element.
   // Without JS the static "Launching 31 October 2026" line is shown instead. Under
   // reduced motion the seconds are dropped and the display updates once a minute.
