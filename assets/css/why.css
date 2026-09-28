@@ -288,6 +288,15 @@ main > section.why-intro {
 }
 
 /* ---------- Character ---------- */
+.why-photo {
+  margin-bottom: calc(var(--space-content) * 1.5);
+}
+
+/* The hands sit in the upper part of the frame; keep them in the wide crop. */
+.why-photo img {
+  object-position: center 25%;
+}
+
 .instincts {
   row-gap: var(--space-content);
 }

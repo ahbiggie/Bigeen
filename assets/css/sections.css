@@ -2247,3 +2247,67 @@
     height: calc(var(--space-section) + var(--slack) + var(--node-y));
   }
 }
+
+/* ---------- Photography ---------- */
+/* Documentary images, quiet frame: no rounding, no shadow, a hairline edge. */
+.photo {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--colour-stone);
+  outline: 1px solid var(--colour-line);
+  outline-offset: -1px;
+}
+
+.photo--banner img {
+  aspect-ratio: 12 / 5;
+  object-fit: cover;
+}
+
+.photo--wide img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* How We Work: the photo sits under the intro copy, on the same inset. */
+.how__photo {
+  grid-column: 1 / -1;
+  margin-top: var(--space-content);
+  padding-left: 1.25rem;
+}
+
+.how__photo img {
+  max-width: 34rem;
+}
+
+@media (min-width: 768px) {
+  .photo--wide img {
+    aspect-ratio: 21 / 9;
+  }
+
+  /* Left of the intro's guide line, which sits at the 7/12 mark. */
+  .how__photo {
+    grid-column: 1 / span 7;
+    padding-left: 0;
+  }
+}
+
+/* Desktop: the intro is pinned, so it must fit the screen. A wider crop keeps
+   it short enough; on unusually short screens the photo steps aside. */
+@media (min-width: 1024px) {
+  .how__photo img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 720px) {
+  .how__photo {
+    display: none;
+  }
+}
