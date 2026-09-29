@@ -116,10 +116,10 @@
               <span>Business Systems + Technology</span>
             </p>
             <h1 id="hero-title" class="reveal" style="--i: 1">
-              Your organisation has outgrown the systems running it.
+              Built to run without heroes.
             </h1>
             <p class="hero__lead reveal" style="--i: 2">
-              Bigeen works across business consulting, capability building and technology to build the systems that let organisations operate clearly, scale consistently and grow without depending on individual heroics.
+              We design the processes, people systems and technology your growth depends on.
             </p>
             <div class="hero__actions reveal" style="--i: 3">
               <a class="btn btn--primary" href="diagnostic.html">Start Your Diagnostic</a>
@@ -130,8 +130,11 @@
           </div>
 
           <div class="hero__visual">
+            <!-- Living systems map: the parts draw in, settle into place, then
+                 signals run between them (never under reduced motion). -->
             <svg
-              viewBox="0 0 400 560"
+              class="sv"
+              viewBox="0 0 480 560"
               aria-hidden="true"
               focusable="false"
               preserveAspectRatio="xMinYMin meet"
@@ -139,23 +142,55 @@
               <!-- Structural line that continues into the next section -->
               <path class="sv-main draw" pathLength="1" d="M0.75 0 V560" style="--d: 0" />
 
-              <!-- Connectors -->
-              <path class="sv-line draw" pathLength="1" d="M0 90 H340" style="--d: 100" />
-              <path class="sv-line draw" pathLength="1" d="M0 250 H340" style="--d: 220" />
-              <path class="sv-line draw" pathLength="1" d="M0 410 H340" style="--d: 340" />
-              <path class="sv-line draw" pathLength="1" d="M200 90 V250" style="--d: 460" />
-              <path class="sv-line draw" pathLength="1" d="M200 250 V410" style="--d: 560" />
-              <path class="sv-line draw" pathLength="1" d="M200 410 V500 H400" style="--d: 660" />
+              <!-- Feeds from the main line and links between the parts -->
+              <path class="sv-line draw" pathLength="1" d="M0 64 H176" style="--d: 100" />
+              <path class="sv-line draw" pathLength="1" d="M0 224 H24" style="--d: 180" />
+              <path class="sv-line draw" pathLength="1" d="M0 504 H176" style="--d: 260" />
+              <path class="sv-line draw" pathLength="1" d="M240 88 V200" style="--d: 340" />
+              <path class="sv-line draw" pathLength="1" d="M152 224 H176" style="--d: 420" />
+              <path class="sv-line draw" pathLength="1" d="M304 224 H328" style="--d: 420" />
+              <path class="sv-line draw" pathLength="1" d="M240 248 V360" style="--d: 500" />
+              <path class="sv-line draw" pathLength="1" d="M240 408 V480" style="--d: 580" />
 
-              <!-- Planes settle into a shared alignment -->
-              <rect class="sv-plane settle" x="200" y="26" width="140" height="64" style="--dx: 8px; --dy: -4px; --d: 0" />
-              <rect class="sv-plane settle" x="200" y="186" width="140" height="64" style="--dx: -6px; --dy: 4px; --d: 120" />
-              <rect class="sv-plane settle" x="200" y="346" width="140" height="64" style="--dx: 5px; --dy: -3px; --d: 240" />
+              <!-- Signals: a short brand-blue dash travelling each link in turn -->
+              <path class="sv-pulse" pathLength="1" d="M0 64 H176" style="--p: 0" />
+              <path class="sv-pulse" pathLength="1" d="M240 88 V200" style="--p: 1" />
+              <path class="sv-pulse" pathLength="1" d="M176 224 H152" style="--p: 2" />
+              <path class="sv-pulse" pathLength="1" d="M304 224 H328" style="--p: 2" />
+              <path class="sv-pulse" pathLength="1" d="M240 248 V360" style="--p: 3" />
+              <path class="sv-pulse" pathLength="1" d="M240 408 V480" style="--p: 4" />
+              <path class="sv-pulse" pathLength="1" d="M176 504 H0" style="--p: 5" />
+
+              <!-- The parts of the organisation; each lights as a signal arrives -->
+              <g class="sv-box settle" style="--d: 0; --dx: 6px; --dy: -4px; --p: 1">
+                <rect x="176" y="40" width="128" height="48" />
+                <text x="240" y="69">Strategy</text>
+              </g>
+              <g class="sv-box settle" style="--d: 120; --dx: -8px; --dy: 3px; --p: 3">
+                <rect x="24" y="200" width="128" height="48" />
+                <text x="88" y="229">People</text>
+              </g>
+              <g class="sv-box sv-box--core settle" style="--d: 60; --dx: 0px; --dy: 0px; --p: 2">
+                <rect x="176" y="200" width="128" height="48" />
+                <text x="240" y="229">Operations</text>
+              </g>
+              <g class="sv-box settle" style="--d: 180; --dx: 8px; --dy: -3px; --p: 3">
+                <rect x="328" y="200" width="128" height="48" />
+                <text x="392" y="229">Quality</text>
+              </g>
+              <g class="sv-box settle" style="--d: 240; --dx: -5px; --dy: 4px; --p: 4">
+                <rect x="176" y="360" width="128" height="48" />
+                <text x="240" y="389">Technology</text>
+              </g>
+              <g class="sv-box settle" style="--d: 300; --dx: 6px; --dy: 4px; --p: 5">
+                <rect x="176" y="480" width="128" height="48" />
+                <text x="240" y="509">Data</text>
+              </g>
 
               <!-- Junctions on the main line -->
-              <rect class="sv-node settle" x="-2.25" y="87" width="6" height="6" style="--d: 0" />
-              <rect class="sv-node settle" x="-2.25" y="247" width="6" height="6" style="--d: 120" />
-              <rect class="sv-node settle" x="-2.25" y="407" width="6" height="6" style="--d: 240" />
+              <rect class="sv-node settle" x="-2.25" y="61" width="6" height="6" style="--d: 0" />
+              <rect class="sv-node settle" x="-2.25" y="221" width="6" height="6" style="--d: 120" />
+              <rect class="sv-node settle" x="-2.25" y="501" width="6" height="6" style="--d: 240" />
             </svg>
             <div class="hero__tail"></div>
           </div>
@@ -802,6 +837,11 @@
         })();
       </script>
     </footer>
+    <!-- Floating WhatsApp button on every page (refinement brief 1.1) -->
+    <a class="wa-float" href="https://wa.me/2348158771727">
+      <svg class="wa-float__icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
+      <span class="wa-float__label">Chat on WhatsApp</span>
+    </a>
     <!-- footer:end -->
   </body>
 </html>
