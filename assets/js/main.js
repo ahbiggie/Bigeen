@@ -150,53 +150,90 @@
     ).observe(flow.parentElement);
   }
 
-  // Selected Experience: previous/next buttons for the swipeable row of cases.
-  // They are shown only while the row actually scrolls (phones and tablets);
-  // on desktop the cards sit side by side. Without JS the row still swipes.
-  var cases = document.querySelector("[data-cases]");
-  if (cases) {
-    var track = cases.querySelector(".cases__track");
-    var nav = cases.querySelector(".cases__nav");
-    var cards = track.children;
-    var prev = cases.querySelector("[data-cases-prev]");
-    var next = cases.querySelector("[data-cases-next]");
-    var at = cases.querySelector("[data-cases-at]");
-    var index = 0;
-    var queued = false;
+  // Selected Experience carousel: one example at a time. The track is a native
+  // scroll-snap row (it swipes without JS); this adds arrows, dots and a slow
+  // auto-advance. Auto-advance runs only while the carousel is on screen and the
+  // tab is visible, pauses on hover, keyboard focus or the pause button, stops
+  // for good once the visitor steers it, and never runs under reduced motion.
+  var carousel = document.querySelector("[data-carousel]");
+  if (carousel) {
+    var cTrack = carousel.querySelector(".carousel__track");
+    var slides = cTrack.children;
+    var controls = carousel.querySelector(".carousel__controls");
+    var dots = carousel.querySelectorAll("[data-carousel-dot]");
+    var pauseBtn = carousel.querySelector("[data-carousel-pause]");
+    var current = 0;
+    var timer = null;
+    var onScreen = false;
+    var hovered = false;
+    var focused = false;
+    var stopped = reduceMotion; // pause button or manual navigation
+    var settle = null;
 
-    var step = function () {
-      return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+    var show = function (i) {
+      current = (i + slides.length) % slides.length;
+      cTrack.scrollTo({
+        left: slides[current].offsetLeft - cTrack.offsetLeft - cTrack.clientLeft,
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
     };
-    var sync = function () {
-      queued = false;
-      var max = track.scrollWidth - track.clientWidth;
-      var scrolls = max > 1;
-      nav.hidden = !scrolls;
-      // A focus stop only while there is something to scroll with the arrow keys.
-      if (scrolls) track.setAttribute("tabindex", "0");
-      else track.removeAttribute("tabindex");
-      index = track.scrollLeft >= max - 1
-        ? cards.length - 1
-        : Math.round(track.scrollLeft / step());
-      at.textContent = index + 1;
-      prev.disabled = track.scrollLeft <= 1;
-      next.disabled = track.scrollLeft >= max - 1;
+    // Read the position only once scrolling has settled, so a smooth scroll in
+    // progress never resets the index to the slide it is leaving.
+    var syncDots = function () {
+      current = Math.round(cTrack.scrollLeft / cTrack.clientWidth);
+      Array.prototype.forEach.call(dots, function (d, i) {
+        d.setAttribute("aria-current", i === current ? "true" : "false");
+      });
     };
-    var queue = function () {
-      if (!queued) {
-        queued = true;
-        window.requestAnimationFrame(sync);
-      }
+    var running = function () {
+      return !stopped && onScreen && !hovered && !focused && !document.hidden;
     };
-    var go = function (dir) {
-      track.scrollBy({ left: dir * step(), behavior: reduceMotion ? "auto" : "smooth" });
+    var schedule = function () {
+      window.clearInterval(timer);
+      timer = running() ? window.setInterval(function () { show(current + 1); }, 6000) : null;
+    };
+    var steer = function (i) {
+      stopped = true;
+      pauseBtn.textContent = "Play";
+      show(i);
+      schedule();
     };
 
-    prev.addEventListener("click", function () { go(-1); });
-    next.addEventListener("click", function () { go(1); });
-    track.addEventListener("scroll", queue, { passive: true });
-    window.addEventListener("resize", queue);
-    sync();
+    controls.hidden = false;
+    pauseBtn.hidden = reduceMotion;
+    carousel.querySelector("[data-carousel-prev]").addEventListener("click", function () { steer(current - 1); });
+    carousel.querySelector("[data-carousel-next]").addEventListener("click", function () { steer(current + 1); });
+    Array.prototype.forEach.call(dots, function (d) {
+      d.addEventListener("click", function () { steer(Number(d.getAttribute("data-carousel-dot"))); });
+    });
+    pauseBtn.addEventListener("click", function () {
+      stopped = !stopped;
+      pauseBtn.textContent = stopped ? "Play" : "Pause";
+      schedule();
+    });
+    // A swipe is steering too.
+    cTrack.addEventListener("pointerdown", function () { stopped = true; pauseBtn.textContent = "Play"; schedule(); });
+    cTrack.addEventListener("scroll", function () {
+      window.clearTimeout(settle);
+      settle = window.setTimeout(syncDots, 150);
+    }, { passive: true });
+    carousel.addEventListener("mouseenter", function () { hovered = true; schedule(); });
+    carousel.addEventListener("mouseleave", function () { hovered = false; schedule(); });
+    carousel.addEventListener("focusin", function () { focused = true; schedule(); });
+    carousel.addEventListener("focusout", function (e) {
+      if (!carousel.contains(e.relatedTarget)) { focused = false; schedule(); }
+    });
+    document.addEventListener("visibilitychange", schedule);
+    window.addEventListener("resize", function () {
+      cTrack.scrollLeft = current * cTrack.clientWidth;
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+        schedule();
+      }, { threshold: 0.5 }).observe(carousel);
+    }
+    syncDots();
   }
 
   // Launch-dependent wording. Each element carries its launch instant (data-launch)

@@ -504,70 +504,40 @@
               <div class="how__copy rv" data-reveal style="--i: 2">
                 <p>
                   Every engagement moves through the same seven stages, starting
-                  with a diagnostic of how the organisation works today.
+                  with a diagnostic of how the organisation works today. We walk
+                  through each stage with you during the diagnostic.
                 </p>
               </div>
             </div>
 
-            <ol class="flow" data-flow role="list">
+            <ol class="flow" data-flow role="list" aria-hidden="true">
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
                 <span class="stage__num" aria-hidden="true">01</span>
-                <h3>Discover</h3>
-                <p class="stage__copy">
-                  Understand the organisation, its goals and its context.
-                </p>
               </li>
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
                 <span class="stage__num" aria-hidden="true">02</span>
-                <h3>Diagnose</h3>
-                <p class="stage__copy">
-                  Find the real problems and how they connect.
-                </p>
               </li>
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
                 <span class="stage__num" aria-hidden="true">03</span>
-                <h3>Design</h3>
-                <p class="stage__copy">
-                  Turn what we learn into practical systems.
-                </p>
               </li>
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
                 <span class="stage__num" aria-hidden="true">04</span>
-                <h3>Build</h3>
-                <p class="stage__copy">
-                  Make them real: processes, documentation, workflows and applications.
-                </p>
               </li>
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
                 <span class="stage__num" aria-hidden="true">05</span>
-                <h3>Enable</h3>
-                <p class="stage__copy">
-                  Equip the people who will run them.
-                </p>
               </li>
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
                 <span class="stage__num" aria-hidden="true">06</span>
-                <h3>Measure</h3>
-                <p class="stage__copy">
-                  See whether the system works and where it needs attention.
-                </p>
               </li>
               <li class="stage rv" data-reveal>
                 <span class="stage__line" aria-hidden="true"></span>
-                <span class="stage__num" aria-hidden="true">07</span>
-                <h3>
-                  Evolve
-                  <svg class="stage__loop" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M19 12a7 7 0 1 1-2.2-5.1" /><path d="M19.5 3.5v4h-4" /></svg>
-                </h3>
-                <p class="stage__copy">
-                  Improve it as the organisation changes.
-                </p>
+                <span class="stage__num" aria-hidden="true">07 <svg class="stage__loop" viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M19 12a7 7 0 1 1-2.2-5.1" /><path d="M19.5 3.5v4h-4" /></svg></span>
               </li>
             </ol>
           </div>
@@ -597,57 +567,74 @@
             </div>
           </div>
 
-          <!-- Stock placeholders (Unsplash licence) until real Bigeen photography exists:
-               a-computer-screen-with-a-bunch-of-data-on-it-bMWHu8wU1Vk, colorful-ring-binders-on-office-shelves-05HLFQu8bFw,
-               empty-hospital-corridor-with-benches-and-doors-Pk-KuizxQv8 (all at https://unsplash.com/photos/<id>).
-               Illustrations of the areas, not of Bigeen engagements.
-               Descriptions: draft wording from the refinement brief (2.7), for Fatima to confirm. -->
-          <div class="cases rv" data-reveal data-cases>
-            <ul class="cases__track" role="list" aria-label="Selected experience">
-              <li class="case">
-                <picture>
-                  <source type="image/webp" srcset="assets/images/photos/area-reporting-480.webp 480w, assets/images/photos/area-reporting-800.webp 800w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 82vw" />
-                  <img class="case__img" src="assets/images/photos/area-reporting-480.jpg" srcset="assets/images/photos/area-reporting-480.jpg 480w, assets/images/photos/area-reporting-800.jpg 800w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 82vw" width="800" height="600" alt="A reporting dashboard with charts on a screen." loading="lazy" decoding="async" />
-                </picture>
-                <div class="case__body">
-                  <h3>Marketing Strategy &amp; Merger Integration</h3>
-                  <p class="case__context"><span>Private Organisation</span> <span class="case__sep" aria-hidden="true">|</span> <span>United States</span></p>
-                  <p class="case__desc">Developed go-to-market positioning and an integration framework across two business units.</p>
-                </div>
+          <div class="carousel rv" data-reveal data-carousel role="region" aria-roledescription="carousel" aria-label="Selected experience">
+            <ul class="carousel__track" role="list">
+              <li class="slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                <h3>Marketing Strategy &amp; Merger Integration</h3>
+                <p class="slide__context"><span>Private Organisation</span> <span class="slide__sep" aria-hidden="true">|</span> <span>United States</span></p>
               </li>
-              <li class="case">
-                <picture>
-                  <source type="image/webp" srcset="assets/images/photos/area-documentation-480.webp 480w, assets/images/photos/area-documentation-800.webp 800w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 82vw" />
-                  <img class="case__img" src="assets/images/photos/area-documentation-480.jpg" srcset="assets/images/photos/area-documentation-480.jpg 480w, assets/images/photos/area-documentation-800.jpg 800w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 82vw" width="800" height="600" alt="Labelled ring binders arranged on office shelves." loading="lazy" decoding="async" />
-                </picture>
-                <div class="case__body">
-                  <h3>Five-Year Strategic Roadmap &amp; Operating Model</h3>
-                  <p class="case__context"><span>International Organisation</span></p>
-                  <p class="case__desc">Designed a five-year strategic plan and operating model to support long-term programme delivery.</p>
-                </div>
+              <li class="slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                <h3>Five-Year Strategic Roadmap &amp; Operating Model</h3>
+                <p class="slide__context"><span>International Organisation</span></p>
               </li>
-              <li class="case">
-                <picture>
-                  <source type="image/webp" srcset="assets/images/photos/area-healthcare-480.webp 480w, assets/images/photos/area-healthcare-800.webp 800w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 82vw" />
-                  <img class="case__img" src="assets/images/photos/area-healthcare-480.jpg" srcset="assets/images/photos/area-healthcare-480.jpg 480w, assets/images/photos/area-healthcare-800.jpg 800w" sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 82vw" width="800" height="600" alt="An empty, clean clinic corridor with waiting chairs." loading="lazy" decoding="async" />
-                </picture>
-                <div class="case__body">
-                  <h3>Audit, Diagnostic Assessment &amp; Recommendations</h3>
-                  <p class="case__context"><span>Healthcare Organisation</span></p>
-                  <p class="case__desc">Conducted a clinical operations audit and developed governance and quality improvement recommendations.</p>
-                </div>
+              <li class="slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                <h3>Audit, Diagnostic Assessment &amp; Recommendations</h3>
+                <p class="slide__context"><span>Healthcare Organisation</span></p>
               </li>
             </ul>
-            <div class="cases__nav" hidden>
-              <button class="cases__btn" type="button" data-cases-prev aria-label="Previous example"><span aria-hidden="true">←</span></button>
-              <p class="cases__count" aria-hidden="true"><span data-cases-at>1</span> / 3</p>
-              <button class="cases__btn" type="button" data-cases-next aria-label="Next example"><span aria-hidden="true">→</span></button>
+            <div class="carousel__controls" hidden>
+              <button class="carousel__btn" type="button" data-carousel-prev aria-label="Previous example"><span aria-hidden="true">←</span></button>
+              <div class="carousel__dots">
+                <button class="carousel__dot" type="button" data-carousel-dot="0" aria-label="Show example 1"></button>
+                <button class="carousel__dot" type="button" data-carousel-dot="1" aria-label="Show example 2"></button>
+                <button class="carousel__dot" type="button" data-carousel-dot="2" aria-label="Show example 3"></button>
+              </div>
+              <button class="carousel__btn" type="button" data-carousel-next aria-label="Next example"><span aria-hidden="true">→</span></button>
+              <button class="carousel__pause" type="button" data-carousel-pause hidden>Pause</button>
             </div>
           </div>
 
           <p class="exp__note rv" data-reveal>
             Shown as selected experience, not as Bigeen client engagements.
           </p>
+
+          <div class="areas rv" data-reveal>
+            <h3>Areas of experience</h3>
+            <!-- Stock placeholders (Unsplash licence) until real Bigeen photography exists:
+                 colorful-ring-binders-on-office-shelves-05HLFQu8bFw, a-computer-screen-with-a-bunch-of-data-on-it-bMWHu8wU1Vk,
+                 empty-hospital-corridor-with-benches-and-doors-Pk-KuizxQv8, yellow-click-pen-on-white-printer-paper-gcHFXsdcmJE
+                 (all at https://unsplash.com/photos/<id>). Illustrations of the areas, not of Bigeen engagements. -->
+            <ul class="areas__tiles" role="list">
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-documentation-480.webp 480w, assets/images/photos/area-documentation-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-documentation-480.jpg" srcset="assets/images/photos/area-documentation-480.jpg 480w, assets/images/photos/area-documentation-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="Labelled ring binders arranged on office shelves." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Process and documentation systems</span>
+              </li>
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-reporting-480.webp 480w, assets/images/photos/area-reporting-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-reporting-480.jpg" srcset="assets/images/photos/area-reporting-480.jpg 480w, assets/images/photos/area-reporting-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="A reporting dashboard with charts on a screen." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Digital workflows and reporting</span>
+              </li>
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-healthcare-480.webp 480w, assets/images/photos/area-healthcare-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-healthcare-480.jpg" srcset="assets/images/photos/area-healthcare-480.jpg 480w, assets/images/photos/area-healthcare-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="An empty, clean clinic corridor with waiting chairs." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Healthcare quality and operations</span>
+              </li>
+              <li>
+                <picture>
+                  <source type="image/webp" srcset="assets/images/photos/area-product-480.webp 480w, assets/images/photos/area-product-800.webp 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" />
+                  <img src="assets/images/photos/area-product-480.jpg" srcset="assets/images/photos/area-product-480.jpg 480w, assets/images/photos/area-product-800.jpg 800w" sizes="(min-width: 1100px) 280px, (min-width: 768px) 45vw, 45vw" width="800" height="600" alt="Hands sketching app wireframes on paper." loading="lazy" decoding="async" />
+                </picture>
+                <span class="areas__label">Product and technology development</span>
+              </li>
+            </ul>
+          </div>
 
         </div>
       </section>

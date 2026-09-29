@@ -848,7 +848,7 @@
   color: var(--colour-on-ink);
   padding-block: var(--space-section);
   /* Spine geometry shared by the stage list and the incoming guide */
-  --stage-pad: 2rem;
+  --stage-pad: 1.25rem;
   --node-y: calc(var(--stage-pad) + 0.7rem);
 }
 
@@ -923,6 +923,8 @@
 }
 
 /* ---------- The stage sequence ---------- */
+/* Numbers only: the stages themselves are walked through in the diagnostic,
+   not published. The list is aria-hidden; the intro copy carries the meaning. */
 .flow {
   --spine-x: 0px;
   position: relative;
@@ -995,7 +997,9 @@
 }
 
 .stage__num {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-data);
   font-size: 2rem;
   font-weight: 700;
@@ -1010,30 +1014,12 @@
   color: var(--colour-brass);
 }
 
-.stage h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .stage__loop {
   flex: none;
   fill: none;
   stroke: var(--colour-on-ink-soft);
   stroke-width: 1.5;
   stroke-linecap: square;
-}
-
-.stage__copy {
-  max-width: 32rem;
-  margin-top: 0.75rem;
-  color: var(--colour-on-ink-soft);
 }
 
 /* ---------- Closing principle ---------- */
@@ -1065,7 +1051,7 @@
   background: var(--colour-brass);
 }
 
-/* Tablet: a ruled table split by the spine, titles left and copy right */
+/* Tablet: the spine continues from the intro at the 7/12 mark */
 @media (min-width: 768px) {
   .how__intro {
     display: grid;
@@ -1093,40 +1079,9 @@
     --spine-x: calc((100% + var(--grid-gap)) * 7 / 12);
   }
 
+  /* Numbers sit just right of the spine, as on desktop */
   .stage {
-    display: grid;
-    grid-template-columns:
-      calc((100% + var(--grid-gap)) * 7 / 12 - var(--grid-gap))
-      minmax(0, 1fr);
-    column-gap: var(--grid-gap);
-    align-items: start;
-    padding-left: 0;
-    border-top: 1px solid var(--colour-line-on-ink);
-  }
-
-  .stage:first-child {
-    border-top-color: var(--colour-on-ink-soft);
-  }
-
-  .stage__num {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .stage h3 {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 0;
-    /* Title sits beside the numeral */
-    padding-left: 3.75rem;
-    min-height: 2rem;
-  }
-
-  .stage__copy {
-    grid-column: 2;
-    grid-row: 1;
-    margin-top: 0.15rem;
-    padding-left: var(--space-content);
+    padding-left: calc((100% + var(--grid-gap)) * 7 / 12 + var(--space-content));
   }
 
   .how__close::after {
@@ -1195,22 +1150,6 @@
     display: block;
     padding-left: var(--space-content);
     border-top: 0;
-  }
-
-  .stage__num {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .stage h3 {
-    padding-left: 0;
-    min-height: 0;
-    margin-top: 0.75rem;
-  }
-
-  .stage__copy {
-    padding-left: 0;
-    margin-top: 0.75rem;
   }
 }
 
@@ -1997,91 +1936,68 @@
   gap: 1rem var(--grid-gap);
 }
 
-/* ---------- Selected Experience: case cards ---------- */
-/* Phones and tablets: a swipeable row that snaps card by card, with the next
-   card peeking in. Desktop: all three side by side, so nothing is hidden.
-   No autoplay; main.js adds previous/next buttons while the row scrolls. */
+/* ---------- Selected Experience: carousel ---------- */
+/* One example at a time. The track is a native scroll-snap row, so it swipes
+   without JS; main.js adds the arrows, dots and a 6s auto-advance (paused on
+   hover, focus, interaction or the pause button, and never under reduced motion). */
 .exp__aside p {
   max-width: 30rem;
 }
 
-.cases {
+.carousel {
   margin-top: calc(var(--space-section) * 0.4);
 }
 
-.cases__track {
+.carousel__track {
   display: flex;
-  gap: var(--grid-gap);
-  margin-inline: calc(-1 * var(--gutter));
-  padding: 5px var(--gutter) 0.5rem;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--gutter);
   list-style: none;
 }
 
-/* The buttons stand in for the scrollbar once main.js has added them. */
-.js .cases__track {
+.js .carousel__track {
   scrollbar-width: none;
 }
 
-.js .cases__track::-webkit-scrollbar {
+.js .carousel__track::-webkit-scrollbar {
   display: none;
 }
 
-.cases__track:focus-visible {
-  outline: 2px solid var(--colour-brand);
-  outline-offset: -2px;
-}
-
-.case {
+.slide {
   position: relative;
-  flex: 0 0 min(82%, 24rem);
+  flex: 0 0 100%;
   scroll-snap-align: start;
-  background: var(--colour-surface);
+  padding: 1.5rem 0 1.75rem 1.75rem;
   border-top: 1px solid var(--colour-ink);
 }
 
 /* The anchor square used for the connecting line throughout the page. */
-.case::before {
+.slide::before {
   content: "";
   position: absolute;
-  z-index: 1;
-  top: -5px;
+  top: 0;
   left: 0;
   width: 0.5625rem;
   height: 0.5625rem;
   background: var(--colour-brand);
 }
 
-.case__img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  background: var(--colour-line);
-}
-
-.case__body {
-  padding: 1.5rem 1.5rem 1.75rem;
-}
-
-.case h3 {
+.slide h3 {
+  max-width: 22em;
   font-family: var(--font-display);
-  font-size: clamp(1.375rem, 2.2vw, 1.625rem);
+  font-size: clamp(1.625rem, 3.2vw, 2.5rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
-.case__context {
+.slide__context {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  margin-top: 0.75rem;
+  margin-top: 0.9rem;
   font-family: var(--font-data);
   font-size: 0.75rem;
   font-weight: 500;
@@ -2091,23 +2007,20 @@
 }
 
 /* The pipe stays in the source text; the two parts are shown on separate lines. */
-.case__sep {
+.slide__sep {
   display: none;
 }
 
-.case__desc {
-  margin-top: 1rem;
-  color: var(--colour-ink-soft);
-}
-
-.cases__nav:not([hidden]) {
+.carousel__controls:not([hidden]) {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
-  margin-top: 1.25rem;
+  gap: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  padding-left: 1.75rem;
 }
 
-.cases__btn {
+.carousel__btn {
   display: grid;
   place-items: center;
   width: 2.75rem;
@@ -2122,28 +2035,63 @@
   transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
-.cases__btn:hover:not(:disabled) {
+.carousel__btn:hover {
   background: var(--colour-ink);
   color: var(--colour-canvas);
 }
 
-.cases__btn:disabled {
-  opacity: 0.35;
-  cursor: default;
+.carousel__dots {
+  display: flex;
 }
 
-.cases__btn:focus-visible {
-  outline: 2px solid var(--colour-brand);
-  outline-offset: 3px;
+/* 24px hit area around a small square marker */
+.carousel__dot {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
-.cases__count {
+.carousel__dot::before {
+  content: "";
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border: 1px solid var(--colour-ink-soft);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.carousel__dot[aria-current="true"]::before {
+  background: var(--colour-brand);
+  border-color: var(--colour-brand);
+}
+
+.carousel__pause {
+  margin-left: auto;
+  padding: 0.35rem 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--colour-ink-soft);
   font-family: var(--font-data);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
-  font-variant-numeric: tabular-nums;
-  color: var(--colour-ink-soft);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.carousel__pause:hover {
+  color: var(--colour-ink);
+}
+
+.carousel__btn:focus-visible,
+.carousel__dot:focus-visible,
+.carousel__pause:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 3px;
 }
 
 .exp__note {
@@ -2153,9 +2101,57 @@
   font-size: 0.875rem;
 }
 
+/* Areas of experience: a compact strip, not another content block */
+.areas {
+  margin-top: calc(var(--space-section) * 0.5);
+}
+
+.areas h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.areas ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 0.75rem;
+  list-style: none;
+}
+
+.areas li {
+  position: relative;
+  padding: 0.8rem 0 0.8rem 1.25rem;
+  border-top: 1px solid var(--colour-line);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.areas li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.15rem;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  background: var(--colour-brand);
+}
+
+.areas li:first-child {
+  border-top-color: var(--colour-ink);
+}
+
 @media (min-width: 768px) {
-  .case {
-    flex-basis: 44%;
+  .areas ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+
+  .areas li:nth-child(2) {
+    border-top-color: var(--colour-ink);
   }
 
   .others {
@@ -2163,13 +2159,14 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .cases__track {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-inline: 0;
-    padding-inline: 0;
-    overflow: visible;
+@media (min-width: 1100px) {
+  .areas ul {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .areas li:nth-child(3),
+  .areas li:nth-child(4) {
+    border-top-color: var(--colour-ink);
   }
 }
 
@@ -2306,6 +2303,55 @@
         url("../images/photos/workshop-hands-1600.jpg") type("image/jpeg")
       ) center 30% / cover no-repeat,
       var(--colour-ink);
+  }
+}
+
+/* Areas of experience as image tiles: the words stay as captions. Two across
+   on phones, then the list's own 2 and 4 column layout. */
+.areas ul.areas__tiles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem var(--grid-gap);
+}
+
+.areas__tiles li {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding: 0;
+  border-top: 0;
+}
+
+.areas__tiles li::before {
+  content: none;
+}
+
+.areas__tiles img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--colour-line);
+}
+
+.areas__label {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.areas__label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  background: var(--colour-brand);
+}
+
+@media (min-width: 1100px) {
+  .areas ul.areas__tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
