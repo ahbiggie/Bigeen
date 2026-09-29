@@ -410,9 +410,14 @@
 }
 
 /* ---------- Problems ---------- */
+/* A solid brand-blue band. The guide line and the markers switch to brass,
+   as on the other dark bands, so they stay visible. */
 .problems {
-  background: var(--colour-stone);
+  background: var(--colour-brand);
+  color: var(--colour-on-ink);
   padding-block: var(--space-section);
+  /* The bullets start off to the side before sliding in */
+  overflow-x: clip;
 }
 
 .problems__inner {
@@ -432,7 +437,7 @@
   top: calc(-1 * var(--space-section));
   bottom: calc(-1 * var(--space-content));
   width: 1.5px;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
   transform-origin: top;
 }
 
@@ -457,16 +462,6 @@
   padding-left: 1.25rem;
 }
 
-.problems__label {
-  margin-bottom: 1.25rem;
-  font-family: var(--font-data);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--colour-ink-soft);
-}
-
 .problems h2 {
   font-family: var(--font-display);
   font-size: clamp(1.875rem, 6.5vw, 3.25rem);
@@ -481,17 +476,17 @@
 }
 
 .problems h2 span + span {
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
 }
 
 .problems__aside p {
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
   max-width: 34rem;
 }
 
 .problems__aside .problems__emphasis {
   margin-top: 1rem;
-  color: var(--colour-ink);
+  color: var(--colour-on-ink);
   font-weight: 600;
 }
 
@@ -500,19 +495,19 @@
 .problems__list {
   list-style: none;
   margin-top: var(--space-content);
-  border-bottom: 1px solid var(--colour-line);
+  border-bottom: 1px solid var(--colour-line-on-ink);
 }
 
 .problems__list li {
   position: relative;
   padding: 1.25rem 0 1.25rem 1.75rem;
-  border-top: 1px solid var(--colour-line);
+  border-top: 1px solid var(--colour-line-on-ink);
   font-size: 1.125rem;
   line-height: 1.45;
 }
 
 .problems__list li:first-child {
-  border-top-color: var(--colour-ink);
+  border-top-color: var(--colour-on-ink-soft);
 }
 
 .problems__list li::before {
@@ -522,7 +517,20 @@
   top: 1.7rem;
   width: 0.5rem;
   height: 0.5rem;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
+}
+
+/* The symptoms slide in from the side, one after another, as they reach the
+   screen (scroll reveal is only switched on by main.js, never under reduced
+   motion, so without it they simply show). */
+.rv-on .problems__list li.rv {
+  transform: translateX(-2.5rem);
+}
+
+.rv-on .problems__list li.rv.is-in {
+  transform: none;
+  transition-duration: 0.7s;
+  transition-delay: calc(var(--i, 0) * 110ms);
 }
 
 .problems__bridge {
@@ -533,7 +541,7 @@
   grid-column: 1 / -1;
   max-width: 34rem;
   margin-top: var(--space-content);
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
   font-size: 1.125rem;
 }
 
@@ -560,6 +568,15 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--grid-gap);
+  }
+
+  /* Two columns: the right-hand column comes in from the right */
+  .rv-on .problems__list li.rv:nth-child(even) {
+    transform: translateX(2.5rem);
+  }
+
+  .rv-on .problems__list li.rv.is-in:nth-child(even) {
+    transform: none;
   }
 }
 
