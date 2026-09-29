@@ -150,6 +150,34 @@
     ).observe(flow.parentElement);
   }
 
+  // The Problem: the symptoms become a slow, continuous ticker. A hidden copy of
+  // the items follows the real ones, so sliding the track by half its width
+  // loops seamlessly; the speed stays constant whatever the text length. The
+  // pause control (plus hover and keyboard focus) stops it. Under reduced motion,
+  // or without JS, the list stays a static list.
+  var ticker = document.querySelector("[data-ticker]");
+  var tickerPause = document.querySelector("[data-ticker-pause]");
+  if (ticker && tickerPause && !reduceMotion) {
+    var list = ticker.querySelector("ul");
+    Array.prototype.slice.call(list.children).forEach(function (li) {
+      var copy = li.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      list.appendChild(copy);
+    });
+    ticker.classList.add("is-ticking");
+    var setSpeed = function () {
+      // About 45px a second across one set of items
+      ticker.style.setProperty("--ticker-duration", Math.round(list.scrollWidth / 2 / 45) + "s");
+    };
+    setSpeed();
+    window.addEventListener("resize", setSpeed);
+    tickerPause.hidden = false;
+    tickerPause.addEventListener("click", function () {
+      var paused = ticker.classList.toggle("is-paused");
+      tickerPause.textContent = paused ? "Play" : "Pause";
+    });
+  }
+
   // Selected Experience carousel: one example at a time. The track is a native
   // scroll-snap row (it swipes without JS); this adds arrows, dots and a slow
   // auto-advance. Auto-advance runs only while the carousel is on screen and the

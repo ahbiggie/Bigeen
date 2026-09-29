@@ -156,3 +156,84 @@ main:focus {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ---------- Floating WhatsApp button (every page) ---------- */
+/* WhatsApp green with the white mark, as the brand asks. The label is always
+   in the DOM (it is the link's accessible name); on desktop it slides out on
+   hover or focus. Its text is dark because white on this green is unreadable. */
+.wa-float {
+  position: fixed;
+  z-index: 90;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  min-width: 48px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(22, 24, 29, 0.22), 0 1px 3px rgba(22, 24, 29, 0.18);
+  transition: box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.wa-float__icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* Visually collapsed, still announced */
+.wa-float__label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--colour-ink);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: max-width 0.3s var(--ease), opacity 0.2s var(--ease), margin 0.3s var(--ease);
+}
+
+.wa-float:hover,
+.wa-float:focus-visible {
+  box-shadow: 0 10px 26px rgba(22, 24, 29, 0.28), 0 2px 4px rgba(22, 24, 29, 0.18);
+  transform: translateY(-2px);
+}
+
+.wa-float:focus-visible {
+  outline: 2px solid var(--colour-ink);
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .wa-float {
+    height: 56px;
+    min-width: 56px;
+    padding: 0 14px;
+  }
+
+  .wa-float:hover .wa-float__label,
+  .wa-float:focus-visible .wa-float__label {
+    max-width: 12rem;
+    margin: 0 4px 0 10px;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float,
+  .wa-float__label {
+    transition: none;
+  }
+}
+
+@media print {
+  .wa-float {
+    display: none;
+  }
+}

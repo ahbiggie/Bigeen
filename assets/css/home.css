@@ -198,8 +198,7 @@
 
 .hero h1 {
   font-family: var(--font-display);
-  /* Floor sized so "ORGANISATION" fits a 320px screen */
-  font-size: clamp(2.125rem, 10.5vw, 3.75rem);
+  font-size: clamp(2.5rem, 11vw, 3.75rem);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.01em;
@@ -230,7 +229,7 @@
 
 .hero__visual svg {
   width: 100%;
-  max-width: 14rem;
+  max-width: 22rem;
   height: auto;
   overflow: visible;
   flex: none;
@@ -259,10 +258,94 @@
   fill: none;
 }
 
-.sv-plane {
+/* The parts of the organisation */
+.sv-box rect {
   fill: var(--colour-stone);
   stroke: var(--colour-line);
   stroke-width: 1;
+}
+
+.sv-box text {
+  font-family: var(--font-data);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  fill: var(--colour-ink);
+}
+
+.sv-box--core rect {
+  fill: var(--colour-brand);
+  stroke: var(--colour-brand);
+}
+
+.sv-box--core text {
+  fill: var(--colour-canvas);
+}
+
+/* Signals: hidden until the loop runs */
+.sv-pulse {
+  fill: none;
+  stroke: var(--colour-brand);
+  stroke-width: 2.5;
+  stroke-linecap: butt;
+  stroke-dasharray: 0.25 2;
+  stroke-dashoffset: 0.25;
+}
+
+/* The loop: once the map has settled, a signal runs down each link in turn
+   (0.7s apart) and each part lights as its signal arrives; every 6s. */
+@media (prefers-reduced-motion: no-preference) {
+  .js.is-ready .sv-pulse {
+    animation: sv-signal 6s linear infinite;
+    animation-delay: calc(2s + var(--p) * 0.7s);
+  }
+
+  .js.is-ready .sv-box rect {
+    animation: sv-light 6s var(--ease) infinite;
+    animation-delay: calc(2s + var(--p) * 0.7s);
+  }
+
+  .js.is-ready .sv-box--core rect {
+    animation-name: sv-light-core;
+  }
+}
+
+@keyframes sv-signal {
+  0% {
+    stroke-dashoffset: 0.25;
+  }
+  12%,
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes sv-light {
+  0%,
+  22% {
+    fill: var(--colour-surface);
+    stroke: var(--colour-brand);
+  }
+  40%,
+  100% {
+    fill: var(--colour-stone);
+    stroke: var(--colour-line);
+  }
+}
+
+@keyframes sv-light-core {
+  0%,
+  22% {
+    stroke: var(--colour-brass);
+    stroke-width: 3;
+  }
+  40%,
+  100% {
+    stroke: var(--colour-brand);
+    stroke-width: 1;
+  }
 }
 
 .sv-node {
@@ -327,9 +410,18 @@
 }
 
 /* ---------- Problems ---------- */
+/* A brand-blue band: deep navy fading into Bigeen blue, with a soft light
+   behind the headline. The guide line and markers switch to brass, as on the
+   other dark bands, so they stay visible. */
 .problems {
-  background: var(--colour-stone);
+  background:
+    radial-gradient(ellipse 60% 55% at 18% 22%, rgba(247, 245, 240, 0.09), transparent 70%),
+    linear-gradient(135deg, #0a1236 0%, #101f5c 45%, var(--colour-brand) 100%);
+  background-color: var(--colour-brand);
+  color: var(--colour-on-ink);
   padding-block: var(--space-section);
+  /* The ticker runs edge to edge */
+  overflow-x: clip;
 }
 
 .problems__inner {
@@ -349,7 +441,7 @@
   top: calc(-1 * var(--space-section));
   bottom: calc(-1 * var(--space-content));
   width: 1.5px;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
   transform-origin: top;
 }
 
@@ -374,16 +466,6 @@
   padding-left: 1.25rem;
 }
 
-.problems__label {
-  margin-bottom: 1.25rem;
-  font-family: var(--font-data);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--colour-ink-soft);
-}
-
 .problems h2 {
   font-family: var(--font-display);
   font-size: clamp(1.875rem, 6.5vw, 3.25rem);
@@ -398,17 +480,17 @@
 }
 
 .problems h2 span + span {
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
 }
 
 .problems__aside p {
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
   max-width: 34rem;
 }
 
 .problems__aside .problems__emphasis {
   margin-top: 1rem;
-  color: var(--colour-ink);
+  color: var(--colour-on-ink);
   font-weight: 600;
 }
 
@@ -417,19 +499,19 @@
 .problems__list {
   list-style: none;
   margin-top: var(--space-content);
-  border-bottom: 1px solid var(--colour-line);
+  border-bottom: 1px solid var(--colour-line-on-ink);
 }
 
 .problems__list li {
   position: relative;
   padding: 1.25rem 0 1.25rem 1.75rem;
-  border-top: 1px solid var(--colour-line);
+  border-top: 1px solid var(--colour-line-on-ink);
   font-size: 1.125rem;
   line-height: 1.45;
 }
 
 .problems__list li:first-child {
-  border-top-color: var(--colour-ink);
+  border-top-color: var(--colour-on-ink-soft);
 }
 
 .problems__list li::before {
@@ -439,7 +521,89 @@
   top: 1.7rem;
   width: 0.5rem;
   height: 0.5rem;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
+}
+
+/* Ticker: the symptoms run in one slow, endless line across the band.
+   main.js adds .is-ticking (never under reduced motion) and a hidden copy of
+   the items, so moving the track by half its width loops seamlessly. Hover,
+   keyboard focus or the pause button stop it. */
+.ticker {
+  margin-top: var(--space-content);
+}
+
+.ticker .problems__list {
+  margin-top: 0;
+}
+
+.ticker.is-ticking {
+  /* Full-bleed, with the ends fading into the band */
+  margin-inline: calc(50% - 50vw);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ticker.is-ticking .problems__list {
+  display: flex;
+  width: max-content;
+  border-block: 1px solid var(--colour-line-on-ink);
+  animation: ticker var(--ticker-duration, 40s) linear infinite;
+}
+
+.ticker.is-ticking:hover .problems__list,
+.ticker.is-ticking:focus-within .problems__list,
+.ticker.is-paused .problems__list {
+  animation-play-state: paused;
+}
+
+.ticker.is-ticking .problems__list li {
+  flex: none;
+  padding: 1.5rem 3rem 1.5rem 1.75rem;
+  border-top: 0;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+}
+
+.ticker.is-ticking .problems__list li::before {
+  top: 50%;
+  margin-top: -0.25rem;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker__pause {
+  display: block;
+  margin: 1rem 0 0 auto;
+  padding: 0.35rem 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--colour-on-ink-soft);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ticker__pause[hidden] {
+  display: none;
+}
+
+.ticker__pause:hover {
+  color: var(--colour-on-ink);
+}
+
+.ticker__pause:focus-visible {
+  outline: 2px solid var(--colour-on-ink);
+  outline-offset: 3px;
 }
 
 .problems__bridge {
@@ -450,7 +614,7 @@
   grid-column: 1 / -1;
   max-width: 34rem;
   margin-top: var(--space-content);
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
   font-size: 1.125rem;
 }
 
@@ -473,7 +637,7 @@
 }
 
 @media (min-width: 900px) {
-  .problems__list {
+  .ticker:not(.is-ticking) .problems__list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--grid-gap);
