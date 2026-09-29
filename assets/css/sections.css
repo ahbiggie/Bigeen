@@ -68,41 +68,8 @@
 }
 
 .idea__intro p {
-  color: var(--colour-ink-soft);
-}
-
-.idea__intro p + p {
-  margin-top: 1rem;
-}
-
-.idea__intro p:first-child {
-  color: var(--colour-ink);
   font-size: 1.25rem;
   line-height: 1.5;
-}
-
-.idea__intro p:last-child {
-  color: var(--colour-ink);
-  font-weight: 600;
-}
-
-.idea__perspective {
-  margin-top: var(--space-content);
-  padding-top: var(--space-content);
-  border-top: 1px solid var(--colour-ink);
-  max-width: 38rem;
-}
-
-.idea__perspective p {
-  max-width: 34rem;
-  font-size: 1.1875rem;
-  line-height: 1.55;
-}
-
-.idea__perspective p + p {
-  margin-top: 1rem;
-  font-weight: 600;
-  color: var(--colour-brand);
 }
 
 /* Principles: a vertical sequence, not cards */
@@ -146,49 +113,6 @@
 
 .principle p {
   margin-top: 0.5rem;
-  color: var(--colour-ink-soft);
-}
-
-/* Each principle's own mini-map: which parts of the system it involves. */
-.principle__map {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  margin-top: 1rem;
-}
-
-.mini {
-  flex: none;
-  overflow: visible;
-}
-
-.mini__line {
-  fill: none;
-  stroke: var(--colour-line);
-  stroke-width: 1.5;
-}
-
-.mini__line.is-lit {
-  stroke: var(--colour-brand);
-}
-
-.mini__node {
-  fill: var(--colour-canvas);
-  stroke: var(--colour-ink-soft);
-  stroke-width: 1;
-}
-
-.mini__node.is-lit {
-  fill: var(--colour-brand);
-  stroke: var(--colour-brand);
-}
-
-.principle__parts {
-  font-family: var(--font-data);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--colour-ink-soft);
 }
 
@@ -455,10 +379,6 @@
     min-height: 55svh;
     align-content: center;
     transition: opacity 0.35s var(--ease);
-  }
-
-  .map-steps .principle__map {
-    display: none;
   }
 
   .map-steps .principles:has(.is-active) .principle:not(.is-active) {
@@ -731,7 +651,7 @@
   outline-offset: 4px;
 }
 
-/* ---------- Bridge into How We Work ---------- */
+/* ---------- Bridge into the Bigeen Approach ---------- */
 .build__bridge {
   position: relative;
   margin-top: calc(var(--space-section) * 0.7);
@@ -750,29 +670,6 @@
   margin-top: 1.25rem;
   color: var(--colour-ink-soft);
   font-size: 1.125rem;
-}
-
-.build__bridge-next .btn {
-  margin-bottom: 1.5rem;
-}
-
-.stages {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0;
-  list-style: none;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--colour-ink);
-  scroll-margin-top: 2rem;
-}
-
-/* Arrows trail each stage so a wrapped line never starts with one. */
-.stages li:not(:last-child)::after {
-  content: "→" / "";
-  margin-inline: 0.6rem;
-  font-weight: 400;
-  color: var(--colour-brand);
 }
 
 /* Hand-off line into the next section, at the same x as the guide above. */
@@ -938,12 +835,43 @@
   height: auto;
 }
 
-/* ---------- 05 How We Work ---------- */
+/* ---------- 05 The Bigeen Approach ---------- */
+/* A dark band over a photo. The photo fills the first screen and fades into
+   ink, so the stage list further down sits on solid colour. Inside the band the
+   guide line and the progress fill switch to brass, as on the Products panel.
+   Stock placeholder (Unsplash licence) until real Bigeen photography exists:
+   https://unsplash.com/photos/hand-drawing-a-diagram-on-a-whiteboard-ajTN690FnUg */
 .how {
+  position: relative;
+  isolation: isolate;
+  background: var(--colour-ink);
+  color: var(--colour-on-ink);
   padding-block: var(--space-section);
   /* Spine geometry shared by the stage list and the incoming guide */
-  --stage-pad: 2rem;
+  --stage-pad: 1.25rem;
   --node-y: calc(var(--stage-pad) + 0.7rem);
+}
+
+.how::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: min(100%, 110svh);
+  background:
+    linear-gradient(
+      rgba(22, 24, 29, 0.8),
+      rgba(22, 24, 29, 0.86) 55%,
+      var(--colour-ink)
+    ),
+    image-set(
+      url("../images/photos/process-diagram-640.webp") type("image/webp"),
+      url("../images/photos/process-diagram-640.jpg") type("image/jpeg")
+    ) center / cover no-repeat;
+}
+
+.how .eyebrow {
+  color: var(--colour-brass);
 }
 
 .how__inner {
@@ -977,7 +905,7 @@
   top: calc(-1 * var(--space-section));
   bottom: calc(-1 * (var(--space-content) + var(--node-y)));
   width: 1.5px;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
 }
 
 .how__title-block,
@@ -991,10 +919,12 @@
 
 .how__copy p {
   max-width: 34rem;
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
 }
 
 /* ---------- The stage sequence ---------- */
+/* Numbers only: the stages themselves are walked through in the diagnostic,
+   not published. The list is aria-hidden; the intro copy carries the meaning. */
 .flow {
   --spine-x: 0px;
   position: relative;
@@ -1017,8 +947,8 @@
   width: 0.5625rem;
   height: 0.5625rem;
   margin-top: -0.28rem;
-  background: var(--colour-canvas);
-  border: 1px solid var(--colour-ink);
+  background: var(--colour-ink);
+  border: 1px solid var(--colour-on-ink-soft);
   transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
@@ -1030,7 +960,7 @@
   top: var(--node-y);
   height: 100%;
   width: 1.5px;
-  background: var(--colour-ink-soft);
+  background: var(--colour-on-ink-soft);
   opacity: 0.4;
 }
 
@@ -1046,7 +976,7 @@
   top: var(--node-y);
   height: 100%;
   width: 1.5px;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.5s var(--ease);
@@ -1062,50 +992,34 @@
 
 .stage.is-active::before,
 .stage.is-passed::before {
-  background: var(--colour-brand);
-  border-color: var(--colour-brand);
+  background: var(--colour-brass);
+  border-color: var(--colour-brass);
 }
 
 .stage__num {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-family: var(--font-data);
   font-size: 2rem;
   font-weight: 700;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--colour-ink-soft);
+  color: var(--colour-on-ink-soft);
   transition: color 0.3s var(--ease);
 }
 
 .stage.is-active .stage__num,
 .stage.is-passed .stage__num {
-  color: var(--colour-brand);
-}
-
-.stage h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--colour-brass);
 }
 
 .stage__loop {
   flex: none;
   fill: none;
-  stroke: var(--colour-ink-soft);
+  stroke: var(--colour-on-ink-soft);
   stroke-width: 1.5;
   stroke-linecap: square;
-}
-
-.stage__copy {
-  max-width: 32rem;
-  margin-top: 0.75rem;
-  color: var(--colour-ink-soft);
 }
 
 /* ---------- Closing principle ---------- */
@@ -1113,7 +1027,7 @@
   position: relative;
   margin-top: calc(var(--space-section) * 0.7);
   padding-top: var(--space-content);
-  border-top: 1px solid var(--colour-ink);
+  border-top: 1px solid var(--colour-on-ink-soft);
 }
 
 .how__close p {
@@ -1134,10 +1048,10 @@
   top: 100%;
   height: var(--space-section);
   width: 1.5px;
-  background: var(--colour-brand);
+  background: var(--colour-brass);
 }
 
-/* Tablet: a ruled table split by the spine, titles left and copy right */
+/* Tablet: the spine continues from the intro at the 7/12 mark */
 @media (min-width: 768px) {
   .how__intro {
     display: grid;
@@ -1165,44 +1079,29 @@
     --spine-x: calc((100% + var(--grid-gap)) * 7 / 12);
   }
 
+  /* Numbers sit just right of the spine, as on desktop */
   .stage {
-    display: grid;
-    grid-template-columns:
-      calc((100% + var(--grid-gap)) * 7 / 12 - var(--grid-gap))
-      minmax(0, 1fr);
-    column-gap: var(--grid-gap);
-    align-items: start;
-    padding-left: 0;
-    border-top: 1px solid var(--colour-line);
-  }
-
-  .stage:first-child {
-    border-top-color: var(--colour-ink);
-  }
-
-  .stage__num {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .stage h3 {
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 0;
-    /* Title sits beside the numeral */
-    padding-left: 3.75rem;
-    min-height: 2rem;
-  }
-
-  .stage__copy {
-    grid-column: 2;
-    grid-row: 1;
-    margin-top: 0.15rem;
-    padding-left: var(--space-content);
+    padding-left: calc((100% + var(--grid-gap)) * 7 / 12 + var(--space-content));
   }
 
   .how__close::after {
     left: calc((100% + var(--grid-gap)) * 7 / 12);
+  }
+}
+
+/* Tablet up: a larger photo for the band */
+@media (min-width: 768px) {
+  .how::before {
+    background:
+      linear-gradient(
+        rgba(22, 24, 29, 0.8),
+        rgba(22, 24, 29, 0.86) 55%,
+        var(--colour-ink)
+      ),
+      image-set(
+        url("../images/photos/process-diagram-1260.webp") type("image/webp"),
+        url("../images/photos/process-diagram-1260.jpg") type("image/jpeg")
+      ) center / cover no-repeat;
   }
 }
 
@@ -1244,29 +1143,13 @@
     top: calc(-1 * var(--space-section));
     height: calc(var(--space-section) + var(--node-y));
     width: 1.5px;
-    background: var(--colour-brand);
+    background: var(--colour-brass);
   }
 
   .stage {
     display: block;
     padding-left: var(--space-content);
     border-top: 0;
-  }
-
-  .stage__num {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .stage h3 {
-    padding-left: 0;
-    min-height: 0;
-    margin-top: 0.75rem;
-  }
-
-  .stage__copy {
-    padding-left: 0;
-    margin-top: 0.75rem;
   }
 }
 
@@ -1308,7 +1191,7 @@
   text-wrap: balance;
 }
 
-/* Line arrives from How We Work and ends in a square anchor, as in Build. */
+/* Line arrives from the Bigeen Approach and ends in a square anchor, as in Build. */
 .exp__head::before {
   content: "";
   position: absolute;
@@ -1344,21 +1227,12 @@
   margin-top: 1rem;
 }
 
-/* Entries: a ruled editorial list. Static: no links, no hover behaviour. */
-
-
-/* Attribution: text plus a shape marker, so it is never colour alone */
-
-
 .exp__note {
   max-width: 36rem;
   margin-top: 1.25rem;
   font-size: 0.9375rem;
   color: var(--colour-ink-soft);
 }
-
-/* Areas of experience: modular ruled grid, no decoration */
-
 
 @media (min-width: 768px) {
   .exp__title-block {
@@ -1499,6 +1373,16 @@
   margin-top: 1.75rem;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.feature__context {
+  max-width: 34rem;
+  margin-top: 1.75rem;
+  color: var(--colour-on-ink-soft);
+}
+
+.feature__context + .feature__desc {
+  margin-top: 0.75rem;
 }
 
 .feature__support {
@@ -1725,6 +1609,16 @@
 }
 
 .start__lead,
+/* Pricing anchor: a quiet filter, not a sales block */
+.start__pricing {
+  max-width: 32rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--colour-line-on-ink);
+  color: var(--colour-on-ink-soft);
+  font-size: 0.9375rem;
+}
+
 .start__actions {
   grid-column: 1 / -1;
 }
@@ -1801,7 +1695,7 @@
 /* =========================================================================
    Refinement: less density, more character
    What We Build (compact groups, distinct pillars), Selected Experience
-   (portfolio entries) and the StitchFYN logo in Bigeen Products.
+   (case cards) and the StitchFYN logo in Bigeen Products.
    ========================================================================= */
 
 /* ---------- What We Build: tighter opening ---------- */
@@ -2042,38 +1936,55 @@
   gap: 1rem var(--grid-gap);
 }
 
-/* ---------- Selected Experience: portfolio entries ---------- */
+/* ---------- Selected Experience: carousel ---------- */
+/* One example at a time. The track is a native scroll-snap row, so it swipes
+   without JS; main.js adds the arrows, dots and a 6s auto-advance (paused on
+   hover, focus, interaction or the pause button, and never under reduced motion). */
 .exp__aside p {
   max-width: 30rem;
 }
 
-.entries {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+.carousel {
   margin-top: calc(var(--space-section) * 0.4);
+}
+
+.carousel__track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
   list-style: none;
 }
 
-.entry {
+.js .carousel__track {
+  scrollbar-width: none;
+}
+
+.js .carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
   position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   padding: 1.5rem 0 1.75rem 1.75rem;
   border-top: 1px solid var(--colour-ink);
 }
 
-/* Structural marker where each rule begins — the same anchor square used
-   for the connecting line throughout the page, standing in for a numeral
-   these three curated examples don't need (they aren't a sequence). */
-.entry::before {
+/* The anchor square used for the connecting line throughout the page. */
+.slide::before {
   content: "";
   position: absolute;
-  top: -5px;
+  top: 0;
   left: 0;
   width: 0.5625rem;
   height: 0.5625rem;
   background: var(--colour-brand);
 }
 
-.entry h3 {
+.slide h3 {
+  max-width: 22em;
   font-family: var(--font-display);
   font-size: clamp(1.625rem, 3.2vw, 2.5rem);
   font-weight: 700;
@@ -2082,7 +1993,7 @@
   text-wrap: balance;
 }
 
-.entry__context {
+.slide__context {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -2096,8 +2007,91 @@
 }
 
 /* The pipe stays in the source text; the two parts are shown on separate lines. */
-.entry__sep {
+.slide__sep {
   display: none;
+}
+
+.carousel__controls:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  padding-left: 1.75rem;
+}
+
+.carousel__btn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--colour-ink);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--colour-ink);
+  font: inherit;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.carousel__btn:hover {
+  background: var(--colour-ink);
+  color: var(--colour-canvas);
+}
+
+.carousel__dots {
+  display: flex;
+}
+
+/* 24px hit area around a small square marker */
+.carousel__dot {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.carousel__dot::before {
+  content: "";
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border: 1px solid var(--colour-ink-soft);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.carousel__dot[aria-current="true"]::before {
+  background: var(--colour-brand);
+  border-color: var(--colour-brand);
+}
+
+.carousel__pause {
+  margin-left: auto;
+  padding: 0.35rem 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--colour-ink-soft);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.carousel__pause:hover {
+  color: var(--colour-ink);
+}
+
+.carousel__btn:focus-visible,
+.carousel__dot:focus-visible,
+.carousel__pause:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 3px;
 }
 
 .exp__note {
@@ -2151,15 +2145,6 @@
 }
 
 @media (min-width: 768px) {
-  .entries {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--grid-gap);
-  }
-
-  .entry--1 { grid-column: 1 / span 10; }
-  .entry--2 { grid-column: 3 / span 10; }
-  .entry--3 { grid-column: 2 / span 10; }
-
   .areas ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--grid-gap);
@@ -2172,12 +2157,6 @@
   .others {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-
-@media (min-width: 1024px) {
-  .entry--1 { grid-column: 1 / span 8; }
-  .entry--2 { grid-column: 5 / span 8; }
-  .entry--3 { grid-column: 2 / span 8; }
 }
 
 @media (min-width: 1100px) {
@@ -2208,7 +2187,7 @@
   }
 
   /* clip, not hidden: it does not create a scroll container, so the sticky
-     How We Work intro keeps working. */
+     Bigeen Approach intro keeps working. */
   main > section:not(.hero):not(.start) {
     overflow-y: clip;
   }
@@ -2288,42 +2267,9 @@
   object-fit: cover;
 }
 
-/* How We Work: the photo sits under the intro copy, on the same inset. */
-.how__photo {
-  grid-column: 1 / -1;
-  margin-top: var(--space-content);
-  padding-left: 1.25rem;
-}
-
-.how__photo img {
-  max-width: 34rem;
-}
-
 @media (min-width: 768px) {
   .photo--wide img {
     aspect-ratio: 21 / 9;
-  }
-
-  /* Left of the intro's guide line, which sits at the 7/12 mark. */
-  .how__photo {
-    grid-column: 1 / span 7;
-    padding-left: 0;
-  }
-}
-
-/* Desktop: the intro is pinned, so it must fit the screen. A wider crop keeps
-   it short enough; on short screens the intro simply scrolls instead. */
-@media (min-width: 1024px) {
-  .how__photo img {
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
-}
-
-@media (min-width: 1024px) and (max-height: 720px) {
-  .how__intro {
-    position: relative;
-    top: auto;
   }
 }
 

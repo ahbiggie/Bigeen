@@ -47,8 +47,8 @@
 
   // Systems map as scroll steps (two-column layout only). The map stays pinned
   // while the principles scroll past; the one crossing the middle of the viewport
-  // lights its parts. Each principle also carries its own mini-map, so nothing
-  // depends on this: without it the map simply shows all six parts.
+  // lights its parts. Nothing depends on this: without it the map simply shows
+  // all six parts.
   var map = document.querySelector("[data-map]");
   var principles = document.querySelectorAll("[data-principle]");
   if (map && principles.length) {
@@ -109,7 +109,7 @@
     size();
   }
 
-  // How We Work: as the reader moves down the sequence, the connecting line fills
+  // Bigeen Approach: as the reader moves down the sequence, the connecting line fills
   // and the current stage is emphasised.
   // Purely visual: all seven stages are complete without this, and it is skipped
   // under reduced motion.
@@ -148,6 +148,92 @@
       },
       { rootMargin: "0px 0px 0px 0px" }
     ).observe(flow.parentElement);
+  }
+
+  // Selected Experience carousel: one example at a time. The track is a native
+  // scroll-snap row (it swipes without JS); this adds arrows, dots and a slow
+  // auto-advance. Auto-advance runs only while the carousel is on screen and the
+  // tab is visible, pauses on hover, keyboard focus or the pause button, stops
+  // for good once the visitor steers it, and never runs under reduced motion.
+  var carousel = document.querySelector("[data-carousel]");
+  if (carousel) {
+    var cTrack = carousel.querySelector(".carousel__track");
+    var slides = cTrack.children;
+    var controls = carousel.querySelector(".carousel__controls");
+    var dots = carousel.querySelectorAll("[data-carousel-dot]");
+    var pauseBtn = carousel.querySelector("[data-carousel-pause]");
+    var current = 0;
+    var timer = null;
+    var onScreen = false;
+    var hovered = false;
+    var focused = false;
+    var stopped = reduceMotion; // pause button or manual navigation
+    var settle = null;
+
+    var show = function (i) {
+      current = (i + slides.length) % slides.length;
+      cTrack.scrollTo({
+        left: slides[current].offsetLeft - cTrack.offsetLeft - cTrack.clientLeft,
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
+    };
+    // Read the position only once scrolling has settled, so a smooth scroll in
+    // progress never resets the index to the slide it is leaving.
+    var syncDots = function () {
+      current = Math.round(cTrack.scrollLeft / cTrack.clientWidth);
+      Array.prototype.forEach.call(dots, function (d, i) {
+        d.setAttribute("aria-current", i === current ? "true" : "false");
+      });
+    };
+    var running = function () {
+      return !stopped && onScreen && !hovered && !focused && !document.hidden;
+    };
+    var schedule = function () {
+      window.clearInterval(timer);
+      timer = running() ? window.setInterval(function () { show(current + 1); }, 6000) : null;
+    };
+    var steer = function (i) {
+      stopped = true;
+      pauseBtn.textContent = "Play";
+      show(i);
+      schedule();
+    };
+
+    controls.hidden = false;
+    pauseBtn.hidden = reduceMotion;
+    carousel.querySelector("[data-carousel-prev]").addEventListener("click", function () { steer(current - 1); });
+    carousel.querySelector("[data-carousel-next]").addEventListener("click", function () { steer(current + 1); });
+    Array.prototype.forEach.call(dots, function (d) {
+      d.addEventListener("click", function () { steer(Number(d.getAttribute("data-carousel-dot"))); });
+    });
+    pauseBtn.addEventListener("click", function () {
+      stopped = !stopped;
+      pauseBtn.textContent = stopped ? "Play" : "Pause";
+      schedule();
+    });
+    // A swipe is steering too.
+    cTrack.addEventListener("pointerdown", function () { stopped = true; pauseBtn.textContent = "Play"; schedule(); });
+    cTrack.addEventListener("scroll", function () {
+      window.clearTimeout(settle);
+      settle = window.setTimeout(syncDots, 150);
+    }, { passive: true });
+    carousel.addEventListener("mouseenter", function () { hovered = true; schedule(); });
+    carousel.addEventListener("mouseleave", function () { hovered = false; schedule(); });
+    carousel.addEventListener("focusin", function () { focused = true; schedule(); });
+    carousel.addEventListener("focusout", function (e) {
+      if (!carousel.contains(e.relatedTarget)) { focused = false; schedule(); }
+    });
+    document.addEventListener("visibilitychange", schedule);
+    window.addEventListener("resize", function () {
+      cTrack.scrollLeft = current * cTrack.clientWidth;
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+        schedule();
+      }, { threshold: 0.5 }).observe(carousel);
+    }
+    syncDots();
   }
 
   // Launch-dependent wording. Each element carries its launch instant (data-launch)
