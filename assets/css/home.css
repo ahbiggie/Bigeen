@@ -198,7 +198,8 @@
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 9.5vw, 3.75rem);
+  /* Floor sized so "ORGANISATION" fits a 320px screen */
+  font-size: clamp(2.125rem, 10.5vw, 3.75rem);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.01em;

@@ -47,8 +47,8 @@
 
   // Systems map as scroll steps (two-column layout only). The map stays pinned
   // while the principles scroll past; the one crossing the middle of the viewport
-  // lights its parts. Each principle also carries its own mini-map, so nothing
-  // depends on this: without it the map simply shows all six parts.
+  // lights its parts. Nothing depends on this: without it the map simply shows
+  // all six parts.
   var map = document.querySelector("[data-map]");
   var principles = document.querySelectorAll("[data-principle]");
   if (map && principles.length) {
@@ -109,7 +109,7 @@
     size();
   }
 
-  // How We Work: as the reader moves down the sequence, the connecting line fills
+  // Bigeen Approach: as the reader moves down the sequence, the connecting line fills
   // and the current stage is emphasised.
   // Purely visual: all seven stages are complete without this, and it is skipped
   // under reduced motion.
@@ -148,6 +148,55 @@
       },
       { rootMargin: "0px 0px 0px 0px" }
     ).observe(flow.parentElement);
+  }
+
+  // Selected Experience: previous/next buttons for the swipeable row of cases.
+  // They are shown only while the row actually scrolls (phones and tablets);
+  // on desktop the cards sit side by side. Without JS the row still swipes.
+  var cases = document.querySelector("[data-cases]");
+  if (cases) {
+    var track = cases.querySelector(".cases__track");
+    var nav = cases.querySelector(".cases__nav");
+    var cards = track.children;
+    var prev = cases.querySelector("[data-cases-prev]");
+    var next = cases.querySelector("[data-cases-next]");
+    var at = cases.querySelector("[data-cases-at]");
+    var index = 0;
+    var queued = false;
+
+    var step = function () {
+      return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth;
+    };
+    var sync = function () {
+      queued = false;
+      var max = track.scrollWidth - track.clientWidth;
+      var scrolls = max > 1;
+      nav.hidden = !scrolls;
+      // A focus stop only while there is something to scroll with the arrow keys.
+      if (scrolls) track.setAttribute("tabindex", "0");
+      else track.removeAttribute("tabindex");
+      index = track.scrollLeft >= max - 1
+        ? cards.length - 1
+        : Math.round(track.scrollLeft / step());
+      at.textContent = index + 1;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= max - 1;
+    };
+    var queue = function () {
+      if (!queued) {
+        queued = true;
+        window.requestAnimationFrame(sync);
+      }
+    };
+    var go = function (dir) {
+      track.scrollBy({ left: dir * step(), behavior: reduceMotion ? "auto" : "smooth" });
+    };
+
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    track.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
+    sync();
   }
 
   // Launch-dependent wording. Each element carries its launch instant (data-launch)
