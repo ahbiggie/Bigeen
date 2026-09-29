@@ -410,13 +410,17 @@
 }
 
 /* ---------- Problems ---------- */
-/* A solid brand-blue band. The guide line and the markers switch to brass,
-   as on the other dark bands, so they stay visible. */
+/* A brand-blue band: deep navy fading into Bigeen blue, with a soft light
+   behind the headline. The guide line and markers switch to brass, as on the
+   other dark bands, so they stay visible. */
 .problems {
-  background: var(--colour-brand);
+  background:
+    radial-gradient(ellipse 60% 55% at 18% 22%, rgba(247, 245, 240, 0.09), transparent 70%),
+    linear-gradient(135deg, #0a1236 0%, #101f5c 45%, var(--colour-brand) 100%);
+  background-color: var(--colour-brand);
   color: var(--colour-on-ink);
   padding-block: var(--space-section);
-  /* The bullets start off to the side before sliding in */
+  /* The ticker runs edge to edge */
   overflow-x: clip;
 }
 
@@ -520,17 +524,86 @@
   background: var(--colour-brass);
 }
 
-/* The symptoms slide in from the side, one after another, as they reach the
-   screen (scroll reveal is only switched on by main.js, never under reduced
-   motion, so without it they simply show). */
-.rv-on .problems__list li.rv {
-  transform: translateX(-2.5rem);
+/* Ticker: the symptoms run in one slow, endless line across the band.
+   main.js adds .is-ticking (never under reduced motion) and a hidden copy of
+   the items, so moving the track by half its width loops seamlessly. Hover,
+   keyboard focus or the pause button stop it. */
+.ticker {
+  margin-top: var(--space-content);
 }
 
-.rv-on .problems__list li.rv.is-in {
-  transform: none;
-  transition-duration: 0.7s;
-  transition-delay: calc(var(--i, 0) * 110ms);
+.ticker .problems__list {
+  margin-top: 0;
+}
+
+.ticker.is-ticking {
+  /* Full-bleed, with the ends fading into the band */
+  margin-inline: calc(50% - 50vw);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ticker.is-ticking .problems__list {
+  display: flex;
+  width: max-content;
+  border-block: 1px solid var(--colour-line-on-ink);
+  animation: ticker var(--ticker-duration, 40s) linear infinite;
+}
+
+.ticker.is-ticking:hover .problems__list,
+.ticker.is-ticking:focus-within .problems__list,
+.ticker.is-paused .problems__list {
+  animation-play-state: paused;
+}
+
+.ticker.is-ticking .problems__list li {
+  flex: none;
+  padding: 1.5rem 3rem 1.5rem 1.75rem;
+  border-top: 0;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+}
+
+.ticker.is-ticking .problems__list li::before {
+  top: 50%;
+  margin-top: -0.25rem;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker__pause {
+  display: block;
+  margin: 1rem 0 0 auto;
+  padding: 0.35rem 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--colour-on-ink-soft);
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ticker__pause[hidden] {
+  display: none;
+}
+
+.ticker__pause:hover {
+  color: var(--colour-on-ink);
+}
+
+.ticker__pause:focus-visible {
+  outline: 2px solid var(--colour-on-ink);
+  outline-offset: 3px;
 }
 
 .problems__bridge {
@@ -564,19 +637,10 @@
 }
 
 @media (min-width: 900px) {
-  .problems__list {
+  .ticker:not(.is-ticking) .problems__list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: var(--grid-gap);
-  }
-
-  /* Two columns: the right-hand column comes in from the right */
-  .rv-on .problems__list li.rv:nth-child(even) {
-    transform: translateX(2.5rem);
-  }
-
-  .rv-on .problems__list li.rv.is-in:nth-child(even) {
-    transform: none;
   }
 }
 

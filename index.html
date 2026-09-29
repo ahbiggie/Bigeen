@@ -216,14 +216,20 @@
             </div>
           </div>
 
-          <ul class="problems__list" role="list">
-            <li class="rv" data-reveal style="--i: 0">Processes remain informal.</li>
-            <li class="rv" data-reveal style="--i: 1">Work becomes dependent on individuals.</li>
-            <li class="rv" data-reveal style="--i: 2">Documentation falls behind reality.</li>
-            <li class="rv" data-reveal style="--i: 3">Management loses visibility.</li>
-            <li class="rv" data-reveal style="--i: 4">Technology is introduced without fixing the workflow.</li>
-            <li class="rv" data-reveal style="--i: 5">People work inside systems that were not designed for them.</li>
-          </ul>
+          <!-- Without JS, or under reduced motion, this is a static list. main.js turns
+               it into a slow, continuous ticker (with a hidden duplicate for a
+               seamless loop) and shows the pause control. -->
+          <div class="ticker rv" data-reveal data-ticker>
+            <ul class="problems__list" role="list">
+              <li>Processes remain informal.</li>
+              <li>Work becomes dependent on individuals.</li>
+              <li>Documentation falls behind reality.</li>
+              <li>Management loses visibility.</li>
+              <li>Technology is introduced without fixing the workflow.</li>
+              <li>People work inside systems that were not designed for them.</li>
+            </ul>
+          </div>
+          <button class="ticker__pause" type="button" data-ticker-pause hidden>Pause</button>
 
           <div class="grid problems__bridge">
             <p class="problems__bridge-next">
