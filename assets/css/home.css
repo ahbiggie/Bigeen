@@ -719,6 +719,50 @@
   color: var(--colour-ink-soft);
 }
 
+/* Social profiles (generated from partials/social.json): footer and Contact page */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  margin-left: -0.75rem;
+  list-style: none;
+}
+
+.social__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--colour-ink);
+  transition: color 0.2s var(--ease);
+}
+
+.social__link:hover {
+  color: var(--colour-brand);
+}
+
+.social__link:focus-visible {
+  outline: 2px solid var(--colour-brand);
+  outline-offset: 2px;
+}
+
+.social__icon {
+  display: block;
+}
+
+.page__social {
+  margin-top: var(--space-content);
+}
+
+.page__social-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .footer__nav {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
