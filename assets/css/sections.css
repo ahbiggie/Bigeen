@@ -835,6 +835,27 @@
   height: auto;
 }
 
+/* Operis: endorsed-brand line under the wordmark, and two prose/list columns */
+.page__by {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  color: var(--colour-ink-soft);
+}
+
+.cap__text {
+  max-width: 36rem;
+  margin-top: 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--colour-ink-soft);
+}
+
+@media (min-width: 900px) {
+  .page__caps.page__caps--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* ---------- 05 The Bigeen Approach ---------- */
 /* A dark band over a photo. The photo fills the first screen and fades into
    ink, so the stage list further down sits on solid colour. Inside the band the
@@ -1919,9 +1940,43 @@
   color: var(--colour-ink-soft);
 }
 
-.other--developing {
+.other--developing,
+.other--available {
   border: 1px solid var(--colour-ink);
   background: var(--colour-surface);
+}
+
+/* Operis: an endorsed brand ("by Bigeen Solutions") with its own wordmark.
+   A column, so the link sits at the foot when the row stretches the card. */
+.other--available {
+  display: flex;
+  flex-direction: column;
+}
+
+.other__label {
+  margin-bottom: 1rem;
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--colour-ink-soft);
+}
+
+.other h3.other__brand {
+  margin-bottom: 0.25rem;
+}
+
+.other__logo {
+  display: block;
+  width: clamp(9rem, 18vw, 11rem);
+  height: auto;
+}
+
+.other__by {
+  margin-bottom: 0.85rem;
+  font-size: 0.9375rem;
+  color: var(--colour-ink-soft);
 }
 
 .other--future {
