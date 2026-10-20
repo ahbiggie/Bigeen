@@ -196,7 +196,7 @@
     var hovered = false;
     var focused = false;
     var stopped = reduceMotion; // pause button or manual navigation
-    var settle = null;
+    var scrollEnd = null;
 
     var show = function (i) {
       current = (i + slides.length) % slides.length;
@@ -242,8 +242,8 @@
     // A swipe is steering too.
     cTrack.addEventListener("pointerdown", function () { stopped = true; pauseBtn.textContent = "Play"; schedule(); });
     cTrack.addEventListener("scroll", function () {
-      window.clearTimeout(settle);
-      settle = window.setTimeout(syncDots, 150);
+      window.clearTimeout(scrollEnd);
+      scrollEnd = window.setTimeout(syncDots, 150);
     }, { passive: true });
     carousel.addEventListener("mouseenter", function () { hovered = true; schedule(); });
     carousel.addEventListener("mouseleave", function () { hovered = false; schedule(); });
