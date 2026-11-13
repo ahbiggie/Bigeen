@@ -264,63 +264,6 @@
     syncDots();
   }
 
-  // Launch-dependent wording. Each element carries its launch instant (data-launch)
-  // and the text to show from then on (data-live-text); the HTML holds the
-  // pre-launch text. The badge's parent gets .is-live so its marker changes shape.
-  var liveBits = document.querySelectorAll("[data-live-text]");
-  if (liveBits.length) {
-    var goLive = function (el) {
-      el.textContent = el.getAttribute("data-live-text");
-      el.removeAttribute("data-live-text");
-      if (el.parentElement) el.parentElement.classList.add("is-live");
-    };
-    Array.prototype.forEach.call(liveBits, function (el) {
-      var at = Date.parse(el.getAttribute("data-launch"));
-      if (isNaN(at)) return;
-      var wait = at - Date.now();
-      if (wait <= 0) goLive(el);
-      // setTimeout caps at about 24.8 days; a page open that long can reload.
-      else if (wait < 2147483647) window.setTimeout(function () { goLive(el); }, wait);
-    });
-  }
-
-  // StitchFYN countdown. The target instant lives in data-launch on the element.
-  // Without JS the static "Launching 31 October 2026" line is shown instead. Under
-  // reduced motion the seconds are dropped and the display updates once a minute.
-  var countdown = document.querySelector("[data-countdown]");
-  if (countdown) {
-    var target = Date.parse(countdown.getAttribute("data-launch"));
-    if (!isNaN(target)) {
-      var cd = function (k) { return countdown.querySelector('[data-cd="' + k + '"]'); };
-      var pad = function (n) { return n < 10 ? "0" + n : String(n); };
-      var timer;
-      if (reduceMotion) {
-        var secs = countdown.querySelector("[data-cd-seconds]");
-        if (secs) secs.hidden = true;
-      }
-      var tick = function () {
-        var left = target - Date.now();
-        if (left <= 0) {
-          countdown.classList.remove("is-on");
-          countdown.classList.add("is-live");
-          countdown.querySelector(".countdown__date").textContent = "Now live";
-          window.clearInterval(timer);
-          return;
-        }
-        var s = Math.floor(left / 1000);
-        cd("days").textContent = pad(Math.floor(s / 86400));
-        cd("hours").textContent = pad(Math.floor((s % 86400) / 3600));
-        cd("minutes").textContent = pad(Math.floor((s % 3600) / 60));
-        cd("seconds").textContent = pad(s % 60);
-        countdown.classList.add("is-on");
-      };
-      tick();
-      if (!countdown.classList.contains("is-live")) {
-        timer = window.setInterval(tick, reduceMotion ? 30000 : 1000);
-      }
-    }
-  }
-
   // The hero line continues into the Problems section as its opening guide.
   var guide = document.querySelector("[data-guide]");
   if (guide) {
