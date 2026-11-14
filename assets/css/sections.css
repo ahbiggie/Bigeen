@@ -1521,7 +1521,7 @@
 }
 
 
-/* ---------- StitchFYN countdown (inside the feature panel) ---------- */
+/* ---------- StitchFYN launch date (inside the feature panel) ---------- */
 .countdown {
   max-width: 34rem;
   margin-top: 1.5rem;
@@ -1541,55 +1541,10 @@
   color: var(--colour-on-ink);
 }
 
-/* The clock only appears once JS has computed it; the date above is the
-   complete no-JS fallback. */
-.countdown__clock {
-  display: none;
-  margin-top: 1rem;
-  gap: clamp(1rem, 3vw, 1.75rem);
-}
-
-.countdown.is-on .countdown__clock {
-  display: flex;
-}
-
-.cd-unit {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-width: 3.25rem;
-}
-
-.cd-num {
-  font-family: var(--font-data);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 500;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-  color: var(--colour-on-ink);
-}
-
-.cd-label {
-  font-family: var(--font-data);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--colour-on-ink-soft);
-}
-
-/* After the launch time */
-.countdown.is-live .countdown__clock {
-  display: none;
-}
-
+/* Since launch the block only shows the "Live since" date. */
 .countdown.is-live .countdown__date {
   font-size: 0.875rem;
   color: var(--colour-on-ink);
-}
-
-.cd-unit[hidden] {
-  display: none;
 }
 
 /* ---------- 08 Start a Conversation ---------- */
